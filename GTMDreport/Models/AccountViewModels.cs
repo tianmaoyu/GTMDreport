@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace GTMDreport.Models
 {
-    // AccountController 操作返回的模型。
+    // AccountController 操作返回的模型。  /
 
     public class ExternalLoginViewModel
     {
@@ -11,7 +11,7 @@ namespace GTMDreport.Models
 
         public string Url { get; set; }
 
-        public string State { get; set; }
+        public string State { get; set; }     
     }
 
     public class ManageInfoViewModel
