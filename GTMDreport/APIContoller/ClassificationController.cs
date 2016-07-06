@@ -5,6 +5,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using GTMDreport.ADL;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace GTMDreport.APIContoller
 {
@@ -19,15 +21,21 @@ namespace GTMDreport.APIContoller
         // GET api/<controller>/5
         public string Get(int id)
         {
-            ReportContext dbContext=new ReportContext();
-            var classifications=dbContext.Classifications.ToList();
+
+            ReportContext dbContext = new ReportContext();
+            var classifications = dbContext.Classifications.ToList();
             var IndexIndustrys = dbContext.IndexIndustrys.ToList();
             var NonPublicIndustrys = dbContext.NonPublicIndustrys.ToList();
-            var Regions = dbContext.Regions.ToList();
+            var Regions = dbContext.Regions;
             var IndustrycCassifications = dbContext.IndustrycCassifications.ToList();
-       
 
-            return "value";
+            //忽略循环引用
+            JsonSerializerSettings jsSettings = new JsonSerializerSettings();
+            jsSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+
+            string result2 = JsonConvert.SerializeObject(IndexIndustrys, jsSettings);
+
+            return JsonConvert.SerializeObject(Regions, Formatting.Indented);
         }
 
         // POST api/<controller>

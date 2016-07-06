@@ -14,19 +14,8 @@ namespace GTMDreport
     
     public partial class Region
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Region()
-        {
-            this.NonPublicIndustrie = new HashSet<NonPublicIndustry>();
-            this.IndustrycCassifications = new HashSet<IndustrycCassification>();
-        }
-    
         public int ID { get; set; }
         public string Name { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NonPublicIndustry> NonPublicIndustrie { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<IndustrycCassification> IndustrycCassifications { get; set; }
     }
 }
