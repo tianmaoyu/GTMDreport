@@ -12,21 +12,21 @@ namespace GTMDreport
     using System;
     using System.Collections.Generic;
     
-    public partial class RegionInfo
+    public partial class Region
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public RegionInfo()
+        public Region()
         {
-            this.IndustrycCassificationInfos = new HashSet<IndustrycCassificationInfo>();
-            this.NonPublicIndustrieInfos = new HashSet<NonPublicIndustryInfo>();
+            this.NonPublicIndustrie = new HashSet<NonPublicIndustry>();
+            this.IndustrycCassifications = new HashSet<IndustrycCassification>();
         }
     
         public int ID { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<IndustrycCassificationInfo> IndustrycCassificationInfos { get; set; }
+        public virtual ICollection<NonPublicIndustry> NonPublicIndustrie { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NonPublicIndustryInfo> NonPublicIndustrieInfos { get; set; }
+        public virtual ICollection<IndustrycCassification> IndustrycCassifications { get; set; }
     }
 }

@@ -12,34 +12,34 @@ namespace GTMDreport
     using System;
     using System.Collections.Generic;
     
-    public partial class IndustrycCassificationInfo
+    public partial class IndustrycCassification
     {
         public int ID { get; set; }
         public Nullable<double> IndustryOutput { get; set; }
         public Nullable<double> IndustrySalesOutput { get; set; }
         public Nullable<double> IndustryGrowthOutput { get; set; }
-        public Nullable<double> IGO__GrowthRate { get; set; }
+        public Nullable<double> IGO_GrowthRate { get; set; }
         public Nullable<double> AssetsTotal { get; set; }
-        public Nullable<double> AT__GrowthRate { get; set; }
+        public Nullable<double> AT_GrowthRate { get; set; }
         public Nullable<double> DebtTotal { get; set; }
-        public Nullable<double> DT__GrowthRate { get; set; }
+        public Nullable<double> DTG_GrowthRate { get; set; }
         public Nullable<double> Income { get; set; }
-        public Nullable<double> Inc__GrowthRate { get; set; }
+        public Nullable<double> Inc_GrowthRate { get; set; }
         public Nullable<double> ProfitsTotal { get; set; }
-        public Nullable<double> Pro__GrowthRate { get; set; }
+        public Nullable<double> Pro_GrowthRate { get; set; }
         public Nullable<double> VAT { get; set; }
-        public Nullable<double> VAT__GrowthRate { get; set; }
+        public Nullable<double> VAT_GrowthRate { get; set; }
         public Nullable<double> ExpenceInterest { get; set; }
-        public Nullable<double> EI__GrowthRate { get; set; }
+        public Nullable<double> EI_GrowthRate { get; set; }
         public Nullable<double> Stock { get; set; }
-        public Nullable<double> St__GrowthRate { get; set; }
+        public Nullable<double> St_GrowthRate { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
         public Nullable<int> RegionID { get; set; }
         public Nullable<int> ClassificationID { get; set; }
         public string RegionName { get; set; }
         public string ClassificationName { get; set; }
     
-        public virtual Classification ClassificationInfo { get; set; }
-        public virtual RegionInfo RegionInfo { get; set; }
+        public virtual Classification Classification { get; set; }
+        public virtual Region Region { get; set; }
     }
 }

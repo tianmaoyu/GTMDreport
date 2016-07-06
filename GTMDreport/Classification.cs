@@ -17,13 +17,13 @@ namespace GTMDreport
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Classification()
         {
-            this.IndustrycCassificationInfos = new HashSet<IndustrycCassificationInfo>();
+            this.IndustrycCassifications = new HashSet<IndustrycCassification>();
         }
     
         public int ID { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<IndustrycCassificationInfo> IndustrycCassificationInfos { get; set; }
+        public virtual ICollection<IndustrycCassification> IndustrycCassifications { get; set; }
     }
 }

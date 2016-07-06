@@ -12,7 +12,7 @@ namespace GTMDreport
     using System;
     using System.Collections.Generic;
     
-    public partial class NonPublicIndustryInfo
+    public partial class NonPublicIndustry
     {
         public int ID { get; set; }
         public Nullable<int> IndexIndustryID { get; set; }
@@ -24,7 +24,7 @@ namespace GTMDreport
         public string IndexName { get; set; }
         public string RegionName { get; set; }
     
-        public virtual IndexIndustryInfo IndexIndustryInfo { get; set; }
-        public virtual RegionInfo RegionInfo { get; set; }
+        public virtual IndexIndustry IndexIndustry { get; set; }
+        public virtual Region Region { get; set; }
     }
 }

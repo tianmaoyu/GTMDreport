@@ -4,16 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="718ffaea2425487e88d5884977e27752" Name="Diagram1">
+      <Diagram DiagramId="718ffaea2425487e88d5884977e27752" Name="Diagram1" ZoomLevel="98">
         <EntityTypeShape EntityType="GTMDReportModel.Classification" Width="2.25" PointX="4.25" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="GTMDReportModel.IndexIndustryInfo" Width="2.125" PointX="6.625" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="GTMDReportModel.IndustrycCassificationInfo" Width="2.375" PointX="1.25" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="GTMDReportModel.NonPublicIndustryInfo" Width="2.375" PointX="6.625" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="GTMDReportModel.RegionInfo" Width="2" PointX="4" PointY="4.25" IsExpanded="true" />
-        <AssociationConnector Association="GTMDReportModel.FK_IndustrycCassification_Classification" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="GTMDReportModel.IndexIndustry" Width="2.125" PointX="6.625" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="GTMDReportModel.NonPublicIndustry" Width="2.375" PointX="6.625" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GTMDReportModel.Region" Width="2.375" PointX="4" PointY="4" IsExpanded="true" />
         <AssociationConnector Association="GTMDReportModel.FK_NonPublicIndustry_IndexIndustry" ManuallyRouted="false" />
-        <AssociationConnector Association="GTMDReportModel.FK_IndustrycCassification_Region" ManuallyRouted="false" />
         <AssociationConnector Association="GTMDReportModel.FK_NonPublicIndustry_Region" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="GTMDReportModel.IndustrycCassification" Width="1.5" PointX="1.5" PointY="3.25" />
+        <AssociationConnector Association="GTMDReportModel.FK_IndustrycCassification_Classification" />
+        <AssociationConnector Association="GTMDReportModel.FK_IndustrycCassification_Region" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

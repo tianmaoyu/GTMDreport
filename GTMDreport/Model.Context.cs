@@ -26,9 +26,9 @@ namespace GTMDreport
         }
     
         public virtual DbSet<Classification> Classifications { get; set; }
-        public virtual DbSet<IndexIndustryInfo> IndexIndustryInfoes { get; set; }
-        public virtual DbSet<IndustrycCassificationInfo> IndustrycCassificationInfoes { get; set; }
-        public virtual DbSet<NonPublicIndustryInfo> NonPublicIndustryInfoes { get; set; }
-        public virtual DbSet<RegionInfo> RegionInfoes { get; set; }
+        public virtual DbSet<IndexIndustry> IndexIndustries { get; set; }
+        public virtual DbSet<NonPublicIndustry> NonPublicIndustries { get; set; }
+        public virtual DbSet<Region> Regions { get; set; }
+        public virtual DbSet<IndustrycCassification> IndustrycCassifications { get; set; }
     }
 }
