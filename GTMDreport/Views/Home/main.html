@@ -1,0 +1,502 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap-theme.min.css">
+  <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+  <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="maincss.css">
+  <link rel="stylesheet" href="checkboxCss.css">
+
+  <link rel="stylesheet" href="bootstrap-table.css">
+</head>
+<body>
+<script src="echarts.js"></script>
+<script src="bootstrap-table.js"></script>
+<script src="bootstrap-table-zh-CN.js"></script>
+
+
+<div class="panel panel-primary ">
+  <div class="header">
+    <div class="row-fluid ">
+      <div class="col-md-4">
+        <div class="header-title">
+          <h1  >数据展示</h1>
+        </div>
+      </div>
+      <div class="col-md-8 mark ">
+        <div class="pull-right">
+          <div class="head">
+            <div class="col-md-5 mark">
+            </div>
+            <div class="col-md-7 mark">
+              <div  class="icon-head"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="panel-body panelbody">
+    <div class="main">
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <!--左边的布局-->
+          <div class="col-md-2 marked">
+
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title">选项配置</h3>
+              </div>
+              <div class="panel-body">
+                <div class="input-group form-group">
+                  <span class="input-group-addon">分类</span>
+                  <select id="select-type" class="form-control input-sm" >
+                    <option value="">.input-sm</option>
+                    <option value="">.input-sm</option>
+                    <option value="">.input-sm</option>
+                      <option value="">.input-sm</option> 
+                      <option value="">.input-sm</option>
+                    <option value="">.input-sm</option>
+                  </select>
+                </div>
+                <hr style="border:none;border-top:1px dashed #0066CC;" />
+                <div class="input-group form-group">
+                  <span class="input-group-addon">地区</span>
+                  <select class="form-control input-sm" >
+                    <option value="">.input-sm</option>
+                    <option value="">.input-sm</option>
+                    <option value="">.input-sm</option>
+                    <option value="">.input-sm</option>
+                    <option value="">.input-sm</option>
+                    <option value="">.input-sm</option>
+                  </select>
+                </div>
+                <div class="input-group form-group">
+                  <span class="input-group-addon">月份</span>
+                  <select class="form-control input-sm" >
+                    <option value="">.input-sm</option>
+                    <option value="">.input-sm</option>
+                    <option value="">.input-sm</option>
+                    <option value="">.input-sm</option>  <option value="">.input-sm</option>
+                    <option value="">.input-sm</option>
+                  </select>
+                </div>
+                <hr style="border:none;border-top:1px dashed #0066CC;" />
+                <div class="input-group form-group">
+                  <label for="chk" class="input-group-addon">对比</label>
+                  <div class="form-control from-control-customer">
+                    <input type="checkbox" id="chk" class="chk" />
+                  </div>
+                </div>
+                <div class="input-group form-group">
+                  <span class="input-group-addon">地区</span>
+                  <select class="form-control input-sm" >
+                    <option value="">.input-sm</option>
+                    <option value="">.input-sm</option>
+                    <option value="">.input-sm</option>
+                    <option value="">.input-sm</option>
+                    <option value="">.input-sm</option>
+                    <option value="">.input-sm</option>
+                  </select>
+                </div>
+                <div class="input-group form-group">
+                  <span class="input-group-addon">月份</span>
+                  <select class="form-control input-sm" >
+                    <option value="">.input-sm</option>
+                    <option value="">.input-sm</option>
+                    <option value="">.input-sm</option>
+                    <option value="">.input-sm</option>  <option value="">.input-sm</option>
+                    <option value="">.input-sm</option>
+                  </select>
+                </div>
+
+                <hr style="border:none;border-top:1px dashed #0066CC;" />
+                <di>
+                  <button class="btn  btn-primary" style="width: 100%">查询数据</button>
+                </di>
+              </div>
+            </div>
+          </div>
+          <!--右边的布局-->
+          <div class="col-md-10 ">
+            <ul class="nav nav-pills">
+              <li role="presentation" class="active bule1"><a href="#data" data-toggle="tab">数据视图</a></li>
+              <li role="presentation"><a href="#datacomple" data-toggle="tab">对比视图</a></li>
+              <li role="presentation"><a href="#datafutrue" data-toggle="tab">未来预测</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+              <div class="  tab-pane fade in active" id="data" >
+                <div class="cc">
+                  <div class="data-show-1">
+                      <h4>
+                         一种方案
+                        <small>Subtext for header</small>
+                      </h4>
+                    <div id="data-show-1" style="height: 400px;border: dotted"></div>
+                  </div>
+                  <h4>
+                    第二种方案
+                    <small>Subtext for header</small>
+                  </h4>
+                  <div id="data-show-2" style="height: 400px;border: dotted">
+
+                  </div>
+                  <h4>
+                    第三种方案
+                    <small>Subtext for header</small>
+                  </h4>
+                  <div class="data-show-3" style="height: 400px;border: dotted">
+                    <table id="table">
+                      <thead>
+                      <tr>
+                        <th data-field="name" data-formatter="commonFormatter" data-events="commonEvents">Name</th>
+                        <th data-field="stargazers_count" data-formatter="commonFormatter" data-events="commonEvents">Stars</th>
+                        <th data-field="forks_count" data-formatter="commonFormatter" data-events="commonEvents">Forks</th>
+                        <th data-field="description" data-formatter="commonFormatter" data-events="commonEvents">Description</th>
+                      </tr>
+                      </thead>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class=" tab-pane fade" id="datacomple">
+                <div class="cc">
+                  <h4>
+                    第一种对比方案
+                    <small>Subtext for header</small>
+                  </h4>
+                  <div id="data-vs-1" style="height: 400px;border: dotted">
+                  </div>
+                    <h4>
+                      第二种对比方案
+                      <small>Subtext for header</small>
+                    </h4>
+                    <div id="data-vs-2" style="height: 400px;border: dotted">
+
+                    </div>
+                  </div>
+                </div>
+
+              <div class="  tab-pane fade" id="datafutrue">
+                <p>jMeter 是一款开源的测试软件。它是 100% 纯 Java 应用程序，用于负载和性能测试。</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+//柱状图，地图
+<script type="text/javascript">
+   var mychar1=echarts.init(document.getElementById("data-show-1"));
+   var option = {
+     tooltip : {
+       trigger: 'axis'
+     },
+     toolbox: {
+       show : true,
+       y: 'bottom',
+       feature : {
+         mark : {show: true},
+         dataView : {show: true, readOnly: false},
+         magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+         restore : {show: true},
+         saveAsImage : {show: true}
+       }
+     },
+     calculable : true,
+     legend: {
+       data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎','百度','谷歌','必应','其他']
+     },
+     xAxis : [
+       {
+         type : 'category',
+         splitLine : {show : false},
+         data : ['周一','周二','周三','周四','周五','周六','周日']
+       }
+     ],
+     yAxis : [
+       {
+         type : 'value',
+         position: 'right'
+       }
+     ],
+     series : [
+       {
+         name:'直接访问',
+         type:'bar',
+         data:[320, 332, 301, 334, 390, 330, 320]
+       },
+       {
+         name:'邮件营销',
+         type:'bar',
+         tooltip : {trigger: 'item'},
+         stack: '广告',
+         data:[120, 132, 101, 134, 90, 230, 210]
+       },
+       {
+         name:'联盟广告',
+         type:'bar',
+         tooltip : {trigger: 'item'},
+         stack: '广告',
+         data:[220, 182, 191, 234, 290, 330, 310]
+       },
+       {
+         name:'视频广告',
+         type:'bar',
+         tooltip : {trigger: 'item'},
+         stack: '广告',
+         data:[150, 232, 201, 154, 190, 330, 410]
+       },
+       {
+         name:'搜索引擎',
+         type:'line',
+         data:[1862, 1918, 964, 1026, 1679, 1600, 1570]
+       },
+
+       {
+         name:'搜索引擎细分',
+         type:'pie',
+         tooltip : {
+           trigger: 'item',
+           formatter: '{a} <br/>{b} : {c} ({d}%)'
+         },
+         center: [160,130],
+         radius : [0, 50],
+         itemStyle :　{
+           normal : {
+             labelLine : {
+               length : 20
+             }
+           }
+         },
+         data:[
+           {value:1048, name:'百度'},
+           {value:251, name:'谷歌'},
+           {value:147, name:'必应'},
+           {value:102, name:'其他'}
+         ]
+       }
+     ]
+   };
+   // 为echarts对象加载数据
+   mychar1.setOption(option);
+   $.get('../web/guizhou.json', function (guizhouJson) {
+     echarts.registerMap('guizhou', guizhouJson);
+     var chart = echarts.init(document.getElementById('data-show-2'));
+     echarts.registerMap('guizhou', guizhouJson, {
+     });
+     chart.setOption({
+       backgroundColor: '#404a59',
+       geo: {
+         map: 'guizhou',
+         label: {
+           emphasis: {
+             show: false
+           }
+         },
+         roam: true,
+         itemStyle: {
+           normal: {
+             areaColor: '#323c48',
+             borderColor: '#428bca'
+           },
+           emphasis: {
+             areaColor: '#2a333d'
+           }
+         }
+       },
+     });
+   });
+</script>
+
+//表格
+<script type="text/javascript">
+  var data = [
+    {
+      "name": "bootstrap-table",
+      "stargazers_count": "526",
+      "forks_count": "122",
+      "description": "An extended Bootstrap table with radio, checkbox, sort, pagination, and other added features. (supports twitter bootstrap v2 and v3) "
+    },
+    {
+      "name": "multiple-select",
+      "stargazers_count": "288",
+      "forks_count": "150",
+      "description": "A jQuery plugin to select multiple elements with checkboxes :)"
+    },
+    {
+      "name": "bootstrap-show-password",
+      "stargazers_count": "32",
+      "forks_count": "11",
+      "description": "Show/hide password plugin for twitter bootstrap."
+    },
+    {
+      "name": "blog",
+      "stargazers_count": "13",
+      "forks_count": "4",
+      "description": "my blog"
+    },
+    {
+      "name": "scutech-redmine",
+      "stargazers_count": "6",
+      "forks_count": "3",
+      "description": "Redmine notification tools for chrome extension."
+    }
+  ];
+  $(function () {
+    $('#table').bootstrapTable({
+      data: data
+    });
+  });
+  function commonFormatter(value) {
+    return '<div data-field="' + this.field + '">' + value + '</div>';
+  }
+  window.commonEvents = {
+    'click div': function (e) {
+      alert('You click field: ' + $(e.target).attr('data-field'));
+    }
+  }
+</script>
+
+//雷达图
+<script type="text/javascript">
+    $(function() {
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+            // 获取已激活的标签页的名称
+            var activeTab = $(e.target).text();
+            //alert(activeTab);
+            if (activeTab == '对比视图') {
+                var mycharvs1 = echarts.init(document.getElementById("data-vs-1"));
+                var optionvs1 = {
+                    title: {
+                        text: '基础雷达图'
+                    },
+                    tooltip: {},
+                    legend: {
+                        data: ['预算分配（Allocated Budget）', '实际开销（Actual Spending）']
+                    },
+                    radar: {
+                        // shape: 'circle',
+                        indicator: [
+                            { name: '销售（sales）', max: 6500 },
+                            { name: '管理（Administration）', max: 16000 },
+                            { name: '信息技术（Information Techology）', max: 30000 },
+                            { name: '客服（Customer Support）', max: 38000 },
+                            { name: '研发（Development）', max: 52000 },
+                            { name: '市场（Marketing）', max: 25000 }
+                        ]
+                    },
+                    series: [
+                        {
+                            name: '预算 vs 开销（Budget vs spending）',
+                            type: 'radar',
+                            // areaStyle: {normal: {}},
+                            data: [
+                                {
+                                    value: [4300, 10000, 28000, 35000, 50000, 19000],
+                                    name: '预算分配（Allocated Budget）'
+                                },
+                                {
+                                    value: [5000, 14000, 28000, 31000, 42000, 21000],
+                                    name: '实际开销（Actual Spending）'
+                                }
+                            ]
+                        }
+                    ]
+                };
+                mycharvs1.setOption(optionvs1);
+
+                var mycharvs2 = echarts.init(document.getElementById("data-vs-2"));
+                optionvs2 = {
+                    backgroundColor: '#2c343c',
+
+                    title: {
+                        text: 'Customized Pie',
+                        left: 'center',
+                        top: 20,
+                        textStyle: {
+                            color: '#ccc'
+                        }
+                    },
+
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    },
+
+                    visualMap: {
+                        show: false,
+                        min: 80,
+                        max: 600,
+                        inRange: {
+                            colorLightness: [0, 1]
+                        }
+                    },
+                    series: [
+                        {
+                            name: '访问来源',
+                            type: 'pie',
+                            radius: '55%',
+                            center: ['50%', '50%'],
+                            data: [
+                                { value: 335, name: '直接访问' },
+                                { value: 310, name: '邮件营销' },
+                                { value: 274, name: '联盟广告' },
+                                { value: 235, name: '视频广告' },
+                                { value: 400, name: '搜索引擎' }
+                            ].sort(function(a, b) { return a.value - b.value }),
+                            roseType: 'angle',
+                            label: {
+                                normal: {
+                                    textStyle: {
+                                        color: 'rgba(255, 255, 255, 0.3)'
+                                    }
+                                }
+                            },
+                            labelLine: {
+                                normal: {
+                                    lineStyle: {
+                                        color: 'rgba(255, 255, 255, 0.3)'
+                                    },
+                                    smooth: 0.2,
+                                    length: 10,
+                                    length2: 20
+                                }
+                            },
+                            itemStyle: {
+                                normal: {
+                                    color: '#c23531',
+                                    shadowBlur: 200,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            }
+                        }
+                    ]
+                };
+                mycharvs2.setOption(optionvs2);
+            }
+        });
+    });
+</script>
+ <script type="text/javascript">
+        $(function() {
+            var selectType = document.getElementById("select-type");
+            alert(selectType.options);
+            selectType.options.add('2', '选择试试');
+        });
+ </script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+.main{
+  margin-top: 0px;
+}
+body{
+  background-color:#428bca ;
+    padding-top: 3px;
+}
+.marked{
+
+  height: 1500px;
+}
+.mark{
+
+  height: 83px;
+}
+.cc{
+  border: dotted;
+  height: 1400px;
+  width: 100%;
+}
+.header{
+  padding-right: 20px;
+  background-color: #428bca ;
+  border-color: #428bca;
+  height:80px;
+
+}
+.header-title{
+  color: #fff;
+  font-size: 1.5em;
+  text-decoration: none;
+  background: url(../image/icon.png) no-repeat 0px 0px;
+  display: block;
+  padding: 0.4em 0 0 1.7em;
+  font-family: Comfortaa-Regular;
+
+}
+h1{
+  text-shadow: black 5px 3px 3px;
+  margin-left: 80px;
+}
+.head{
+  float: left;
+  height: 80px;
+  width: 250px;
+
+}
+.icon-head{
+  background: url(../image/icon-head1.png) no-repeat ;
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.head  button{
+  padding-top: 80px;
+}

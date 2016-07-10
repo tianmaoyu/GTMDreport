@@ -18,11 +18,21 @@ namespace GTMDreport
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/echarts.js",
+                      "~/Scripts/bootstrap-table.js",
+                       "~/Scripts/bootstrap-table-zh-CN.js"
+                      ));
+           
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/bootstrap-table.css",
+                      "~/Content/checkboxCss.css",
+                      "~/Content/maincss.css"
+                      ));
+           
         }
     }
 }
