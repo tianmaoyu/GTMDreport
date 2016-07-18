@@ -12,9 +12,16 @@ namespace GTMDreport
     using System;
     using System.Collections.Generic;
     
-    public partial class IndexIndustry
+    public partial class NonPublicIndustrie
     {
         public int ID { get; set; }
-        public string Name { get; set; }
+        public Nullable<int> IndexIndustryID { get; set; }
+        public Nullable<double> PrivateEconomy { get; set; }
+        public Nullable<double> CapitalEconomy { get; set; }
+        public Nullable<double> GrowthRate { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
+        public Nullable<int> RegionID { get; set; }
+        public string IndexName { get; set; }
+        public string RegionName { get; set; }
     }
 }

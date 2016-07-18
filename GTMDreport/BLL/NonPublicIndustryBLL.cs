@@ -15,31 +15,31 @@ namespace GTMDreport.BLL
             dbContext=new ReportContext();
         }
 
-        public List<NonPublicIndustry> GetALl()
+        public List<NonPublicIndustrie> GetALl()
         {
             return dbContext.NonPublicIndustrys.ToList();
         }
 
 
-        public List<NonPublicIndustry> GetAllByDate(DateTime dateTime)
+        public List<NonPublicIndustrie> GetAllByDate(DateTime dateTime)
         {
             return dbContext.NonPublicIndustrys.Where(item => item.Date == dateTime).ToList();
         }
 
 
-        public List<NonPublicIndustry> GetAllByRegion(int regionID)
+        public List<NonPublicIndustrie> GetAllByRegion(int regionID)
         {
             return dbContext.NonPublicIndustrys.Where(item => item.RegionID == regionID).ToList();
         }
 
 
-        public List<NonPublicIndustry> GetAllByClassification(int indexID)
+        public List<NonPublicIndustrie> GetAllByClassification(int indexID)
         {
             return dbContext.NonPublicIndustrys.Where(item => item.IndexIndustryID == indexID).ToList();
         }
 
 
-        public List<NonPublicIndustry> GetAllByClassification(DateTime dateTime, int regionID)
+        public List<NonPublicIndustrie> GetAllByClassification(DateTime dateTime, int regionID)
         {
             return dbContext.NonPublicIndustrys.Where(item => item.RegionID == regionID && item.Date == dateTime).ToList();
         }

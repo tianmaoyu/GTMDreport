@@ -477,10 +477,27 @@
             return select.options[select.options.selectedIndex].text;
         }
     };
+    //请求时间
+    $(function() {
+        $.ajax({
+            url: "api/Region/5",
+            dataType: "json",
+            contentType: "application/json",
+            async: true,
+            type:"get",
+            success:function(data) {
+              var ss=  JSON.parse(data);
+              alert(ss);
+            },
+            error:function() {
+                
+            }
+        });
+    });
 
     $(function() {
         var selectType = document.getElementById("select-type");
-        alert(selectType.options);
+        //alert(selectType.options);
         //前一个是显示，后一个是值
         selectType.options.add(new Option('选择试试', '2'));
     });

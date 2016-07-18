@@ -22,12 +22,15 @@ namespace GTMDreport.APIContoller
         public string Get(int id)
         {
 
-            ReportContext dbContext = new ReportContext();
+
+            GTMDReportEntities dbContext = new GTMDReportEntities();
+            //ReportContext dbContext = new ReportContext();
             var classifications = dbContext.Classifications.ToList();
-            var IndexIndustrys = dbContext.IndexIndustrys.ToList();
-            var NonPublicIndustrys = dbContext.NonPublicIndustrys.ToList();
+            var IndexIndustrys = dbContext.IndexIndustries.ToList();
+            var NonPublicIndustrys = dbContext.NonPublicIndustries.ToList();
             var Regions = dbContext.Regions;
             var IndustrycCassifications = dbContext.IndustrycCassifications.ToList();
+           
 
             //忽略循环引用
             JsonSerializerSettings jsSettings = new JsonSerializerSettings();

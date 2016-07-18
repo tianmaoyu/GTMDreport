@@ -38,8 +38,5 @@ namespace GTMDreport
         public Nullable<int> ClassificationID { get; set; }
         public string RegionName { get; set; }
         public string ClassificationName { get; set; }
-    
-        public virtual Classification Classification { get; set; }
-        public virtual Region Region { get; set; }
     }
 }

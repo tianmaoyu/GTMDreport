@@ -13,9 +13,9 @@ namespace GTMDreport.ADL
         {
         }
         public DbSet<Classification> Classifications { set; get; }
-        public DbSet<IndexIndustry> IndexIndustrys { set; get; }
+        public DbSet<IndexIndustrie> IndexIndustrys { set; get; }
         public DbSet<IndustrycCassification> IndustrycCassifications { set; get; }
-        public DbSet<NonPublicIndustry> NonPublicIndustrys { set; get; }
+        public DbSet<NonPublicIndustrie> NonPublicIndustrys { set; get; }
         public DbSet<Region> Regions { set; get; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
