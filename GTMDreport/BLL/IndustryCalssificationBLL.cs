@@ -8,10 +8,10 @@ namespace GTMDreport.BLL
 {
     public class IndustryCalssificationBLL
     {
-        ReportContext dbContext;
+        GTMDReportEntities dbContext;
         public IndustryCalssificationBLL()
         {
-            dbContext = new ReportContext();
+            dbContext = new GTMDReportEntities();
         }
 
         public List<IndustrycCassification> GetALl()
@@ -37,6 +37,11 @@ namespace GTMDreport.BLL
         public List<IndustrycCassification> GetAllByClassification(DateTime dateTime, int regionID)
         {
             return dbContext.IndustrycCassifications.Where(item => item.RegionID == regionID&& item.Date== dateTime).ToList();
+        }
+
+        public IQueryable<IndustrycCassification> GetAllByClassification(int dateInt, int regionID)
+        {
+            return dbContext.IndustrycCassifications.Where(item => item.RegionID == regionID && item.Date.Month == dateInt);
         }
     }
 }

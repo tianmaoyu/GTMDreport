@@ -153,99 +153,221 @@
 
 //柱状图，地图
 <script type="text/javascript">
-    var mychar1=echarts.init(document.getElementById("data-show-1"));
-    var option = {
-        tooltip : {
-            trigger: 'axis'
-        },
-        toolbox: {
-            show : true,
-            y: 'bottom',
-            feature : {
-                mark : {show: true},
-                dataView : {show: true, readOnly: false},
-                magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
-                restore : {show: true},
-                saveAsImage : {show: true}
-            }
-        },
-        calculable : true,
-        legend: {
-            data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎','百度','谷歌','必应','其他']
-        },
-        xAxis : [
-            {
-                type : 'category',
-                splitLine : {show : false},
-                data : ['周一','周二','周三','周四','周五','周六','周日']
-            }
-        ],
-        yAxis : [
-            {
-                type : 'value',
-                position: 'right'
-            }
-        ],
-        series : [
-            {
-                name:'直接访问',
-                type:'bar',
-                data:[320, 332, 301, 334, 390, 330, 320]
-            },
-            {
-                name:'邮件营销',
-                type:'bar',
-                tooltip : {trigger: 'item'},
-                stack: '广告',
-                data:[120, 132, 101, 134, 90, 230, 210]
-            },
-            {
-                name:'联盟广告',
-                type:'bar',
-                tooltip : {trigger: 'item'},
-                stack: '广告',
-                data:[220, 182, 191, 234, 290, 330, 310]
-            },
-            {
-                name:'视频广告',
-                type:'bar',
-                tooltip : {trigger: 'item'},
-                stack: '广告',
-                data:[150, 232, 201, 154, 190, 330, 410]
-            },
-            {
-                name:'搜索引擎',
-                type:'line',
-                data:[1862, 1918, 964, 1026, 1679, 1600, 1570]
-            },
+    var mychar1 = echarts.init(document.getElementById("data-show-1"));
+    $(function () {
 
-            {
-                name:'搜索引擎细分',
-                type:'pie',
-                tooltip : {
-                    trigger: 'item',
-                    formatter: '{a} <br/>{b} : {c} ({d}%)'
-                },
-                center: [160,130],
-                radius : [0, 50],
-                itemStyle :　{
-                    normal : {
-                        labelLine : {
-                            length : 20
-                        }
-                    }
-                },
-                data:[
-                    {value:1048, name:'百度'},
-                    {value:251, name:'谷歌'},
-                    {value:147, name:'必应'},
-                    {value:102, name:'其他'}
-                ]
-            }
-        ]
-    };
+        $.get("/api/IndustrycCassification/GetInfo", { dateInt: 1, regionId: 3 },
+          function (data) {
+              var info = $.parseJSON(data);
+              var LegendData = info.LegendData
+              var IndustrySalesOutput = info.IndustrySalesOutput
+              var IndustryGrowthOutput = info.IndustryGrowthOutput
+              var AssetsTotal = info.AssetsTotal
+              var DebtTotal = info.DebtTotal
+              var Income = info.Income
+              var Stock = info.Stock
+
+              //设置option
+              var option = {
+                  tooltip: {
+                      trigger: 'axis'
+                  },
+                  toolbox: {
+                      show: true,
+                      y: 'bottom',
+                      feature: {
+                          mark: { show: true },
+                          dataView: { show: true, readOnly: false },
+                          magicType: { show: true, type: ['line', 'bar', 'stack', 'tiled'] },
+                          restore: { show: true },
+                          saveAsImage: { show: true }
+                      }
+                  },
+                  calculable: true,
+                  legend: {
+                      //行业名称
+                      data: ['工业销售产值', '工业增加值', '资产总值', '负责合计', '主营收入', '存货']
+                  },
+                  xAxis: [
+                      {
+                          type: 'category',
+                          splitLine: { show: false },
+                          //值类型LegendData
+                          data: LegendData
+                      }
+                  ],
+                  yAxis: [
+                      {
+                          type: 'value',
+                          position: 'right'
+                      }
+                  ],
+                  series: [
+                      {
+                          name: '工业销售产值',
+                          type: 'bar',
+                          data: IndustrySalesOutput
+                      },
+                      {
+                          name: '工业增加值',
+                          type: 'bar',
+                          tooltip: { trigger: 'item' },
+                          stack: '广告',
+                          data: IndustryGrowthOutput
+                      },
+                      {
+                          name: '资产总值',
+                          type: 'bar',
+                          tooltip: { trigger: 'item' },
+                          stack: '广告',
+                          data: AssetsTotal
+                      },
+                      {
+                          name: '负责合计',
+                          type: 'bar',
+                          tooltip: { trigger: 'item' },
+                          stack: '广告',
+                          data: DebtTotal
+                      },
+                      {
+                          name: '主营收入',
+                          type: 'line',
+                          data: Income
+                      },
+                      {
+                          name: '存货',
+                          type: 'bar',
+                          tooltip: { trigger: 'item' },
+                          stack: '广告',
+                          data: Stock
+                      },
+
+                      {
+                          name: '总产值',
+                          type: 'pie',
+                          tooltip: {
+                              trigger: 'item',
+                              formatter: '{a} <br/>{b} : {c} ({d}%)'
+                          },
+                          center: ["70%", 140],
+                          radius: [0, 70],
+                          itemStyle: {
+                              normal: {
+                                  labelLine: {
+                                      length: 20
+                                  }
+                              }
+                          },
+                          data: [
+                              { value: 1048, name: '白酒' },
+                              { value: 251, name: '化工' },
+                              { value: 147, name: '有色' },
+                              { value: 102, name: '冶金' },
+                              { value: 102, name: '装备制造' },
+                              { value: 102, name: '建材' },
+                              { value: 102, name: '医药' },
+                              { value: 102, name: '食品' },
+                              { value: 102, name: '其他轻工业' },
+                          ]
+                      }
+                  ]
+              };
+
+              mychar1.setOption(option);
+          });
+    })
+    //var option = {
+    //    tooltip : {
+    //        trigger: 'axis'
+    //    },
+    //    toolbox: {
+    //        show : true,
+    //        y: 'bottom',
+    //        feature : {
+    //            mark : {show: true},
+    //            dataView : {show: true, readOnly: false},
+    //            magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+    //            restore : {show: true},
+    //            saveAsImage : {show: true}
+    //        }
+    //    },
+    //    calculable : true,
+    //    legend: {
+    //        data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎','百度','谷歌','必应','其他']
+    //    },
+    //    xAxis : [
+    //        {
+    //            type : 'category',
+    //            splitLine : {show : false},
+    //            data : ['周一','周二','周三','周四','周五','周六','周日']
+    //        }
+    //    ],
+    //    yAxis : [
+    //        {
+    //            type : 'value',
+    //            position: 'right'
+    //        }
+    //    ],
+    //    series : [
+    //        {
+    //            name:'直接访问',
+    //            type:'bar',
+    //            data:[320, 332, 301, 334, 390, 330, 320]
+    //        },
+    //        {
+    //            name:'邮件营销',
+    //            type:'bar',
+    //            tooltip : {trigger: 'item'},
+    //            stack: '广告',
+    //            data:[120, 132, 101, 134, 90, 230, 210]
+    //        },
+    //        {
+    //            name:'联盟广告',
+    //            type:'bar',
+    //            tooltip : {trigger: 'item'},
+    //            stack: '广告',
+    //            data:[220, 182, 191, 234, 290, 330, 310]
+    //        },
+    //        {
+    //            name:'视频广告',
+    //            type:'bar',
+    //            tooltip : {trigger: 'item'},
+    //            stack: '广告',
+    //            data:[150, 232, 201, 154, 190, 330, 410]
+    //        },
+    //        {
+    //            name:'搜索引擎',
+    //            type:'line',
+    //            data:[1862, 1918, 964, 1026, 1679, 1600, 1570]
+    //        },
+
+    //        {
+    //            name:'搜索引擎细分',
+    //            type:'pie',
+    //            tooltip : {
+    //                trigger: 'item',
+    //                formatter: '{a} <br/>{b} : {c} ({d}%)'
+    //            },
+    //            center: [160,130],
+    //            radius : [0, 50],
+    //            itemStyle :　{
+    //                normal : {
+    //                    labelLine : {
+    //                        length : 20
+    //                    }
+    //                }
+    //            },
+    //            data:[
+    //                {value:1048, name:'百度'},
+    //                {value:251, name:'谷歌'},
+    //                {value:147, name:'必应'},
+    //                {value:102, name:'其他'}
+    //            ]
+    //        }
+    //    ]
+    //};
     // 为echarts对象加载数据
-    mychar1.setOption(option);
+    //mychar1.setOption(option);
     $.get('../JsonData/guizhou.json', function (guizhouJson) {
         echarts.registerMap('guizhou', guizhouJson);
         var chart = echarts.init(document.getElementById('data-show-2'));
@@ -526,4 +648,7 @@
         document.getElementById("select-region-2").setAttribute("disabled", "disabled");
         document.getElementById("select-data-2").setAttribute("disabled", "disabled");
     })
+
+    //请求民营规模以上的经济分行信息
+   
 </script>

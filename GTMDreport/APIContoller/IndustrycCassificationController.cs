@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GTMDreport.BLL;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,6 +11,82 @@ namespace GTMDreport.APIContoller
 {
     public class IndustrycCassificationController : ApiController
     {
+
+
+        public enum CustomizationEnum
+        {
+           白酒=3,
+           化工=5,
+           有色=6,
+           冶金=7,
+           装备制造=8,
+           建材=9,
+           医药=12,
+           食品=13,
+           其它轻工=14
+        };
+
+        /// <summary>
+        /// 通过日期，地区得到信息
+        /// </summary>
+        /// <param name="dateInt"></param>
+        /// <param name="regionId"></param>
+        /// <returns></returns>
+        public string GetInfo(int dateInt,int regionId)
+        {
+            IndustryCalssificationBLL industryCalssification = new IndustryCalssificationBLL();
+            //行业名称
+            List<string> legendDatas = new List<string>();
+
+            //工业销售产值
+            List<double> industrySalesOutputs = new List<double>();
+
+            //工业增加值
+            List<double> industryGrowthOutputs = new List<double>();
+
+            //资产总值
+            List<double> assetsTotals = new List<double>();
+
+            //负责合计
+            List<double> debtTotals = new List<double>();
+
+            //主盈业务收入
+            List<double> incomes = new List<double>();
+
+            //存货
+            List<double> stocks = new List<double>();
+
+            //定制的行业
+            List<int> classificationCustoms = new List<int> { 3, 5, 6, 7, 8, 9, 12, 13, 14 };
+            dateInt = dateInt + 1;
+
+            //赛选出classificationCustoms中的行业
+            var infos = industryCalssification.GetAllByClassification(dateInt, regionId).Where(item=> classificationCustoms.Contains((int)item.ClassificationID)).OrderBy(i=>i.ClassificationID);
+            foreach(IndustrycCassification info in infos)
+            {
+                legendDatas.Add(info.ClassificationName);
+                industrySalesOutputs.Add((double)info.IndustrySalesOutput);
+                industryGrowthOutputs.Add((double)info.IndustryGrowthOutput);
+                assetsTotals.Add((double)info.AssetsTotal);
+                debtTotals.Add((double)info.DebtTotal);
+                incomes.Add((double)info.Income);
+                stocks.Add((double)info.Stock);
+            }
+           
+            //组装为JSON
+            var classificationInfo = new
+            {
+                LegendData = legendDatas,
+                IndustrySalesOutput= industrySalesOutputs,
+                IndustryGrowthOutput= industryGrowthOutputs,
+                AssetsTotal= assetsTotals,
+                DebtTotal= debtTotals,
+                Income= incomes,
+                Stock= stocks
+            };
+            return JsonConvert.SerializeObject(classificationInfo);
+        }
+
         // GET api/<controller>
         public IEnumerable<string> Get()
         {
