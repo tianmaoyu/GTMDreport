@@ -34,36 +34,25 @@
                             <div class="panel-body">
                                 <div class="input-group form-group">
                                     <span class="input-group-addon">分类</span>
-                                    <select id="select-type" class="form-control input-sm">
-                                        <option value="">.input-sm</option>
-                                        <option value="">.input-sm</option>
-                                        <option value="">.input-sm</option>
-                                        <option value="">.input-sm</option>
-                                        <option value="">.input-sm</option>
-                                        <option value="">.input-sm</option>
+                                    <select id="select-type" class="form-control input-sm" >
+                                        <option value="-1"><b>请选择类型</b></option>
+                                        <option value="1">民营经济工业指标</option>
+                                        <option value="2">规上民营经济工业分行指标</option>
                                     </select>
                                 </div>
                                 <hr style="border:none;border-top:1px dashed #0066CC;" />
                                 <div class="input-group form-group">
                                     <span class="input-group-addon">地区</span>
-                                    <select class="form-control input-sm">
-                                        <option value="">.input-sm</option>
-                                        <option value="">.input-sm</option>
-                                        <option value="">.input-sm</option>
-                                        <option value="">.input-sm</option>
-                                        <option value="">.input-sm</option>
-                                        <option value="">.input-sm</option>
+                                    <select id="select-region-1" class="form-control input-sm" >
+                                        <option value="-1">请选择地区</option>
+                                        
                                     </select>
                                 </div>
                                 <div class="input-group form-group">
                                     <span class="input-group-addon">月份</span>
-                                    <select class="form-control input-sm">
-                                        <option value="">.input-sm</option>
-                                        <option value="">.input-sm</option>
-                                        <option value="">.input-sm</option>
-                                        <option value="">.input-sm</option>
-                                        <option value="">.input-sm</option>
-                                        <option value="">.input-sm</option>
+                                    <select id="select-data-1" class="form-control input-sm">
+                                        <option value="-1">请选择月份</option>
+                                       
                                     </select>
                                 </div>
                                 <hr style="border:none;border-top:1px dashed #0066CC;" />
@@ -75,24 +64,16 @@
                                 </div>
                                 <div class="input-group form-group">
                                     <span class="input-group-addon">地区</span>
-                                    <select class="form-control input-sm">
-                                        <option value="">.input-sm</option>
-                                        <option value="">.input-sm</option>
-                                        <option value="">.input-sm</option>
-                                        <option value="">.input-sm</option>
-                                        <option value="">.input-sm</option>
-                                        <option value="">.input-sm</option>
+                                    <select  id="select-region-2" class="form-control input-sm">
+                                        <option value="-1">请选择地区</option>
+                                       
                                     </select>
                                 </div>
                                 <div class="input-group form-group">
                                     <span class="input-group-addon">月份</span>
-                                    <select class="form-control input-sm">
-                                        <option value="">.input-sm</option>
-                                        <option value="">.input-sm</option>
-                                        <option value="">.input-sm</option>
-                                        <option value="">.input-sm</option>
-                                        <option value="">.input-sm</option>
-                                        <option value="">.input-sm</option>
+                                    <select id="select-data-2" class="form-control input-sm">
+                                        <option value="-1">请选择月份</option>
+                                       
                                     </select>
                                 </div>
                                 <hr style="border:none;border-top:1px dashed #0066CC;" />
@@ -477,28 +458,54 @@
             return select.options[select.options.selectedIndex].text;
         }
     };
-    //请求时间
+    //请求地区
     $(function() {
         $.ajax({
-            url: "api/Region/5",
+            url: "/api/Region/5",
             dataType: "json",
             contentType: "application/json",
             async: true,
             type:"get",
             success:function(data) {
-              var ss=  JSON.parse(data);
-              alert(ss);
+              var regionData=  JSON.parse(data);
+              var selectRegion1 = document.getElementById("select-region-1");
+              var selectRegion2 = document.getElementById("select-region-2");
+              for (var i = 0; i < regionData.length; i++) {
+                  selectRegion1.options.add(new Option(regionData[i].Name, regionData[i].ID));
+                  selectRegion2.options.add(new Option(regionData[i].Name, regionData[i].ID));
+              }
             },
             error:function() {
                 
             }
         });
     });
+    //Common
+    //请求地区
+    $(function () {
+        $.ajax({
+            url: "/api/Common/GetDate",
+            dataType: "json",
+            contentType: "application/json",
+            async: true,
+            type: "get",
+            success: function (data) {
+                var dataType = JSON.parse(data);
+                var selectDate1 = document.getElementById("select-data-1");
+                var selectDate2 = document.getElementById("select-data-2");
+                for (var i = 0; i < dataType.length; i++) {
+                    selectDate1.options.add(new Option(dataType[i], i));
+                    selectDate2.options.add(new Option(dataType[i], i));
+                }
+            },
+            error: function () {
 
-    $(function() {
-        var selectType = document.getElementById("select-type");
-        //alert(selectType.options);
-        //前一个是显示，后一个是值
-        selectType.options.add(new Option('选择试试', '2'));
+            }
+        });
     });
+    //启用/禁用选择项
+    $(function () {
+        document.getElementById("select-region-2").setAttribute("disabled", "disabled");
+        document.getElementById("select-data-2").setAttribute("disabled", "disabled")
+    })
 </script>

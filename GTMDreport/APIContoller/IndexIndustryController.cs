@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -18,7 +19,9 @@ namespace GTMDreport.APIContoller
         // GET api/<controller>/5
         public string Get(int id)
         {
-            return "value";
+            GTMDReportEntities dbContext = new GTMDReportEntities();
+            var indexIndustries = dbContext.IndexIndustries;
+            return JsonConvert.SerializeObject(indexIndustries, Formatting.Indented); 
         }
 
         // POST api/<controller>
@@ -34,6 +37,13 @@ namespace GTMDreport.APIContoller
         // DELETE api/<controller>/5
         public void Delete(int id)
         {
+        }
+        // GET api/<controller>/GetALL
+        public string GetALL()
+        {
+            GTMDReportEntities dbContext = new GTMDReportEntities();
+            var indexIndustries = dbContext.IndexIndustries;
+            return JsonConvert.SerializeObject(indexIndustries, Formatting.Indented);
         }
     }
 }

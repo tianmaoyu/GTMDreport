@@ -202,10 +202,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ADL\ReportContext.cs" />
-    <Compile Include="APIContoller\RegionController.cs" />
+    <Compile Include="APIContoller\ClassificationController.cs" />
     <Compile Include="APIContoller\IndustrycCassificationController.cs" />
     <Compile Include="APIContoller\IndexIndustryController.cs" />
-    <Compile Include="APIContoller\ClassificationController.cs" />
+    <Compile Include="APIContoller\CommonController.cs" />
+    <Compile Include="APIContoller\RegionController.cs" />
     <Compile Include="APIContoller\NonPublicIndustryController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />

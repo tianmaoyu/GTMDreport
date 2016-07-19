@@ -1,16 +1,14 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using GTMDreport.ADL;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace GTMDreport.APIContoller
 {
-    public class RegionController : ApiController
+    public class ClassificationController : ApiController
     {
         // GET api/<controller>
         public IEnumerable<string> Get()
@@ -23,22 +21,7 @@ namespace GTMDreport.APIContoller
         {
 
 
-            GTMDReportEntities dbContext = new GTMDReportEntities();
-            //ReportContext dbContext = new ReportContext();
-            var classifications = dbContext.Classifications.ToList();
-            var IndexIndustrys = dbContext.IndexIndustries.ToList();
-            var NonPublicIndustrys = dbContext.NonPublicIndustries.ToList();
-            var Regions = dbContext.Regions;
-            var IndustrycCassifications = dbContext.IndustrycCassifications.ToList();
-           
-
-            //忽略循环引用
-            JsonSerializerSettings jsSettings = new JsonSerializerSettings();
-            jsSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-
-            string result2 = JsonConvert.SerializeObject(IndexIndustrys, jsSettings);
-
-            return JsonConvert.SerializeObject(Regions, Formatting.Indented);
+            return "value";
         }
 
         // POST api/<controller>
@@ -54,6 +37,14 @@ namespace GTMDreport.APIContoller
         // DELETE api/<controller>/5
         public void Delete(int id)
         {
+        }
+
+        // GET api/<controller>/GetALL
+        public string GetALL()
+        {
+            GTMDReportEntities dbContext = new GTMDReportEntities();
+            var classifications = dbContext.Classifications;
+            return JsonConvert.SerializeObject(classifications, Formatting.Indented);
         }
     }
 }
