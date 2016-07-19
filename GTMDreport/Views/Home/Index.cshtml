@@ -35,7 +35,7 @@
                                 <div class="input-group form-group">
                                     <span class="input-group-addon">分类</span>
                                     <select id="select-type" class="form-control input-sm" >
-                                        <option value="-1"><b>请选择类型</b></option>
+                                        <option value="-1">请选择类型</option>
                                         <option value="1">民营经济工业指标</option>
                                         <option value="2">规上民营经济工业分行指标</option>
                                     </select>
@@ -480,6 +480,7 @@
             }
         });
     });
+
     //Common
     //请求地区
     $(function () {
@@ -503,9 +504,26 @@
             }
         });
     });
+
     //启用/禁用选择项
+    function checkClick() {
+        $("#chk").click(function () {
+          var isCheked=  $("#chk").is(":checked");
+          if (isCheked) {
+              document.getElementById("select-region-2").removeAttribute("disabled");
+              document.getElementById("select-data-2").removeAttribute("disabled");
+          }
+          else {
+              document.getElementById("select-region-2").options[0].selected = true;
+              document.getElementById("select-data-2").options[0].selected = true;
+              document.getElementById("select-region-2").setAttribute("disabled", "disabled");
+              document.getElementById("select-data-2").setAttribute("disabled", "disabled");
+          }
+        });
+    }
     $(function () {
+        checkClick();
         document.getElementById("select-region-2").setAttribute("disabled", "disabled");
-        document.getElementById("select-data-2").setAttribute("disabled", "disabled")
+        document.getElementById("select-data-2").setAttribute("disabled", "disabled");
     })
 </script>
