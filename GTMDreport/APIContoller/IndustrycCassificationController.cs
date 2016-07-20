@@ -1,5 +1,6 @@
 ﻿using GTMDreport.BLL;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +8,12 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
+
+
 namespace GTMDreport.APIContoller
 {
     public class IndustrycCassificationController : ApiController
     {
-
 
         public enum CustomizationEnum
         {
@@ -86,6 +88,49 @@ namespace GTMDreport.APIContoller
             };
             return JsonConvert.SerializeObject(classificationInfo);
         }
+        //
+        // <summary>
+        /// 为展示图二做数据组装
+        /// </summary>
+        /// <param name="dateInt"></param>
+        /// <param name="regionId"></param>
+        /// <returns>json的数据</returns>
+        public JObject GetInfoForRedView(int dateInt, int regionId)
+        {
+            IndustryCalssificationBLL industryCalssification = new IndustryCalssificationBLL();
+
+            //定制的行业
+            List<int> classificationCustoms = new List<int> { 3, 5, 6, 7, 8, 9, 12, 13, 14 };
+            dateInt = dateInt + 1;
+
+            JObject jsonObject = new JObject();
+            //赛选出classificationCustoms中的行业
+            var infos = industryCalssification.GetAllByClassification(dateInt, regionId).Where(item => classificationCustoms.Contains((int)item.ClassificationID)).OrderBy(i => i.ClassificationID).ToList();
+
+            foreach (IndustrycCassification info in infos)
+            {
+                string classificationName = info.ClassificationName;
+                JArray arrayData = new JArray();
+                arrayData.Add((double)info.IndustryGrowthOutput);
+                arrayData.Add((double)info.AssetsTotal);
+                arrayData.Add((double)info.DebtTotal);
+                arrayData.Add((double)info.Income);
+                arrayData.Add((double)info.Stock);
+                jsonObject[classificationName] = new JObject();
+                jsonObject[classificationName]["Data"] = arrayData;
+
+                JArray arrayRate = new JArray();
+                arrayRate.Add((double)info.IGO_GrowthRate);
+                arrayRate.Add((double)info.AT_GrowthRate);
+                arrayRate.Add((double)info.DTG_GrowthRate);
+                arrayRate.Add((double)info.Inc_GrowthRate);
+                arrayRate.Add((double)info.St_GrowthRate);
+                jsonObject[classificationName]["Rate"] = arrayRate;
+              
+            }
+            return jsonObject;
+        }
+
 
         // GET api/<controller>
         public IEnumerable<string> Get()
@@ -114,4 +159,5 @@ namespace GTMDreport.APIContoller
         {
         }
     }
+        
 }
