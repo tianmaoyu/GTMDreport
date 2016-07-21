@@ -110,13 +110,14 @@ namespace GTMDreport.APIContoller
             foreach (IndustrycCassification info in infos)
             {
                 string classificationName = info.ClassificationName;
+                jsonObject[classificationName] = new JObject();
+
                 JArray arrayData = new JArray();
                 arrayData.Add((double)info.IndustryGrowthOutput);
                 arrayData.Add((double)info.AssetsTotal);
                 arrayData.Add((double)info.DebtTotal);
                 arrayData.Add((double)info.Income);
                 arrayData.Add((double)info.Stock);
-                jsonObject[classificationName] = new JObject();
                 jsonObject[classificationName]["Data"] = arrayData;
 
                 JArray arrayRate = new JArray();
@@ -132,6 +133,60 @@ namespace GTMDreport.APIContoller
         }
 
 
+        public JObject GetInfoForRadar(int dateIntTarget, int dateIntSource, int regionIdTarget, int regionIdSource)
+        {
+            JObject result = new JObject();
+            //result["Target"] = new JObject();
+            //result["Source"] = new JObject();
+            IndustryCalssificationBLL industryCalssification = new IndustryCalssificationBLL();
+            List<int> classificationCustoms = new List<int> { 3, 5, 6, 7, 8, 9, 12, 13, 14 };
+            dateIntTarget = dateIntTarget + 1;
+            var infoTargets = industryCalssification.GetAllByClassification(dateIntTarget, regionIdTarget).Where(item => classificationCustoms.Contains((int)item.ClassificationID)).OrderBy(i => i.ClassificationID);
+            foreach (IndustrycCassification info in infoTargets)
+            {
+                string classificationName = info.ClassificationName;
+                result[classificationName] = new JObject();
+                result[classificationName]["Target"] = new JObject();
+
+                JArray arrayData = new JArray();
+                arrayData.Add(CovertDouble(info.IndustryGrowthOutput));
+                arrayData.Add(CovertDouble(info.AssetsTotal));
+                arrayData.Add(CovertDouble(info.DebtTotal));
+                arrayData.Add(CovertDouble(info.Income));
+                arrayData.Add(CovertDouble(info.Stock));
+                //待处理
+                result[classificationName]["Target"]["Title"] = dateIntTarget + "月，" + regionIdTarget + "地区";
+                result[classificationName]["Target"]["Data"] = arrayData;
+
+            }
+            dateIntSource = dateIntSource + 1;
+            var infoSources = industryCalssification.GetAllByClassification(dateIntSource, regionIdSource).Where(item => classificationCustoms.Contains((int)item.ClassificationID)).OrderBy(i => i.ClassificationID);
+            foreach (IndustrycCassification info in infoSources)
+            {
+                 string classificationName = info.ClassificationName;
+                //result[classificationName] = new JObject();
+                result[classificationName]["Source"] = new JObject();
+
+                JArray arrayData = new JArray();
+                arrayData.Add(CovertDouble(info.IndustryGrowthOutput));
+                arrayData.Add(CovertDouble(info.AssetsTotal));
+                arrayData.Add(CovertDouble(info.DebtTotal));
+                arrayData.Add(CovertDouble(info.Income));
+                arrayData.Add(CovertDouble(info.Stock));
+                //待处理
+                result[classificationName]["Source"]["Title"] = dateIntSource + "月，" + regionIdSource + "地区";
+                result[classificationName]["Source"]["Data"] = arrayData;
+
+            }
+
+            return result;
+        }
+        public double CovertDouble(double? value)
+        {
+            double result = (double)value;
+            result=double.Parse(result.ToString("0.00"));
+            return result;
+        }
         // GET api/<controller>
         public IEnumerable<string> Get()
         {

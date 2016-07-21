@@ -21,7 +21,8 @@ namespace GTMDreport
                       "~/Scripts/respond.js",
                       "~/Scripts/echarts.js",
                       "~/Scripts/bootstrap-table.js",
-                       "~/Scripts/bootstrap-table-zh-CN.js"
+                       "~/Scripts/bootstrap-table-zh-CN.js",
+                       "~/Scripts/guizhou.js"
                       ));
            
 
