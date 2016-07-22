@@ -29,9 +29,9 @@ namespace GTMDreport.BLL
             return dbContext.IndustrycCassifications.Where(item => item.RegionID == regionID).ToList();
         }
 
-        public List<IndustrycCassification> GetAllByClassification(int classificationID)
+        public IQueryable<IndustrycCassification> GetAllByClassification(int classificationID)
         {
-            return dbContext.IndustrycCassifications.Where(item => item.ClassificationID == classificationID).ToList();
+            return dbContext.IndustrycCassifications.Where(item => item.ClassificationID == classificationID);
         }
 
         public List<IndustrycCassification> GetAllByClassification(DateTime dateTime, int regionID)
@@ -42,6 +42,11 @@ namespace GTMDreport.BLL
         public IQueryable<IndustrycCassification> GetAllByClassification(int dateInt, int regionID)
         {
             return dbContext.IndustrycCassifications.Where(item => item.RegionID == regionID && item.Date.Month == dateInt);
+        }
+
+        public IQueryable<IndustrycCassification> GetInfoForMap(int dateInt, int classificationID)
+        {
+            return dbContext.IndustrycCassifications.Where(item => item.ClassificationID == classificationID && item.Date.Month == dateInt);
         }
     }
 }

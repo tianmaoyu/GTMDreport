@@ -8,10 +8,10 @@ namespace GTMDreport.BLL
 {
     public class RegionBLL
     {
-        ReportContext dbContext;
+        GTMDReportEntities dbContext;
         public RegionBLL()
         {
-            dbContext = new ReportContext();
+            dbContext = new GTMDReportEntities();
         }
 
         public List<Region> GetALl()

@@ -132,7 +132,14 @@ namespace GTMDreport.APIContoller
             return jsonObject;
         }
 
-
+        /// <summary>
+        /// 为第一个雷达图组装数据
+        /// </summary>
+        /// <param name="dateIntTarget"></param>
+        /// <param name="dateIntSource"></param>
+        /// <param name="regionIdTarget"></param>
+        /// <param name="regionIdSource"></param>
+        /// <returns></returns>
         public JObject GetInfoForRadar(int dateIntTarget, int dateIntSource, int regionIdTarget, int regionIdSource)
         {
             JObject result = new JObject();
@@ -181,10 +188,115 @@ namespace GTMDreport.APIContoller
 
             return result;
         }
+       
+        /// <summary>
+        /// 给Map视图组装数据
+        /// </summary>
+        /// <returns></returns>
+        public JObject GetInfoForMap(int dateInt, int classificationID)
+        {
+            JObject result = new JObject();
+          
+            //工业销售产值
+            List<double> industrySalesOutputs = new List<double>();
+
+            //工业增加值
+            List<double> industryGrowthOutputs = new List<double>();
+
+            //资产总值
+            List<double> assetsTotals = new List<double>();
+
+            //负责合计
+            List<double> debtTotals = new List<double>();
+
+            //主盈业务收入
+            List<double> incomes = new List<double>();
+
+            //存货
+            List<double> stocks = new List<double>();
+
+            IndustryCalssificationBLL industryCalssification = new IndustryCalssificationBLL();
+            List<int> classificationCustoms = new List<int> { 3, 5, 6, 7, 8, 9, 12, 13, 14 };
+
+            ClassificationBLL classificationBLL = new ClassificationBLL();
+            //行业名称
+            var legendDatas = classificationBLL.GetALl().Where(item => classificationCustoms.Contains(item.ID)).OrderBy(i => i.ID).Select(j => j.Name).ToList();
+
+            //定制的显示的类型
+            List<string> legendNames = new List<string> { "工业销售产值", "工业增加值", "资产总计", "负债合计", "主营业务收入", "存货"};
+
+            dateInt = dateInt + 1;
+            var infos = industryCalssification.GetInfoForMap(dateInt, classificationID).Where(item => classificationCustoms.Contains((int)item.ClassificationID)).OrderBy(i => i.ClassificationID);
+            foreach(var info in infos)
+            {
+                industrySalesOutputs.Add(CovertDouble(info.IndustrySalesOutput));
+                industryGrowthOutputs.Add(CovertDouble(info.IndustryGrowthOutput));
+                assetsTotals.Add(CovertDouble(info.AssetsTotal));
+                debtTotals.Add(CovertDouble(info.DebtTotal));
+                incomes.Add(CovertDouble(info.Income));
+                stocks.Add(CovertDouble(info.Stock));
+            }
+            //组装为JSON
+            var classificationInfo = new
+            {
+                LegendData = legendNames,
+                IndustrySalesOutput = industrySalesOutputs,
+                IndustryGrowthOutput = industryGrowthOutputs,
+                AssetsTotal = assetsTotals,
+                DebtTotal = debtTotals,
+                Income = incomes,
+                Stock = stocks
+            };
+            var cc= JObject.Parse(JsonConvert.SerializeObject(classificationInfo));
+            return JObject.Parse(JsonConvert.SerializeObject(classificationInfo));
+        }
+
+        public JObject GetInfoForView(int classificationID)
+        {
+            JObject result = new JObject();
+            RegionBLL regionBLL = new RegionBLL();
+            Dictionary<int, string> regionDic = regionBLL.GetALl().OrderBy(item => item.ID).ToDictionary(i=>i.ID,i=>i.Name);
+
+            IndustryCalssificationBLL industryCalssification = new IndustryCalssificationBLL();
+            var group=  industryCalssification.GetAllByClassification(classificationID).OrderBy(i=>i.RegionID).ThenBy(i=>i.Date).GroupBy(_item=>_item.RegionID);
+        
+            foreach(var infos in group)
+            {
+                JArray array = new JArray();
+                string regionName = null;
+                foreach (var info in infos)
+                {
+                    JArray _array = new JArray();
+                    int regionID = (int)info.RegionID;
+                    int month = ((DateTime)info.Date).Month;
+                    regionName = regionDic[regionID].ToString();
+                    _array.Add(month);
+                    _array.Add(CovertDouble(info.IndustryGrowthOutput));
+                    _array.Add(CovertDouble(info.AssetsTotal));
+                    _array.Add(CovertDouble(info.DebtTotal));
+                    _array.Add(CovertDouble(info.Income));
+                    _array.Add(CovertDouble(info.Stock));
+                    array.Add(_array);
+                }
+
+                if (regionName!=null&& result.GetValue(regionName) == null)
+                {
+                    result[regionName] = array;
+                }
+
+            }
+
+            return result;
+        }
+
         public double CovertDouble(double? value)
         {
+            if (value == null)
+            {
+                return 0.0;
+            }
             double result = (double)value;
-            result=double.Parse(result.ToString("0.00"));
+            result = double.Parse(result.ToString("0.00"));
             return result;
         }
         // GET api/<controller>

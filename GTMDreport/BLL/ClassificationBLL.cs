@@ -9,10 +9,10 @@ namespace GTMDreport.BLL
 {
     public class ClassificationBLL
     {
-        ReportContext dbContext;
+        GTMDReportEntities dbContext;
         public ClassificationBLL()
         {
-            dbContext = new ReportContext();
+            dbContext = new GTMDReportEntities();
         }
 
         public List<Classification> GetALl()

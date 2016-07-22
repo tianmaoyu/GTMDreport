@@ -91,8 +91,15 @@
                             <li role="presentation"><a href="#datafutrue" data-toggle="tab">未来预测</a></li>
                         </ul>
                         <div id="myTabContent" class="tab-content">
-                            <div class=" tab-pane fade in active" id="data">
+                            <div class="tab-pane fade in active" id="data">
                                 <div class="cc">
+                                    <div class="data-show-1">
+                                        <h4>
+                                            0方案
+                                            <small>Subtext for header</small>
+                                        </h4>
+                                        <div id="data-show-0" style="height: 400px;border: dotted"></div>
+                                    </div>
                                     <div class="data-show-1">
                                         <h4>
                                             一种方案
@@ -123,8 +130,8 @@
                                         第三种方案
                                         <small>Subtext for header</small>
                                     </h4>
-                                    <div class="data-show-3" style="height: 400px;border: dotted">
-                                        <table id="table">
+                                    <div class="data-show-3" style="height: 4px;border: dotted">
+                                        @*<table id="table">
                                             <thead>
                                                 <tr>
                                                     <th data-field="name" data-formatter="commonFormatter" data-events="commonEvents">Name</th>
@@ -133,11 +140,11 @@
                                                     <th data-field="description" data-formatter="commonFormatter" data-events="commonEvents">Description</th>
                                                 </tr>
                                             </thead>
-                                        </table>
+                                        </table>*@
                                     </div>
                                 </div>
                             </div>
-                            <div class=" tab-pane fade" id="datacomple">
+                            <div class="tab-pane fade" id="datacomple">
                                 <div class="cc">
                                     <h4>
                                         第一种对比方案
@@ -164,8 +171,236 @@
     </div>
 </div>
 
-//柱状图，地图
+@*//柱状图，地图*@
 <script type="text/javascript">
+
+    var mychar0 = echarts.init(document.getElementById("data-show-0"));
+    $(function () {
+        $.get("/api/IndustrycCassification/GetInfoForView", { classificationid: 1 }, function (data) {
+
+            //var dataGY = data["贵阳市"];
+
+            //var dataLPS = data["六盘水市"];
+
+            //var dataZY = data["遵义"];
+          
+            var schema = [
+                { name: 'month', index: 0, text: '月份' },
+                { name: 'IndustryGrowthOutput', index: 1, text: '工业增加值' },
+                { name: 'AssetsTotal', index: 2, text: '资产总计' },
+                { name: 'DebtTotal', index: 3, text: '负债总计' },
+                { name: 'Income', index: 4, text: '主营收入' },
+                { name: 'Stock', index: 5, text: '存货' },
+            ];
+
+            var itemStyle = {
+                normal: {
+                    opacity: 0.8,
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowOffsetY: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            };
+
+            var option0 = {
+                backgroundColor: '#404a59',
+                color: [
+                    '#dd4444', '#fec42c', '#80F1BE'
+                ],
+                legend: {
+                    y: 'top',
+                    data: ['贵阳市', '六盘水', '遵义市', "安顺市", "毕节市", "铜仁市", "黔西南", "黔东南", "黔南"],
+                    textStyle: {
+                        color: '#fff',
+                        fontSize: 16
+                    }
+                },
+                grid: {
+                    x: '10%',
+                    x2: 150,
+                    y: '18%',
+                    y2: '10%'
+                },
+                tooltip: {
+                    padding: 10,
+                    backgroundColor: '#222',
+                    borderColor: '#777',
+                    borderWidth: 1,
+                    formatter: function (obj) {
+                        var value = obj.value;
+                        return '<div style="border-bottom: 1px solid rgba(255,255,255,.3); font-size: 18px;padding-bottom: 7px;margin-bottom: 7px">'
+                            + obj.seriesName + ' ' + value[0] + '月：'
+                            + '</div>'
+                            + schema[1].text + '：' + value[1] + '<br>'
+                            + schema[2].text + '：' + value[2] + '<br>'
+                            + schema[3].text + '：' + value[3] + '<br>'
+                            + schema[4].text + '：' + value[4] + '<br>'
+                            + schema[5].text + '：' + value[5] + '<br>';
+                        
+                    }
+                },
+                xAxis: {
+                    type: 'value',
+                    name: '2016年月份',
+                    nameGap: 16,
+                    nameTextStyle: {
+                        color: '#fff',
+                        fontSize: 14
+                    },
+                    max: 5,
+                    splitLine: {
+                        show: false
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: '#eee'
+                        }
+                    }
+                },
+                yAxis: {
+                    type: 'value',
+                    name: '工业增加值',
+                    nameLocation: 'end',
+                    nameGap: 20,
+                    nameTextStyle: {
+                        color: '#fff',
+                        fontSize: 16
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: '#eee'
+                        }
+                    },
+                    splitLine: {
+                        show: false
+                    }
+                },
+                visualMap: [
+                    {
+                        left: 'right',
+                        top: '10%',
+                        dimension: 2,
+                        min: 0,
+                        max: 2500000,
+                        itemWidth: 30,
+                        itemHeight: 120,
+                        calculable: true,
+                        precision: 0.1,
+                        text: ['圆形大小：资产总计'],
+                        textGap: 30,
+                        textStyle: {
+                            color: '#fff'
+                        },
+                        inRange: {
+                            symbolSize: [10, 70]
+                        },
+                        outOfRange: {
+                            symbolSize: [10, 70],
+                            color: ['rgba(255,255,255,.2)']
+                        },
+                        controller: {
+                            inRange: {
+                                color: ['#c23531']
+                            },
+                            outOfRange: {
+                                color: ['#444']
+                            }
+                        }
+                    },
+                    {
+                        left: 'right',
+                        bottom: '5%',
+                        dimension: 5,
+                        min: 0,
+                        max: 100000,
+                        itemHeight: 120,
+                        calculable: true,
+                        precision: 0.1,
+                        text: ['明暗：存货'],
+                        textGap: 30,
+                        textStyle: {
+                            color: '#fff'
+                        },
+                        inRange: {
+                            colorLightness: [1, 0.5]
+                        },
+                        outOfRange: {
+                            color: ['rgba(255,255,255,.2)']
+                        },
+                        controller: {
+                            inRange: {
+                                color: ['#c23531']
+                            },
+                            outOfRange: {
+                                color: ['#444']
+                            }
+                        }
+                    }
+                ],
+                series: [
+                    {
+                        name: '贵阳市',
+                        type: 'scatter',
+                        itemStyle: itemStyle,
+                        data: data["贵阳市"]
+                    },
+                    {
+                        name: '六盘水',
+                        type: 'scatter',
+                        itemStyle: itemStyle,
+                        data: data["六盘水"]
+                    },
+                    {
+                        name: '遵义市',
+                        type: 'scatter',
+                        itemStyle: itemStyle,
+                        data: data["遵义市"]
+                    },
+                     {
+                         name: '安顺市',
+                         type: 'scatter',
+                         itemStyle: itemStyle,
+                         data: data["安顺市"]
+                     },
+                    {
+                        name: '毕节市',
+                        type: 'scatter',
+                        itemStyle: itemStyle,
+                        data: data["毕节市"]
+                    },
+                    {
+                        name: '铜仁市',
+                        type: 'scatter',
+                        itemStyle: itemStyle,
+                        data: data["铜仁市"]
+                    },
+                     {
+                         name: '黔西南',
+                         type: 'scatter',
+                         itemStyle: itemStyle,
+                         data: data["黔西南"]
+                     },
+                    {
+                        name: '黔东南',
+                        type: 'scatter',
+                        itemStyle: itemStyle,
+                        data: data["黔东南"]
+                    },
+                    {
+                        name: '黔南',
+                        type: 'scatter',
+                        itemStyle: itemStyle,
+                        data: data["黔南"]
+                    }
+                ]
+             };
+
+             mychar0.setOption(option0);
+
+        });
+    });
+
     var mychar1 = echarts.init(document.getElementById("data-show-1"));
     $(function () {
 
@@ -444,7 +679,7 @@
   
    
 </script>
-//表格
+@*//表格*@
 <script type="text/javascript">
     var data = [
         {
@@ -492,7 +727,7 @@
         }
     }
 </script>
-//雷达图
+@*//雷达图*@
 <script type="text/javascript">
     $(function() {
         $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
@@ -507,6 +742,14 @@
                         var sourceData = data["白酒"]["Source"];
                         showRadar(targetData,sourceData)
                     });
+                var chartMap = echarts.init(document.getElementById('data-vs-2'));
+                $.get("/api/IndustrycCassification/GetInfoForMap", { dateInt: 1, classificationID: 3 },
+                    function (data) {
+
+                        showMap(data);
+
+                    }
+                    );
                 function showRadar(targetData, sourceData) {
                     var optionvs1 = {
                         title: {
@@ -546,58 +789,179 @@
                     };
                     mycharvs1.setOption(optionvs1);
                 }
-               
-                //var ecConfig = require('echarts/config');
-                var chartMap= echarts.init(document.getElementById('data-vs-2'));
-                optionMap = {
-                    backgroundColor: '#404a59',
-                    roam: true,
-                    title: {
-                        text: '全国34个省市自治区',
-                        subtext: 'china （滚轮或点击切换）'
-                    },
-                    tooltip: {
-                        trigger: 'item',
-                        formatter: '滚轮切换或点击进入该省<br/>{b}'
-                    },
-                    legend: {
-                        orient: 'vertical',
-                        x: 'right',
-                        data: ['随机数据']
-                    },
-                    dataRange: {
-                        min: 0,
-                        max: 1000,
-                        color: ['orange', 'yellow'],
-                        text: ['高', '低'],           // 文本，默认为数值文本
-                        calculable: true
-                    },
-                    series: [
-                        {
-                            name: '随机数据',
-                            type: 'map',
-                            mapType: '贵州',
-                            selectedMode: 'single',
-                            itemStyle: {
-                                normal: { label: { show: true } },
-                                emphasis: { label: { show: true } }
-                            },
-                            data: [
-                                { name: '贵阳市', value: Math.round(Math.random() * 1000) },//遵义市
-                                { name: '铜仁市', value: Math.round(Math.random() * 1000) },
-                                { name: '黔南布依族苗族自治州', value: Math.round(Math.random() * 1000) },
-                                { name: '安顺市', value: Math.round(Math.random() * 1000) },
-                                { name: '毕节市', value: Math.round(Math.random() * 1000) },
-                                { name: '六盘水市', value: Math.round(Math.random() * 1000) },
-                                { name: '黔东南苗族侗族自治州', value: Math.round(Math.random() * 1000) },
-                                { name: '黔西南布依族苗族自治州', value: Math.round(Math.random() * 1000) },
-                                { name: '遵义市', value: Math.round(Math.random() * 1000) },
-                            ]
-                        }
-                    ]
-                };
-                chartMap.setOption(optionMap);
 
+                function showMap(data) {
+                    optionMap = {
+                        //backgroundColor: '#404a59',
+                        roam: true,
+                        title: {
+                            text: '规以上的部分民营数据',
+                            subtext: '贵州省-2月白酒',
+                            left: 'center'
+                        },
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: '{a}</br>{b}:{c}'
+                        },
+                        legend: {
+                            orient: 'vertical',
+                            x: 'left',
+                            data: data.LegendData,
+                        },
+                        dataRange: {
+                            left: 'left',
+                            min: 0,
+                            max: 300000,
+                            inRange: {
+                                color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+                            },
+                            text:['高','低'],           // 文本，默认为数值文本
+                            calculable: true
+                            //min: 0,
+                            //max: 1000000,
+                            //color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026'],
+                            //text: ['高', '低'],           // 文本，默认为数值文本
+                            //calculable: true，
+                          
+                        },
+                        series: [
+                            {
+                                name: data.LegendData[0],
+                                type: 'map',
+                                mapType: '贵州',
+                                selectedMode: 'single',
+                                itemStyle: {
+                                    normal: { label: { show: true } },
+                                    emphasis: { label: { show: true } }
+                                },
+                                data: [
+                                    { name: '贵阳市', value: data.IndustrySalesOutput[0] },
+                                    { name: '六盘水市', value: data.IndustrySalesOutput[1] },
+                                    { name: '遵义市', value: data.IndustrySalesOutput[2] },
+                                    { name: '安顺市', value: data.IndustrySalesOutput[3] },
+                                    { name: '毕节市', value: data.IndustrySalesOutput[4] },
+                                    { name: '铜仁市', value: data.IndustrySalesOutput[5] },
+                                    { name: '黔西南布依族苗族自治州', value: data.IndustrySalesOutput[6] },
+                                    { name: '黔东南苗族侗族自治州', value: data.IndustrySalesOutput[7] },
+                                    { name: '黔南布依族苗族自治州', value: data.IndustrySalesOutput[8] },
+                                  
+                                ]
+                            },
+                            {
+                                name: data.LegendData[1],
+                                type: 'map',
+                                mapType: '贵州',
+                                selectedMode: 'single',
+                                itemStyle: {
+                                    normal: { label: { show: true } },
+                                    emphasis: { label: { show: true } }
+                                },
+                                data: [
+                                    { name: '贵阳市', value: data.IndustryGrowthOutput[0] },//遵义市
+                                    { name: '六盘水市', value: data.IndustryGrowthOutput[1] },
+                                    { name: '遵义市', value: data.IndustryGrowthOutput[2] },
+                                    { name: '安顺市', value: data.IndustryGrowthOutput[3] },
+                                    { name: '毕节市', value: data.IndustryGrowthOutput[4] },
+                                    { name: '铜仁市', value: data.IndustryGrowthOutput[5] },
+                                    { name: '黔西南布依族苗族自治州', value: data.IndustryGrowthOutput[6] },
+                                    { name: '黔东南苗族侗族自治州', value: data.IndustryGrowthOutput[7] },
+                                    { name: '黔南布依族苗族自治州', value: data.IndustryGrowthOutput[8] },
+
+                                ]
+                            },
+                            {
+                             name: data.LegendData[2],
+                             type: 'map',
+                             mapType: '贵州',
+                             selectedMode: 'single',
+                             itemStyle: {
+                                 normal: { label: { show: true } },
+                                 emphasis: { label: { show: true } }
+                             },
+                             data: [
+                                 { name: '贵阳市', value: data.AssetsTotal[0] },//遵义市
+                                 { name: '六盘水市', value: data.AssetsTotal[1] },
+                                 { name: '遵义市', value: data.AssetsTotal[2] },
+                                 { name: '安顺市', value: data.AssetsTotal[3] },
+                                 { name: '毕节市', value: data.AssetsTotal[4] },
+                                 { name: '铜仁市', value: data.AssetsTotal[5] },
+                                 { name: '黔西南布依族苗族自治州', value: data.AssetsTotal[6] },
+                                 { name: '黔东南苗族侗族自治州', value: data.AssetsTotal[7] },
+                                 { name: '黔南布依族苗族自治州', value: data.IndustrySalesOutput[8] },
+
+                             ]
+                         },
+                            {
+                              name: data.LegendData[3],
+                              type: 'map',
+                              mapType: '贵州',
+                              selectedMode: 'single',
+                              itemStyle: {
+                                  normal: { label: { show: true } },
+                                  emphasis: { label: { show: true } }
+                              },
+                              data: [
+                                  { name: '贵阳市', value: data.DebtTotal[0] },
+                                  { name: '六盘水市', value: data.DebtTotal[1] },
+                                  { name: '遵义市', value: data.DebtTotal[2] },
+                                  { name: '安顺市', value: data.DebtTotal[3] },
+                                  { name: '毕节市', value: data.DebtTotal[4] },
+                                  { name: '铜仁市', value: data.DebtTotal[5] },
+                                  { name: '黔西南布依族苗族自治州', value: data.DebtTotal[6] },
+                                  { name: '黔东南苗族侗族自治州', value: data.DebtTotal[7] },
+                                  { name: '黔南布依族苗族自治州', value: data.DebtTotal[8] },
+
+                              ]
+                          },
+                            {
+                              name: data.LegendData[4],
+                              type: 'map',
+                              mapType: '贵州',
+                              selectedMode: 'single',
+                              itemStyle: {
+                                  normal: { label: { show: true } },
+                                  emphasis: { label: { show: true } }
+                              },
+                              data: [
+                                  { name: '贵阳市', value: data.Income[0] },//遵义市
+                                  { name: '六盘水市', value: data.Income[1] },
+                                  { name: '遵义市', value: data.Income[2] },
+                                  { name: '安顺市', value: data.Income[3] },
+                                  { name: '毕节市', value: data.Income[4] },
+                                  { name: '铜仁市', value: data.Income[5] },
+                                  { name: '黔西南布依族苗族自治州', value: data.Income[6] },
+                                  { name: '黔东南苗族侗族自治州', value: data.Income[7] },
+                                  { name: '黔南布依族苗族自治州', value: data.Income[8] },
+
+                              ]
+                          },
+                            {
+                              name: data.LegendData[5],
+                              type: 'map',
+                              mapType: '贵州',
+                              selectedMode: 'single',
+                              itemStyle: {
+                                  normal: { label: { show: true } },
+                                  emphasis: { label: { show: true } }
+                              },
+                              data: [
+                                  { name: '贵阳市', value: data.Stock[0] },//遵义市
+                                  { name: '六盘水市', value: data.Stock[1] },
+                                  { name: '遵义市', value: data.Stock[2] },
+                                  { name: '安顺市', value: data.Stock[3] },
+                                  { name: '毕节市', value: data.Stock[4] },
+                                  { name: '铜仁市', value: data.Stock[5] },
+                                  { name: '黔西南布依族苗族自治州', value: data.Stock[6] },
+                                  { name: '黔东南苗族侗族自治州', value: data.Stock[7] },
+                                  { name: '黔南布依族苗族自治州', value: data.Stock[8] },
+
+                              ]
+                           },
+                        ]
+
+                    };
+                    chartMap.setOption(optionMap);
+                }
 
                 //$.get('../JsonData/guizhou.json', function (guizhouJson) {
                 //    echarts.registerMap('guizhou', guizhouJson);
