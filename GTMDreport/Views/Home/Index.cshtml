@@ -92,45 +92,45 @@
                         </ul>
                         <div id="myTabContent" class="tab-content">
                             <div class="tab-pane fade in active" id="data">
-                                <div class="cc">
+                                <div class="cc1">
                                     <div class="data-show-1">
                                         <h4>
                                             0方案
                                             <small>Subtext for header</small>
                                         </h4>
-                                        <div id="data-show-0" style="height: 400px;border: dotted"></div>
+                                        <div id="data-show-0" style="height: 400px;border: none"></div>
                                     </div>
                                     <div class="data-show-1">
                                         <h4>
                                             一种方案
                                             <small>Subtext for header</small>
                                         </h4>
-                                        <div id="data-show-1" style="height: 400px;border: dotted"></div>
+                                        <div id="data-show-1" style="height: 400px;border: none"></div>
                                     </div>
                                     <h4>
                                         第二种方案
                                         <small>Subtext for header</small>
                                     </h4>
-                                    @*<div id="data-show-2" style="height: 400px;border: dotted">
+                                    @*<div id="data-show-2" style="height: 400px;border: none">
                                     </div>*@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-lg-6" style="margin-right:0;padding-right:0;border-right-width:0">
-                                                <div id="data-show-2-1" style="height: 400px;border: dotted">
+                                                <div id="data-show-2-1" style="height: 400px;border: none">
                                                 </div>
                                             </div>
                                             <div  class="col-lg-6" style="margin-left:0;padding-left:0;border-left-width:0">
-                                                <div id="data-show-2-2" style="height: 400px;border: dotted">
+                                                <div id="data-show-2-2" style="height: 400px;border: none">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                    
-                                    <h4>
+                                    @*<h4>
                                         第三种方案
                                         <small>Subtext for header</small>
-                                    </h4>
-                                    <div class="data-show-3" style="height: 4px;border: dotted">
+                                    </h4>*@
+                                    <div class="data-show-3" style="height: 4px;">
                                         @*<table id="table">
                                             <thead>
                                                 <tr>
@@ -145,23 +145,23 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="datacomple">
-                                <div class="cc">
+                                <div class="cc1">
                                     <h4>
                                         第一种对比方案
                                         <small>Subtext for header</small>
                                     </h4>
-                                    <div id="data-vs-1" style="height: 400px;border: dotted">
+                                    <div id="data-vs-1" style="height: 400px;border: none">
                                     </div>
                                     <h4>
                                         第二种对比方案
                                         <small>Subtext for header</small>
                                     </h4>
-                                    <div id="data-vs-2" style="height: 500px;border: dotted">
+                                    <div id="data-vs-2" style="height: 500px;border: none">
                                     </div>
                                 </div>
                             </div>
                             <div class=" tab-pane fade" id="datafutrue">
-                                <p>jMeter 是一款开源的测试软件。它是 100% 纯 Java 应用程序，用于负载和性能测试。</p>
+                                <p>数据样本太少，无法预测。</p>
                             </div>
                         </div>
                     </div>
@@ -719,8 +719,9 @@
             //alert(activeTab);
             if (activeTab == '对比视图') {
                 var mycharvs1 = echarts.init(document.getElementById("data-vs-1"));
-                $.get("/api/IndustrycCassification/GetInfoForRadar", { dateIntTarget: 2, dateIntSource: 2, regionIdTarget: 5, regionIdSource: 6 },
+                $.get("/api/IndustrycCassification/GetInfoForRadar", { dateIntTarget: 2, dateIntSource: 3, regionIdTarget: 3, regionIdSource: 3 },
                     function (data) {
+                        for (item in data) { }//确定对象属性的名称
                         var targetData = data["白酒"]["Target"];
                         var sourceData = data["白酒"]["Source"];
                         showRadar(targetData,sourceData)

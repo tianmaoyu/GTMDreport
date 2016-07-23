@@ -4,24 +4,28 @@ $(function () {
 
         //日期，ID等还不够严谨
         var regionRourceIndex = document.getElementById("select-region-1").options.selectedIndex;
-        var regionRourceDateIndex = document.getElementById("select-data-1").options.selectedIndex;
+        var dateRourceIndex = document.getElementById("select-data-1").options.selectedIndex;
 
         var regionRourceID = Number(regionRourceIndex);
-        var regionRourceDateID = Number(regionRourceDateIndex) + 1;
+        var dateRourceID = Number(dateRourceIndex) + 1;
         var isChecked = $("#chk").is(":checked");
         if (isChecked) {
             var regionTargetIndex = document.getElementById("select-region-2").options.selectedIndex;
-            var regionTargetDateIndex = document.getElementById("select-data-2").options.selectedIndex;
-
+            var dateTargetIndex = document.getElementById("select-data-2").options.selectedIndex;
             var regionTargetID = Number(regionTargetIndex);
-            var regionDateTargetID = Number(regionTargetDateIndex) + 1;
-
+            var dateTargetID = Number(dateTargetIndex) + 1;
+            var isValidate = regionRourceID > 0 && dateRourceID > 0 && regionTargetID > 0 && dateTargetID > 0;
+            if (isValidate) {
+                showDataForRadar(dateRourceID, dateTargetID, regionRourceID, regionTargetID);
+            }
         }
-        //查询
-        if (regionRourceID > 0 && regionRourceDateID > 0) {
-            showData2(regionRourceDateID, regionRourceID);
-            showData3(regionRourceDateID, regionRourceID);
+        else {
+            if (regionRourceID > 0 && dateRourceID > 0) {
+                showData2(dateRourceID, regionRourceID);
+                showData3(dateRourceID, regionRourceID);
+            }
         }
+     
     });
 });
 
@@ -48,6 +52,7 @@ $(function () {
 
             //设置option
             var option = {
+              
                 tooltip: {
                     trigger: 'item'
                 },
@@ -292,3 +297,50 @@ $(function () {
 
 
 //雷达图展示
+  function showDataForRadar(dateTarget,dateSource,regionTarget,regionSource) {
+       var mycharRadar = echarts.init(document.getElementById("data-vs-1"));
+       mycharRadar.showLoading();
+       $.get("/api/IndustrycCassification/GetInfoForRadar", { dateIntTarget: dateTarget, dateIntSource: dateSource, regionIdTarget: regionTarget, regionIdSource: regionSource },
+                   function (data) {
+                       //for (item in data) { }//确定对象属性的名称
+                       mycharRadar.hideLoading();
+                       var targetData = data["白酒"]["Target"];
+                       var sourceData = data["白酒"]["Source"];
+                       var optionRadar = {
+                           title: {
+                               text: '基础雷达图'
+                           },
+                           tooltip: {},
+                           legend: {
+                               data: [targetData["Title"], sourceData["Title"]]
+                           },
+                           radar: {
+                               indicator: [
+                                   { name: '工业增加值', max: 795530 },
+                                   { name: '资产总计', max: 2000000 },
+                                   { name: '负债合计', max: 1489069 },
+                                   { name: '主营业务收入', max: 276881 },
+                                   { name: '存货', max: 1583410 },
+                               ]
+                           },
+                           series: [
+                               {
+                                   name: targetData["Title"] + ' vs ' + sourceData["Title"],
+                                   type: 'radar',
+                                   data: [
+                                       {
+                                           value: targetData.Data,
+                                           name: targetData["Title"]
+                                       },
+                                       {
+                                           value: sourceData.Data,
+                                           name: sourceData.Title
+                                       }
+                                   ]
+                               }
+                           ]
+                       };
+                       mycharRadar.setOption(optionRadar);
+                   });
+
+   }
