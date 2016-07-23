@@ -353,6 +353,7 @@
     <Content Include="JsonData\guizhou.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\echarts.js" />
+    <Content Include="Scripts\gtmd-report.js" />
     <Content Include="Scripts\guizhou.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

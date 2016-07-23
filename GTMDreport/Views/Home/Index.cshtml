@@ -35,9 +35,9 @@
                                 <div class="input-group form-group">
                                     <span class="input-group-addon">分类</span>
                                     <select id="select-type" class="form-control input-sm">
-                                        <option value="-1">请选择类型</option>
-                                        <option value="1">民营经济工业指标</option>
-                                        <option value="2">规上民营经济工业分行指标</option>
+                                        <option value="0">规上民营经济工业分行指标</option>
+                                        @*<option value="1">民营经济工业指标</option>*@
+                                        @*<option value="2">规上民营经济工业分行指标</option>*@
                                     </select>
                                 </div>
                                 <hr style="border:none;border-top:1px dashed #0066CC;" />
@@ -78,7 +78,7 @@
                                 </div>
                                 <hr style="border:none;border-top:1px dashed #0066CC;" />
                                 <di>
-                                    <button class="btn  btn-primary" style="width: 100%">查询数据</button>
+                                    <button id="data-Query" class="btn  btn-primary" style="width: 100%">查询数据</button>
                                 </di>
                             </div>
                         </div>
@@ -170,7 +170,7 @@
         </div>
     </div>
 </div>
-
+<script src="~/Scripts/gtmd-report.js"></script>
 @*//柱状图，地图*@
 <script type="text/javascript">
 
@@ -404,7 +404,7 @@
     var mychar1 = echarts.init(document.getElementById("data-show-1"));
     $(function () {
 
-        $.get("/api/IndustrycCassification/GetInfo", { dateInt: 1, regionId: 3 },
+        $.get("/api/IndustrycCassification/GetInfo", { dateInt: 2, regionId: 1 },
           function (data) {
               var info = $.parseJSON(data);
               var LegendData = info.LegendData
@@ -463,14 +463,6 @@
                           tooltip: { trigger: 'axis' },
                           stack: '广告',
                           data: IndustryGrowthOutput,
-
-                          //markLine: {
-                          //    data: [
-                          //           { type: 'average', name: '平均值' },
-                          //           { type: 'max' },
-                          //           { type: 'min' }
-                          //         ]
-                          //       }
                           },
                       {
                           name: '资产总值',
@@ -483,16 +475,7 @@
                           name: '负责合计',
                           type: 'bar',
                           tooltip: { trigger: 'axis' },
-                          stack: '广告',
-                          //itemStyle: {
-                          //    normal: {                   // 系列级个性化，横向渐变填充
-                          //        label: {
-                          //            show: true,
-                          //            textStyle: {
-                          //            }
-                          //        }
-                          //    }
-                          //},
+                          //stack: '广告',
                           data: DebtTotal
                       },
                       {
@@ -505,12 +488,12 @@
                           name: '存货',
                           type: 'bar',
                           tooltip: { trigger: 'axis' },
-                          stack: '广告',
+                          //stack: '广告',
                           data: Stock
                       },
 
                       {
-                          name: '总产值',
+                          name: '工业销售产值',
                           type: 'pie',
                           tooltip: {
                               trigger: 'item',
@@ -526,15 +509,15 @@
                               }
                           },
                           data: [
-                              { value: 148, name: '白酒' },
-                              { value: 251, name: '化工' },
-                              { value: 147, name: '有色' },
-                              { value: 102, name: '冶金' },
-                              { value: 102, name: '装备制造' },
-                              { value: 102, name: '建材' },
-                              { value: 102, name: '医药' },
-                              { value: 102, name: '食品' },
-                              { value: 102, name: '其他轻工业' },
+                            { value: IndustrySalesOutput[0], name: '白酒' },
+                            { value: IndustrySalesOutput[1], name: '化工' },
+                            { value: IndustrySalesOutput[2], name: '有色' },
+                            { value: IndustrySalesOutput[3], name: '冶金' },
+                            { value: IndustrySalesOutput[4], name: '装备制造' },
+                            { value: IndustrySalesOutput[5], name: '建材' },
+                            { value: IndustrySalesOutput[6], name: '医药' },
+                            { value: IndustrySalesOutput[7], name: '食品' },
+                            { value: IndustrySalesOutput[8], name: '其他轻工业' },
                           ]
                       }
                   ]
@@ -549,7 +532,7 @@
     var mycharvs2 = echarts.init(document.getElementById("data-show-2-1"));
     var mycharvs22 = echarts.init(document.getElementById("data-show-2-2"));
     $(function () {
-        $.get("/api/IndustrycCassification/GetInfoForRedView", { dateInt: 1, regionId: 3 },
+        $.get("/api/IndustrycCassification/GetInfoForRedView", { dateInt: 2, regionId: 3 },
             function (data) {
                 var infoData = data["白酒"].Data;
                 var infoRate = data["白酒"].Rate;
@@ -1013,7 +996,7 @@
     //请求地区
     $(function () {
         $.ajax({
-            url: "/api/Region/5",
+            url: "/api/Region/Get?id=5",
             dataType: "json",
             contentType: "application/json",
             async: true,

@@ -60,7 +60,6 @@ namespace GTMDreport.APIContoller
 
             //定制的行业
             List<int> classificationCustoms = new List<int> { 3, 5, 6, 7, 8, 9, 12, 13, 14 };
-            dateInt = dateInt + 1;
 
             //赛选出classificationCustoms中的行业
             var infos = industryCalssification.GetAllByClassification(dateInt, regionId).Where(item=> classificationCustoms.Contains((int)item.ClassificationID)).OrderBy(i=>i.ClassificationID);
@@ -101,7 +100,7 @@ namespace GTMDreport.APIContoller
 
             //定制的行业
             List<int> classificationCustoms = new List<int> { 3, 5, 6, 7, 8, 9, 12, 13, 14 };
-            dateInt = dateInt + 1;
+            //dateInt = dateInt + 1;
 
             JObject jsonObject = new JObject();
             //赛选出classificationCustoms中的行业
