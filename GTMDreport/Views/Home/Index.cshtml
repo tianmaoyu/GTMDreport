@@ -95,21 +95,21 @@
                                 <div class="cc1">
                                     <div class="data-show-1">
                                         <h4>
-                                            0方案
-                                            <small>Subtext for header</small>
+                                            2016年煤矿
+                                            <small>2-4月的数据信息</small>
                                         </h4>
                                         <div id="data-show-0" style="height: 400px;border: none"></div>
                                     </div>
                                     <div class="data-show-1">
                                         <h4>
-                                            一种方案
-                                            <small>Subtext for header</small>
+                                            通用数据展示
+                                            <small>根据查询出来</small>
                                         </h4>
                                         <div id="data-show-1" style="height: 400px;border: none"></div>
                                     </div>
                                     <h4>
-                                        第二种方案
-                                        <small>Subtext for header</small>
+                                        白酒信息
+                                        <small>根据左侧查询</small>
                                     </h4>
                                     @*<div id="data-show-2" style="height: 400px;border: none">
                                     </div>*@
@@ -147,14 +147,14 @@
                             <div class="tab-pane fade" id="datacomple">
                                 <div class="cc1">
                                     <h4>
-                                        第一种对比方案
-                                        <small>Subtext for header</small>
+                                        白酒对比
+                                        <small>根据左侧查询</small>
                                     </h4>
                                     <div id="data-vs-1" style="height: 400px;border: none">
                                     </div>
                                     <h4>
-                                        第二种对比方案
-                                        <small>Subtext for header</small>
+                                        地图对比
+                                        <small>白酒相关信息</small>
                                     </h4>
                                     <div id="data-vs-2" style="height: 500px;border: none">
                                     </div>
@@ -538,7 +538,7 @@
                 var infoRate = data["白酒"].Rate;
                 optionvs2 = {
                     title: {
-                        text: '规上民营部分数据',
+                        text: '白酒',
                         left: 'center',
                         top: 20,
                         textStyle: {
@@ -602,64 +602,69 @@
                 };
                 mycharvs2.setOption(optionvs2);
                 var optionshow22 = {
-                    //backgroundColor: '#2c343c',
-                    tooltip: {
-                        show: true,
-                        trigger: 'axis',
-                        formatter: "{a} <br/>{b} : {c} ({d}%)",
-                        axisPointer: {
-                            type: 'shadow'
+                    title: {
+                        text: '对应的同期增长率',
+                        left: 'center',
+                        top: 20,
+                        textStyle: {
+                            color: "black"
                         }
-                    },
-                    legend: {
-                        //data: ['利润']
-                    },
-                    toolbox: {
-                        show: true,
-                        feature: {
-                            mark: { show: true },
-                            dataView: { show: true, readOnly: false },
-                            magicType: { show: true, type: ['bar'] },
-                            restore: { show: true },
-                            saveAsImage: { show: true }
-                        }
-                    },
-                    calculable: true,
-                    xAxis: [
-                      
-                        {
-                            type: 'value',
-                        }
-                    ],
-                    yAxis: [
-                        {
-                            name:'同期增长',
-                            type: 'category',
-                            axisTick: { show: false },
-                            data: ['工业', '总计', '负债', '主营', '存货']
-
-                        }
-                    ],
-                    series: [
-                      
-                        {
+                        },
+                        // title: "",
+                        //backgroundColor: '#2c343c',
+                        tooltip: {
+                            show: true,
                             trigger: 'axis',
-                            name: '对应同期增长率',
-                            type: 'bar',
-                            //itemStyle: {
-                            //    normal: { label: { show: true ,position:'top'} }
-                            //},
-                            data: [infoRate[0], infoRate[1], infoRate[2], infoRate[3], infoRate[4]]
-                        }
-                    ]
-                };
+                            formatter: "{a} <br/>{b} : {c} ({d}%)",
+                            axisPointer: {
+                                type: 'shadow'
+                            }
+                        },
+                        legend: {
+                            //data: ['利润']
+                        },
+                        toolbox: {
+                            show: true,
+                            feature: {
+                                mark: { show: true },
+                                dataView: { show: true, readOnly: false },
+                                magicType: { show: true, type: ['bar'] },
+                                restore: { show: true },
+                                saveAsImage: { show: true }
+                            }
+                        },
+                        calculable: true,
+                        xAxis: [
+                      
+                            {
+                                type: 'value',
+                            }
+                        ],
+                        yAxis: [
+                            {
+                                name:'同期增长',
+                                type: 'category',
+                                axisTick: { show: false },
+                                data: ['工业', '总计', '负债', '主营', '存货']
+
+                            }
+                        ],
+                        series: [
+                      
+                            {
+                                trigger: 'axis',
+                                name: '对应同期增长率',
+                                type: 'bar',
+                                //itemStyle: {
+                                //    normal: { label: { show: true ,position:'top'} }
+                                //},
+                                data: [infoRate[0], infoRate[1], infoRate[2], infoRate[3], infoRate[4]]
+                            }
+                        ]
+                    };
                 mycharvs22.setOption(optionshow22);
             });
     })
-   
-   
-
-  
    
 </script>
 @*//表格*@
@@ -737,7 +742,7 @@
                 function showRadar(targetData, sourceData) {
                     var optionvs1 = {
                         title: {
-                            text: '基础雷达图'
+                            text: ''
                         },
                         tooltip: {},
                         legend: {
@@ -779,8 +784,8 @@
                         //backgroundColor: '#404a59',
                         roam: true,
                         title: {
-                            text: '规以上的部分民营数据',
-                            subtext: '贵州省-2月白酒',
+                            text: '规上民营部分数据',
+                            subtext: '贵州省-白酒',
                             left: 'center'
                         },
                         tooltip: {

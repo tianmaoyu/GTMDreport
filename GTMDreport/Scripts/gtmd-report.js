@@ -175,7 +175,7 @@ $(function () {
                    var infoRate = data["白酒"].Rate;
                    option1 = {
                        title: {
-                           text: '规上民营部分数据',
+                           text: '',
                            left: 'center',
                            top: 20,
                            textStyle: {
