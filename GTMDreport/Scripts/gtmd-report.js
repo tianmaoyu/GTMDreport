@@ -343,4 +343,72 @@ $(function () {
                        mycharRadar.setOption(optionRadar);
                    });
 
-   }
+  }
+
+//展规示全省民营规模以上的数据
+  function showDataForTotal(dataInt) {
+      var totalChart = echarts.init(document.getElementById("data-show-total"));
+      $.get("/api/IndustrycCassification/GetInfoForTotal", { dataInt: dataInt },
+          function (data) {
+              var totalData = data["TotalData"];
+              var averageData = data["AverageData"];
+             
+              var option = {
+                  tooltip: {
+                      trigger: 'axis'
+                  },
+                  toolbox: {
+                      show: true,
+                      feature: {
+                          mark: { show: true },
+                          dataView: { show: true, readOnly: false },
+                          magicType: { show: true, type: ['line', 'bar'] },
+                          restore: { show: true },
+                          saveAsImage: { show: true }
+                      }
+                  },
+                  calculable: true,
+                  legend: {
+                      data: ['工业增加值',  '平均同期增长']
+                  },
+                  xAxis: [
+                      {
+                          type: 'category',
+                          data: ['2月', '3月', '4月']
+                      }
+                  ],
+                  yAxis: [
+                      {
+                          type: 'value',
+                          name: '工业增加值',
+                          axisLabel: {
+                              formatter: '{value} 亿'
+                          }
+                      },
+                      {
+                          type: 'value',
+                          name: '同期增长率',
+                          axisLabel: {
+                              formatter: '{value} %'
+                          }
+                      }
+                  ],
+                  series: [
+
+                      {
+                          name: '蒸发量',
+                          type: 'bar',
+                          data: totalData
+                      },
+                      {
+                          name: '平均温度',
+                          type: 'line',
+                          yAxisIndex: 1,
+                          data: averageData
+                      }
+                  ]
+              };
+              totalChart.setOption(totalChart);
+      })
+    
+  }

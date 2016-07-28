@@ -161,7 +161,13 @@
                                 </div>
                             </div>
                             <div class=" tab-pane fade" id="datafutrue">
-                                <p>数据样本太少，无法预测。</p>
+                                <div class="data-show-1">
+                                    <h4>
+                                        民营规模上增加值
+                                        <small>2-4月的数据信息</small>
+                                    </h4>
+                                    <div id="data-show-total" style="height: 400px;border: none"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -979,6 +985,80 @@
                 //        },
                 //    });
                 //});
+            }
+        });
+    });
+
+    $(function () {
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            var activeTab = $(e.target).text();
+            if (activeTab == '未来预测') {
+                var totalChart = echarts.init(document.getElementById("data-show-total"));
+                $.get("/api/IndustrycCassification/GetInfoForTotal", { dataInt: 2 },
+                    function (data) {
+                        var totalData = data["TotalData"];
+                        var averageData = data["AverageData"];
+
+                        var option = {
+                            tooltip: {
+                                trigger: 'axis'
+                            },
+                            toolbox: {
+                                show: true,
+                                feature: {
+                                    mark: { show: true },
+                                    dataView: { show: true, readOnly: false },
+                                    magicType: { show: true, type: ['line', 'bar'] },
+                                    restore: { show: true },
+                                    saveAsImage: { show: true }
+                                }
+                            },
+                            calculable: true,
+                            legend: {
+                                data: ['工业增加值', '平均同期增长']
+                            },
+                            xAxis: [
+                                {
+                                    type: 'category',
+                                    data: ['2月', '3月', '4月']
+                                }
+                            ],
+                            yAxis: [
+                                {
+                                    type: 'value',
+                                    name: '工业增加值',
+                                    axisLabel: {
+                                        formatter: '{value} 万'
+                                    }
+                                },
+                                {
+                                    type: 'value',
+                                    name: '同期增长率',
+                                    axisLabel: {
+                                        formatter: '{value} %'
+                                    }
+                                }
+                            ],
+                            series: [
+
+                                {
+                                    name: '工业增加值',
+                                    type: 'bar',
+                                    barWidth: 40,
+                                    data: totalData
+                                },
+                                {
+                                    name: '平均同期增长',
+                                    type: 'line',
+                                    yAxisIndex: 1,
+                                    barWidth: 40,
+                                    smooth: true,
+                                    data: averageData
+                                }
+                            ]
+                        };
+                        totalChart.setOption(option);
+                    })
             }
         });
     });

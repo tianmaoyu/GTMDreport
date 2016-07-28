@@ -48,5 +48,11 @@ namespace GTMDreport.BLL
         {
             return dbContext.IndustrycCassifications.Where(item => item.ClassificationID == classificationID && item.Date.Month == dateInt);
         }
+
+        public IQueryable<IndustrycCassification> GetALL()
+        {
+            return dbContext.IndustrycCassifications;
+        }
+
     }
 }

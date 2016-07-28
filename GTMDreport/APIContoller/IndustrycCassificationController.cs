@@ -306,6 +306,30 @@ namespace GTMDreport.APIContoller
             result = double.Parse(result.ToString("0.00"));
             return result;
         }
+
+        /// <summary>
+        /// 获取全省的工业增加值
+        /// </summary>
+        /// <returns></returns>
+        public JObject GetInfoForTotal(int dataInt)
+        {
+            JObject result = new JObject();
+            JArray totalIndustryData = new JArray();
+            JArray averageRateData = new JArray();
+           
+            IndustryCalssificationBLL industryCalssification = new IndustryCalssificationBLL();
+             var groups= industryCalssification.GetALL().GroupBy(item=>item.Date.Month).OrderBy(item=>item.Key);
+            foreach(var group in groups)
+            {
+                var totalIndustryGrowthOutput =group.Sum(item => item.IndustryGrowthOutput);
+                totalIndustryData.Add(CovertDouble(totalIndustryGrowthOutput));
+                var averageGrowthRate = group.Average(itme => itme.IGO_GrowthRate);
+                averageRateData.Add(CovertDouble(averageGrowthRate));
+            }
+            result["TotalData"] = totalIndustryData;
+            result["AverageData"] = averageRateData;
+            return result;
+        }
         // GET api/<controller>
         public IEnumerable<string> Get()
         {
