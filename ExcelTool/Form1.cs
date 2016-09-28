@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows.Forms;
 using Microsoft.Office.Interop.Excel;
 using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace ExcelTool
 {
@@ -10,6 +11,9 @@ namespace ExcelTool
     {
         private Microsoft.Office.Interop.Excel.Application excelApp;
         private string newPath;
+
+        [DllImport("User32.dll", CharSet = CharSet.Auto)]
+        public static extern int GetWindowThreadProcessId(IntPtr hwnd, out int ID);
         public Form1()
         {
             InitializeComponent();
@@ -94,6 +98,7 @@ namespace ExcelTool
                    
                 }
                 workbook.Close(false, Type.Missing, Type.Missing);
+                ColsedExcel();
             }
 
         }
@@ -107,7 +112,7 @@ namespace ExcelTool
             //验证
             if (!GetValue(sourceSheet, 5, 2).Contains("民营经济"))
             {
-                MessageBox.Show("全省民营工业主要指标,数据格式不正确！");
+                MessageBox.Show("数据格式不正确！"+sourceSheet.Name);
                 return;
             }
             var dateString = GetValue(sourceSheet, 3, 1);
@@ -142,7 +147,7 @@ namespace ExcelTool
             //验证
             if (!GetValue(sourceSheet, 5, 2).Contains("民营经济"))
             {
-                MessageBox.Show("全省民营工业主要指标,数据格式不正确！");
+                MessageBox.Show("数据格式不正确！" + sourceSheet.Name);
                 return;
             }
         
@@ -150,20 +155,23 @@ namespace ExcelTool
             var regionName = sourceSheet.Name;
             string name = newPath + "\\" + fileName + ".xls";
             CreateFile(name);
-            Workbook workbook = excelApp.Workbooks.Open(name);
+            Workbook workbook = excelApp.Workbooks.Open(name, Type.Missing, Type.Missing, Type.Missing, Type.Missing
+                , Type.Missing, Type.Missing, Type.Missing, Type.Missing
+                , Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+
             var targetSheet = (Worksheet)workbook.Sheets.get_Item(1);
             int lastRow = GetLastRow(targetSheet);
             Range sourceRange = sourceSheet.Range[sourceSheet.Cells[7, 1], sourceSheet.Cells[23, 4]];
 
-            Range targetRange = targetSheet.Range[targetSheet.Cells[lastRow+6, 1], targetSheet.Cells[lastRow+22, 4]];
+            Range targetRange = targetSheet.Range[targetSheet.Cells[lastRow, 1], targetSheet.Cells[lastRow+16, 4]];
             targetRange.Value = sourceRange.Value;
 
             //写日期
-            Range colDate = targetSheet.Range[targetSheet.Cells[lastRow+6, 5], targetSheet.Cells[lastRow + 22, 5]];
+            Range colDate = targetSheet.Range[targetSheet.Cells[lastRow, 5], targetSheet.Cells[lastRow + 16, 5]];
             colDate.Value = dateString;
 
             //名称
-            Range colName = targetSheet.Range[targetSheet.Cells[lastRow+6, 6], targetSheet.Cells[lastRow + 22, 6]];
+            Range colName = targetSheet.Range[targetSheet.Cells[lastRow, 6], targetSheet.Cells[lastRow + 16, 6]];
             colName.Value = regionName;
             workbook.Save();
             workbook.Close(false, Type.Missing, Type.Missing);
@@ -175,11 +183,11 @@ namespace ExcelTool
         private void ReadAndWirteB1(Worksheet sourceSheet)
         {
             //验证
-            if (!GetValue(sourceSheet, 5, 2).Contains("民营经济"))
-            {
-                MessageBox.Show("全省民营工业主要指标,数据格式不正确！");
-                return;
-            }
+            //if (!GetValue(sourceSheet, 5, 2).Contains("民营经济"))
+            //{
+            //    MessageBox.Show("全省民营工业主要指标,数据格式不正确！");
+            //    return;
+            //}
         }
         /// <summary>
         /// 规上民营工业分行业指标-地区
@@ -187,12 +195,22 @@ namespace ExcelTool
         /// <param name="sheet"></param>
         private void ReadAndWirteB2(Worksheet sourceSheet)
         {
-            //验证
-            if (!GetValue(sourceSheet, 5, 2).Contains("民营经济"))
-            {
-                MessageBox.Show("全省民营工业主要指标,数据格式不正确！");
-                return;
-            }
+            ////验证
+            //if (!GetValue(sourceSheet, 5, 2).Contains("民营经济"))
+            //{
+            //    MessageBox.Show("全省民营工业主要指标,数据格式不正确！");
+            //    return;
+            //}
+        }
+
+        private void ColsedExcel()
+        {
+            //关闭
+            IntPtr t = new IntPtr(excelApp.Hwnd);
+            int k = 0;
+            GetWindowThreadProcessId(t, out k);
+            System.Diagnostics.Process p = System.Diagnostics.Process.GetProcessById(k);
+            p.Kill();
         }
 
         private int GetEnumIndex(string sheetName)
@@ -213,11 +231,19 @@ namespace ExcelTool
             for(int i=1;i<lastRow;i++)
             {
                Range range= worksheet.Cells[i, 1];
-                if (Convert.ToString(range.Value2) == null)
+                string value = Convert.ToString(range.Value2);
+                try
+                {
+                    if (value.Trim() =="")
+                    {
+                        return i;
+                    }
+                }
+                catch
                 {
                     return i;
-                  
                 }
+                
             }
             return 1;
         }
