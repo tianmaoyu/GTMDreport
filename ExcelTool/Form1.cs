@@ -11,6 +11,7 @@ namespace ExcelTool
     {
         private Microsoft.Office.Interop.Excel.Application excelApp;
         private string newPath;
+        string dateString = "未知";
 
         [DllImport("User32.dll", CharSet = CharSet.Auto)]
         public static extern int GetWindowThreadProcessId(IntPtr hwnd, out int ID);
@@ -62,7 +63,7 @@ namespace ExcelTool
 
                 Workbooks workbooks = excelApp.Workbooks;
                 Workbook workbook = workbooks.Add(excelPath);
-
+               
                 //取得sheets
                 Sheets sheets = workbook.Sheets;
                 foreach (Worksheet sheet in sheets)
@@ -78,9 +79,9 @@ namespace ExcelTool
                             case 0:
                                 break;
                             case 1:
-                                ReadAndWirteA2(sheet, NewSheetName.全省民营工业主要指标全省.ToString()); break;
+                                ReadAndWirteA2(sheet, Enum.GetName(typeof(NewSheetName), 1)); break;
                             default:
-                                ReadAndWirteA2(sheet, NewSheetName.民营工业主要指标地区.ToString()); break;
+                                ReadAndWirteA2(sheet, Enum.GetName(typeof(NewSheetName), 2)); break;
                         }
                     }
                     else
@@ -89,16 +90,16 @@ namespace ExcelTool
                         {
                             case 0:
                                 break;
-                            case 1:
-                                ReadAndWirteB1(sheet); break;
+                            case 11:
+                                ReadAndWirteB1(sheet, Enum.GetName(typeof(NewSheetName), 3)); break;
                             default:
-                                ReadAndWirteB2(sheet); break;
+                                ReadAndWirteB1(sheet, Enum.GetName(typeof(NewSheetName), 4)); break;
                         }
                     }
                    
                 }
                 workbook.Close(false, Type.Missing, Type.Missing);
-                ColsedExcel();
+             
             }
 
         }
@@ -151,7 +152,7 @@ namespace ExcelTool
                 return;
             }
         
-            var dateString = GetValue(sourceSheet, 3, 1);
+            dateString = GetValue(sourceSheet, 3, 1);
             var regionName = sourceSheet.Name;
             string name = newPath + "\\" + fileName + ".xls";
             CreateFile(name);
@@ -180,14 +181,37 @@ namespace ExcelTool
         ///  规上民营工业分行业指标-全省
         /// </summary>
         /// <param name="sheet"></param>
-        private void ReadAndWirteB1(Worksheet sourceSheet)
+        private void ReadAndWirteB1(Worksheet sourceSheet,string fileName)
         {
             //验证
-            //if (!GetValue(sourceSheet, 5, 2).Contains("民营经济"))
-            //{
-            //    MessageBox.Show("全省民营工业主要指标,数据格式不正确！");
-            //    return;
-            //}
+            if (!GetValue(sourceSheet, 4, 2).Contains("煤炭"))
+            {
+                MessageBox.Show("数据格式不正确！"+ sourceSheet.Name);
+                return;
+            }
+            //var dateString = GetValue(sourceSheet, 3, 1);
+            var regionName = sourceSheet.Name;
+            string name = newPath + "\\" + fileName + ".xls";
+            CreateFile(name);
+            Workbook workbook = excelApp.Workbooks.Open(name, Type.Missing, Type.Missing, Type.Missing, Type.Missing
+                , Type.Missing, Type.Missing, Type.Missing, Type.Missing
+                , Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+
+            var targetSheet = (Worksheet)workbook.Sheets.get_Item(1);
+            int lastRow = GetLastRow(targetSheet,2);
+            Range sourceRange = sourceSheet.get_Range("A4", "T17");
+            Range targetRange = targetSheet.get_Range(String.Format("A{0}", lastRow), String.Format("T{0}", lastRow + 13));
+            targetRange.Value = sourceRange.Value;
+
+            //写日期
+            Range colDate = targetSheet.get_Range(String.Format("U{0}", lastRow), String.Format("U{0}", lastRow + 13));
+            colDate.Value = dateString;
+
+            //名称
+            Range colName = targetSheet.get_Range(String.Format("V{0}", lastRow), String.Format("V{0}", lastRow + 13));
+            colName.Value = regionName;
+            workbook.Save();
+            workbook.Close(false, Type.Missing, Type.Missing);
         }
         /// <summary>
         /// 规上民营工业分行业指标-地区
@@ -225,12 +249,13 @@ namespace ExcelTool
             }
             return 0;
         }
-        private int GetLastRow(Worksheet worksheet)
+        private int GetLastRow(Worksheet worksheet,int colNumber=1)
         {
+            
             var lastRow = worksheet.Rows.Count;
             for(int i=1;i<lastRow;i++)
             {
-               Range range= worksheet.Cells[i, 1];
+               Range range= worksheet.Cells[i, colNumber];
                 string value = Convert.ToString(range.Value2);
                 try
                 {
@@ -247,6 +272,7 @@ namespace ExcelTool
             }
             return 1;
         }
+
 
         private void Rename(string oldName,string newName)
         {
@@ -295,6 +321,10 @@ namespace ExcelTool
             }
         }
 
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ColsedExcel();
+        }
     }
 
     //Sheet 名称

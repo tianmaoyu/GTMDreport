@@ -70,6 +70,7 @@
             this.Controls.Add(this.textBox1);
             this.Name = "Form1";
             this.Text = "ExcelTool";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
