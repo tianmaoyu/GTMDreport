@@ -36,70 +36,79 @@ namespace ExcelTool
             fileDialog.Filter = "所有文件(*.xls)|*.xls";
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
-                this.textBox1.Text = fileDialog.FileName;
+                foreach(string file in fileDialog.FileNames)
+                {
+                    this.textBox1.Text += file.ToString() + "\r\n";
+                }
+                 
             }
+           
+            //路径
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (this.textBox1.Text.Contains(".xls"))
+            var files = this.textBox1.Text.Split('\r', '\n');
+            foreach (string file in files)
             {
-
-                var excelPath = this.textBox1.Text;
-                //路径
-                var path = Directory.GetParent(excelPath);
-
-                //文件名称
-                var directioryNmae = Path.GetFileNameWithoutExtension(excelPath);
-
-                //新建目录
-                newPath = Path.Combine(path.ToString(), directioryNmae);
-                if (!Directory.Exists(newPath))
+                if (file.Contains(".xls"))
                 {
-                    Directory.CreateDirectory(newPath);
-                }
 
-                //打开Eecel文件
+                    var excelPath = file;
+                    //路径
+                    var path = Directory.GetParent(excelPath);
 
-                Workbooks workbooks = excelApp.Workbooks;
-                Workbook workbook = workbooks.Add(excelPath);
-               
-                //取得sheets
-                Sheets sheets = workbook.Sheets;
-                foreach (Worksheet sheet in sheets)
-                {
-                    var sheetName = sheet.Name;
-                    var sheetNameIndex = GetEnumIndex(sheetName);
+                    //文件名称
+                    var directioryNmae = Path.GetFileNameWithoutExtension(excelPath);
 
-                    //分为四类
-                    if (sheetName.Contains("1"))
+                    //新建目录
+                    newPath = Path.Combine(path.ToString(), directioryNmae);
+                    if (!Directory.Exists(newPath))
                     {
-                        switch (sheetNameIndex)
-                        {
-                            case 0:
-                                break;
-                            case 1:
-                                ReadAndWirteA2(sheet, Enum.GetName(typeof(NewSheetName), 1)); break;
-                            default:
-                                ReadAndWirteA2(sheet, Enum.GetName(typeof(NewSheetName), 2)); break;
-                        }
+                        Directory.CreateDirectory(newPath);
                     }
-                    else
+
+                    //打开Eecel文件
+
+                    Workbooks workbooks = excelApp.Workbooks;
+                    Workbook workbook = workbooks.Add(excelPath);
+
+                    //取得sheets
+                    Sheets sheets = workbook.Sheets;
+                    foreach (Worksheet sheet in sheets)
                     {
-                        switch (sheetNameIndex)
+                        var sheetName = sheet.Name;
+                        var sheetNameIndex = GetEnumIndex(sheetName);
+
+                        //分为四类
+                        if (sheetName.Contains("1"))
                         {
-                            case 0:
-                                break;
-                            case 11:
-                                ReadAndWirteB1(sheet, Enum.GetName(typeof(NewSheetName), 3)); break;
-                            default:
-                                ReadAndWirteB1(sheet, Enum.GetName(typeof(NewSheetName), 4)); break;
+                            switch (sheetNameIndex)
+                            {
+                                case 0:
+                                    break;
+                                case 1:
+                                    ReadAndWirteA2(sheet, Enum.GetName(typeof(NewSheetName), 1)); break;
+                                default:
+                                    ReadAndWirteA2(sheet, Enum.GetName(typeof(NewSheetName), 2)); break;
+                            }
                         }
+                        else
+                        {
+                            switch (sheetNameIndex)
+                            {
+                                case 0:
+                                    break;
+                                case 11:
+                                    ReadAndWirteB1(sheet, Enum.GetName(typeof(NewSheetName), 3)); break;
+                                default:
+                                    ReadAndWirteB1(sheet, Enum.GetName(typeof(NewSheetName), 4)); break;
+                            }
+                        }
+
                     }
-                   
+                    workbook.Close(false, Type.Missing, Type.Missing);
                 }
-                workbook.Close(false, Type.Missing, Type.Missing);
-             
             }
 
         }
