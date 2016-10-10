@@ -88,9 +88,9 @@ namespace ExcelTool
                                 case 0:
                                     break;
                                 case 1:
-                                    ReadAndWirteA2(sheet, Enum.GetName(typeof(NewSheetName), 1)); break;
+                                    ReadAndWirteA(sheet, Enum.GetName(typeof(NewSheetName), 1)); break;
                                 default:
-                                    ReadAndWirteA2(sheet, Enum.GetName(typeof(NewSheetName), 2)); break;
+                                    ReadAndWirteA(sheet, Enum.GetName(typeof(NewSheetName), 2)); break;
                             }
                         }
                         else
@@ -100,9 +100,9 @@ namespace ExcelTool
                                 case 0:
                                     break;
                                 case 11:
-                                    ReadAndWirteB1(sheet, Enum.GetName(typeof(NewSheetName), 3)); break;
+                                    ReadAndWirteB(sheet, Enum.GetName(typeof(NewSheetName), 3)); break;
                                 default:
-                                    ReadAndWirteB1(sheet, Enum.GetName(typeof(NewSheetName), 4)); break;
+                                    ReadAndWirteB(sheet, Enum.GetName(typeof(NewSheetName), 4)); break;
                             }
                         }
 
@@ -113,41 +113,7 @@ namespace ExcelTool
 
         }
 
-        /// <summary>
-        /// 全省民营工业主要指标-全省
-        /// </summary>
-        /// <param name="sheet"></param>
-        private void ReadAndWirteA1(Worksheet sourceSheet)
-        {
-            //验证
-            if (!GetValue(sourceSheet, 5, 2).Contains("民营经济"))
-            {
-                MessageBox.Show("数据格式不正确！"+sourceSheet.Name);
-                return;
-            }
-            var dateString = GetValue(sourceSheet, 3, 1);
-            var regionName = sourceSheet.Name;
-            string name = newPath + "\\" + NewSheetName.民营工业主要指标地区.ToString() + ".xls";
-            CreateFile(name);
-            Workbook workbook = excelApp.Workbooks.Open(name);
-            var targetSheet = (Worksheet)workbook.Sheets.get_Item(1);
-            Range sourceRange= sourceSheet.Range[sourceSheet.Cells[7, 1], sourceSheet.Cells[23, 4]];
-            Range targetRange = targetSheet.Range[targetSheet.Cells[7, 1], targetSheet.Cells[23, 4]];
-            targetRange.Value = sourceRange.Value;
-
-            //写日期
-            Range colDate = targetSheet.Range[targetSheet.Cells[7, 5], targetSheet.Cells[23, 5]];
-            colDate.Value = dateString;
-
-            //名称
-            Range colName = targetSheet.Range[targetSheet.Cells[7, 6], targetSheet.Cells[23, 6]];
-            colName.Value = regionName;
-            workbook.Save();
-            workbook.Close(false, Type.Missing, Type.Missing);
-
-            //string newName = newPath + "\\" + NewSheetName.全省民营工业主要指标全省.ToString()+ "regionName" + "dateString" + ".xls";
-            //Rename(name, newName);
-        }
+       
         /// <summary>
         ///  民营工业主要指标-地区
         /// </summary>
@@ -155,12 +121,12 @@ namespace ExcelTool
         private void ReadAndWirteA2(Worksheet sourceSheet,string fileName)
         {
             //验证
-            if (!GetValue(sourceSheet, 5, 2).Contains("民营经济"))
-            {
-                MessageBox.Show("数据格式不正确！" + sourceSheet.Name);
-                return;
-            }
-        
+            //if (!GetValue(sourceSheet, 5, 2).Contains("民营经济"))
+            //{
+            //    MessageBox.Show("数据格式不正确！" + sourceSheet.Name);
+            //    return;
+            //}
+
             dateString = GetValue(sourceSheet, 3, 1);
             var regionName = sourceSheet.Name;
             string name = newPath + "\\" + fileName + ".xls";
@@ -192,12 +158,13 @@ namespace ExcelTool
         /// <param name="sheet"></param>
         private void ReadAndWirteB1(Worksheet sourceSheet,string fileName)
         {
-            //验证
-            if (!GetValue(sourceSheet, 4, 2).Contains("煤炭"))
-            {
-                MessageBox.Show("数据格式不正确！"+ sourceSheet.Name);
-                return;
-            }
+            //验证  
+            //数据格式不一样
+            //if (!GetValue(sourceSheet, 3, 2).Contains("煤炭"))
+            //{
+            //    MessageBox.Show("数据格式不正确！" + sourceSheet.Name);
+            //    return;
+            //}
             //var dateString = GetValue(sourceSheet, 3, 1);
             var regionName = sourceSheet.Name;
             string name = newPath + "\\" + fileName + ".xls";
@@ -207,33 +174,99 @@ namespace ExcelTool
                 , Type.Missing, Type.Missing, Type.Missing, Type.Missing);
 
             var targetSheet = (Worksheet)workbook.Sheets.get_Item(1);
-            int lastRow = GetLastRow(targetSheet,2);
-            Range sourceRange = sourceSheet.get_Range("A4", "T17");
-            Range targetRange = targetSheet.get_Range(String.Format("A{0}", lastRow), String.Format("T{0}", lastRow + 13));
+            //数据格式不以样
+            int lastRow = GetLastRow2(targetSheet,2);
+            Range sourceRange = sourceSheet.get_Range("A3", "Y16");
+            Range targetRange = targetSheet.get_Range(String.Format("A{0}", lastRow), String.Format("Y{0}", lastRow + 13));
             targetRange.Value = sourceRange.Value;
 
             //写日期
-            Range colDate = targetSheet.get_Range(String.Format("U{0}", lastRow), String.Format("U{0}", lastRow + 13));
+            Range colDate = targetSheet.get_Range(String.Format("Z{0}", lastRow), String.Format("Z{0}", lastRow + 13));
             colDate.Value = dateString;
 
             //名称
-            Range colName = targetSheet.get_Range(String.Format("V{0}", lastRow), String.Format("V{0}", lastRow + 13));
+            Range colName = targetSheet.get_Range(String.Format("AA{0}", lastRow), String.Format("AA{0}", lastRow + 13));
+            colName.Value = regionName;
+            workbook.Save();
+            workbook.Close(false, Type.Missing, Type.Missing);
+        }
+
+
+        /// <summary>
+        ///  民营工业主要指标-地区 针对2013.7-2014.12月
+        /// </summary>
+        /// <param name="sheet"></param>
+        private void ReadAndWirteA(Worksheet sourceSheet, string fileName)
+        {
+            //验证
+            //if (!GetValue(sourceSheet, 5, 2).Contains("民营经济"))
+            //{
+            //    MessageBox.Show("数据格式不正确！" + sourceSheet.Name);
+            //    return;
+            //}
+
+            dateString = GetValue(sourceSheet, 3, 1);
+            var regionName = sourceSheet.Name;
+            string name = newPath + "\\" + fileName + ".xls";
+            CreateFile(name);
+            Workbook workbook = excelApp.Workbooks.Open(name, Type.Missing, Type.Missing, Type.Missing, Type.Missing
+                , Type.Missing, Type.Missing, Type.Missing, Type.Missing
+                , Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+
+            var targetSheet = (Worksheet)workbook.Sheets.get_Item(1);
+            int lastRow = GetLastRow(targetSheet);
+            Range sourceRange = sourceSheet.Range[sourceSheet.Cells[7, 1], sourceSheet.Cells[23, 4]];
+
+            Range targetRange = targetSheet.Range[targetSheet.Cells[lastRow, 1], targetSheet.Cells[lastRow + 16, 4]];
+            targetRange.Value = sourceRange.Value;
+
+            //写日期
+            Range colDate = targetSheet.Range[targetSheet.Cells[lastRow, 5], targetSheet.Cells[lastRow + 16, 5]];
+            colDate.Value = dateString;
+
+            //名称
+            Range colName = targetSheet.Range[targetSheet.Cells[lastRow, 6], targetSheet.Cells[lastRow + 16, 6]];
             colName.Value = regionName;
             workbook.Save();
             workbook.Close(false, Type.Missing, Type.Missing);
         }
         /// <summary>
-        /// 规上民营工业分行业指标-地区
+        ///  规上民营工业分行业指标-全省 针对2013.7-2014.12月
         /// </summary>
         /// <param name="sheet"></param>
-        private void ReadAndWirteB2(Worksheet sourceSheet)
+        private void ReadAndWirteB(Worksheet sourceSheet, string fileName)
         {
-            ////验证
-            //if (!GetValue(sourceSheet, 5, 2).Contains("民营经济"))
+            //验证  
+            //数据格式不一样
+            //if (!GetValue(sourceSheet, 3, 2).Contains("煤炭"))
             //{
-            //    MessageBox.Show("全省民营工业主要指标,数据格式不正确！");
+            //    MessageBox.Show("数据格式不正确！" + sourceSheet.Name);
             //    return;
             //}
+            //var dateString = GetValue(sourceSheet, 3, 1);
+            var regionName = sourceSheet.Name;
+            string name = newPath + "\\" + fileName + ".xls";
+            CreateFile(name);
+            Workbook workbook = excelApp.Workbooks.Open(name, Type.Missing, Type.Missing, Type.Missing, Type.Missing
+                , Type.Missing, Type.Missing, Type.Missing, Type.Missing
+                , Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+
+            var targetSheet = (Worksheet)workbook.Sheets.get_Item(1);
+            //数据格式不以样
+            int lastRow = GetLastRow2(targetSheet);
+            Range sourceRange = sourceSheet.get_Range("A6", "G47");
+            Range targetRange = targetSheet.get_Range(String.Format("A{0}", lastRow), String.Format("G{0}", lastRow + 41));
+            targetRange.Value = sourceRange.Value;
+
+            //写日期
+            Range colDate = targetSheet.get_Range(String.Format("H{0}", lastRow), String.Format("H{0}", lastRow + 41));
+            colDate.Value = dateString;
+
+            //名称
+            Range colName = targetSheet.get_Range(String.Format("I{0}", lastRow), String.Format("I{0}", lastRow + 41));
+            colName.Value = regionName;
+            workbook.Save();
+            workbook.Close(false, Type.Missing, Type.Missing);
         }
 
         private void ColsedExcel()
@@ -268,7 +301,7 @@ namespace ExcelTool
                 string value = Convert.ToString(range.Value2);
                 try
                 {
-                    if (value.Trim() =="")
+                    if (string.IsNullOrEmpty(value))
                     {
                         return i;
                     }
@@ -281,8 +314,37 @@ namespace ExcelTool
             }
             return 1;
         }
+        private int GetLastRow2(Worksheet worksheet, int colNumber = 1)
+        {
 
+            var lastRow = worksheet.Rows.Count;
+            for (int i = 1; i < lastRow; i++)
+            {
+                Range range = worksheet.Cells[i, colNumber];
+                string value = Convert.ToString(range.Value2);
+                Range range2 = worksheet.Cells[i, colNumber+1];
+                string value2 = Convert.ToString(range2.Value2);
+                try
+                {
+                    if (string.IsNullOrEmpty(value)&& string.IsNullOrEmpty(value2))
+                    {
+                        return i;
+                    }
+                }
+                catch
+                {
+                    return i;
+                }
 
+            }
+            return 1;
+        }
+       
+        // public static bool IsNullorEmpty(this string str)
+        //{
+            
+        //    return false;
+        //} 
         private void Rename(string oldName,string newName)
         {
             FileInfo fileInfo = new FileInfo(oldName);
