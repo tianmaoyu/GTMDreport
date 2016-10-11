@@ -259,6 +259,9 @@
     <Compile Include="IndexIndustrie.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="IndustryCassification2.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="IndustrycCassification.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

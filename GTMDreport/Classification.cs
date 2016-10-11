@@ -14,7 +14,19 @@ namespace GTMDreport
     
     public partial class Classification
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Classification()
+        {
+            this.IndustryCassification2 = new HashSet<IndustryCassification2>();
+            this.IndustrycCassifications = new HashSet<IndustrycCassification>();
+        }
+    
         public int ID { get; set; }
         public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<IndustryCassification2> IndustryCassification2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<IndustrycCassification> IndustrycCassifications { get; set; }
     }
 }

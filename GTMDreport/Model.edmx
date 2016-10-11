@@ -19,6 +19,23 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="IndustryCassification2">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UnitCount" Type="int" />
+          <Property Name="PriviteUnitCount" Type="int" />
+          <Property Name="IndustryOutput" Type="float" />
+          <Property Name="IndustrySalesOutput" Type="float" />
+          <Property Name="IndustryGrowthOutput" Type="float" />
+          <Property Name="IGO_GrowthRate" Type="float" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="RegionName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ClassificationName" Type="nvarchar" MaxLength="100" />
+          <Property Name="RegionID" Type="int" />
+          <Property Name="ClassificationID" Type="int" />
+        </EntityType>
         <EntityType Name="IndustrycCassification">
           <Key>
             <PropertyRef Name="ID" />
@@ -44,7 +61,7 @@
           <Property Name="St_GrowthRate" Type="float" />
           <Property Name="Date" Type="datetime" />
           <Property Name="RegionID" Type="int" />
-          <Property Name="ClassificationID" Type="int" />
+          <Property Name="ClassificationID" Type="int" Nullable="false" />
           <Property Name="RegionName" Type="varchar(max)" />
           <Property Name="ClassificationName" Type="varchar(max)" />
         </EntityType>
@@ -69,12 +86,109 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <Association Name="FK_IndustryCassification2_Classification">
+          <End Role="Classification" Type="Self.Classification" Multiplicity="0..1" />
+          <End Role="IndustryCassification2" Type="Self.IndustryCassification2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classification">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="IndustryCassification2">
+              <PropertyRef Name="ClassificationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IndustryCassification2_Region">
+          <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
+          <End Role="IndustryCassification2" Type="Self.IndustryCassification2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="IndustryCassification2">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IndustrycCassification_Classification">
+          <End Role="Classification" Type="Self.Classification" Multiplicity="1" />
+          <End Role="IndustrycCassification" Type="Self.IndustrycCassification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classification">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="IndustrycCassification">
+              <PropertyRef Name="ClassificationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IndustrycCassification_Region">
+          <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
+          <End Role="IndustrycCassification" Type="Self.IndustrycCassification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="IndustrycCassification">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NonPublicIndustry_IndexIndustry">
+          <End Role="IndexIndustrie" Type="Self.IndexIndustrie" Multiplicity="0..1" />
+          <End Role="NonPublicIndustrie" Type="Self.NonPublicIndustrie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IndexIndustrie">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NonPublicIndustrie">
+              <PropertyRef Name="IndexIndustryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NonPublicIndustry_Region">
+          <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
+          <End Role="NonPublicIndustrie" Type="Self.NonPublicIndustrie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NonPublicIndustrie">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="GTMDReportModelStoreContainer">
           <EntitySet Name="Classification" EntityType="Self.Classification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IndexIndustrie" EntityType="Self.IndexIndustrie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IndustryCassification2" EntityType="Self.IndustryCassification2" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IndustrycCassification" EntityType="Self.IndustrycCassification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NonPublicIndustrie" EntityType="Self.NonPublicIndustrie" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_IndustryCassification2_Classification" Association="Self.FK_IndustryCassification2_Classification">
+            <End Role="Classification" EntitySet="Classification" />
+            <End Role="IndustryCassification2" EntitySet="IndustryCassification2" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IndustryCassification2_Region" Association="Self.FK_IndustryCassification2_Region">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="IndustryCassification2" EntitySet="IndustryCassification2" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IndustrycCassification_Classification" Association="Self.FK_IndustrycCassification_Classification">
+            <End Role="Classification" EntitySet="Classification" />
+            <End Role="IndustrycCassification" EntitySet="IndustrycCassification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IndustrycCassification_Region" Association="Self.FK_IndustrycCassification_Region">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="IndustrycCassification" EntitySet="IndustrycCassification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NonPublicIndustry_IndexIndustry" Association="Self.FK_NonPublicIndustry_IndexIndustry">
+            <End Role="IndexIndustrie" EntitySet="IndexIndustrie" />
+            <End Role="NonPublicIndustrie" EntitySet="NonPublicIndustrie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NonPublicIndustry_Region" Association="Self.FK_NonPublicIndustry_Region">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="NonPublicIndustrie" EntitySet="NonPublicIndustrie" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -83,9 +197,34 @@
         <EntityContainer Name="GTMDReportEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Classifications" EntityType="GTMDReportModel.Classification" />
           <EntitySet Name="IndexIndustries" EntityType="GTMDReportModel.IndexIndustrie" />
+          <EntitySet Name="IndustryCassification2" EntityType="GTMDReportModel.IndustryCassification2" />
           <EntitySet Name="IndustrycCassifications" EntityType="GTMDReportModel.IndustrycCassification" />
           <EntitySet Name="NonPublicIndustries" EntityType="GTMDReportModel.NonPublicIndustrie" />
           <EntitySet Name="Regions" EntityType="GTMDReportModel.Region" />
+          <AssociationSet Name="FK_IndustryCassification2_Classification" Association="GTMDReportModel.FK_IndustryCassification2_Classification">
+            <End Role="Classification" EntitySet="Classifications" />
+            <End Role="IndustryCassification2" EntitySet="IndustryCassification2" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IndustrycCassification_Classification" Association="GTMDReportModel.FK_IndustrycCassification_Classification">
+            <End Role="Classification" EntitySet="Classifications" />
+            <End Role="IndustrycCassification" EntitySet="IndustrycCassifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NonPublicIndustry_IndexIndustry" Association="GTMDReportModel.FK_NonPublicIndustry_IndexIndustry">
+            <End Role="IndexIndustrie" EntitySet="IndexIndustries" />
+            <End Role="NonPublicIndustrie" EntitySet="NonPublicIndustries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IndustryCassification2_Region" Association="GTMDReportModel.FK_IndustryCassification2_Region">
+            <End Role="Region" EntitySet="Regions" />
+            <End Role="IndustryCassification2" EntitySet="IndustryCassification2" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IndustrycCassification_Region" Association="GTMDReportModel.FK_IndustrycCassification_Region">
+            <End Role="Region" EntitySet="Regions" />
+            <End Role="IndustrycCassification" EntitySet="IndustrycCassifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NonPublicIndustry_Region" Association="GTMDReportModel.FK_NonPublicIndustry_Region">
+            <End Role="Region" EntitySet="Regions" />
+            <End Role="NonPublicIndustrie" EntitySet="NonPublicIndustries" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Classification">
           <Key>
@@ -93,6 +232,8 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="IndustryCassification2" Relationship="GTMDReportModel.FK_IndustryCassification2_Classification" FromRole="Classification" ToRole="IndustryCassification2" />
+          <NavigationProperty Name="IndustrycCassifications" Relationship="GTMDReportModel.FK_IndustrycCassification_Classification" FromRole="Classification" ToRole="IndustrycCassification" />
         </EntityType>
         <EntityType Name="IndexIndustrie">
           <Key>
@@ -100,6 +241,26 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="NonPublicIndustries" Relationship="GTMDReportModel.FK_NonPublicIndustry_IndexIndustry" FromRole="IndexIndustrie" ToRole="NonPublicIndustrie" />
+        </EntityType>
+        <EntityType Name="IndustryCassification2">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UnitCount" Type="Int32" />
+          <Property Name="PriviteUnitCount" Type="Int32" />
+          <Property Name="IndustryOutput" Type="Double" />
+          <Property Name="IndustrySalesOutput" Type="Double" />
+          <Property Name="IndustryGrowthOutput" Type="Double" />
+          <Property Name="IGO_GrowthRate" Type="Double" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="RegionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ClassificationName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RegionID" Type="Int32" />
+          <Property Name="ClassificationID" Type="Int32" />
+          <NavigationProperty Name="Classification" Relationship="GTMDReportModel.FK_IndustryCassification2_Classification" FromRole="IndustryCassification2" ToRole="Classification" />
+          <NavigationProperty Name="Region" Relationship="GTMDReportModel.FK_IndustryCassification2_Region" FromRole="IndustryCassification2" ToRole="Region" />
         </EntityType>
         <EntityType Name="IndustrycCassification">
           <Key>
@@ -126,9 +287,11 @@
           <Property Name="St_GrowthRate" Type="Double" />
           <Property Name="Date" Type="DateTime" Precision="3" />
           <Property Name="RegionID" Type="Int32" />
-          <Property Name="ClassificationID" Type="Int32" />
+          <Property Name="ClassificationID" Type="Int32" Nullable="false" />
           <Property Name="RegionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ClassificationName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Classification" Relationship="GTMDReportModel.FK_IndustrycCassification_Classification" FromRole="IndustrycCassification" ToRole="Classification" />
+          <NavigationProperty Name="Region" Relationship="GTMDReportModel.FK_IndustrycCassification_Region" FromRole="IndustrycCassification" ToRole="Region" />
         </EntityType>
         <EntityType Name="NonPublicIndustrie">
           <Key>
@@ -143,6 +306,8 @@
           <Property Name="RegionID" Type="Int32" />
           <Property Name="IndexName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="RegionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="IndexIndustrie" Relationship="GTMDReportModel.FK_NonPublicIndustry_IndexIndustry" FromRole="NonPublicIndustrie" ToRole="IndexIndustrie" />
+          <NavigationProperty Name="Region" Relationship="GTMDReportModel.FK_NonPublicIndustry_Region" FromRole="NonPublicIndustrie" ToRole="Region" />
         </EntityType>
         <EntityType Name="Region">
           <Key>
@@ -150,7 +315,82 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="IndustryCassification2" Relationship="GTMDReportModel.FK_IndustryCassification2_Region" FromRole="Region" ToRole="IndustryCassification2" />
+          <NavigationProperty Name="IndustrycCassifications" Relationship="GTMDReportModel.FK_IndustrycCassification_Region" FromRole="Region" ToRole="IndustrycCassification" />
+          <NavigationProperty Name="NonPublicIndustries" Relationship="GTMDReportModel.FK_NonPublicIndustry_Region" FromRole="Region" ToRole="NonPublicIndustrie" />
         </EntityType>
+        <Association Name="FK_IndustryCassification2_Classification">
+          <End Type="GTMDReportModel.Classification" Role="Classification" Multiplicity="0..1" />
+          <End Type="GTMDReportModel.IndustryCassification2" Role="IndustryCassification2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classification">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="IndustryCassification2">
+              <PropertyRef Name="ClassificationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IndustrycCassification_Classification">
+          <End Type="GTMDReportModel.Classification" Role="Classification" Multiplicity="1" />
+          <End Type="GTMDReportModel.IndustrycCassification" Role="IndustrycCassification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classification">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="IndustrycCassification">
+              <PropertyRef Name="ClassificationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NonPublicIndustry_IndexIndustry">
+          <End Type="GTMDReportModel.IndexIndustrie" Role="IndexIndustrie" Multiplicity="0..1" />
+          <End Type="GTMDReportModel.NonPublicIndustrie" Role="NonPublicIndustrie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IndexIndustrie">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NonPublicIndustrie">
+              <PropertyRef Name="IndexIndustryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IndustryCassification2_Region">
+          <End Type="GTMDReportModel.Region" Role="Region" Multiplicity="0..1" />
+          <End Type="GTMDReportModel.IndustryCassification2" Role="IndustryCassification2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="IndustryCassification2">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IndustrycCassification_Region">
+          <End Type="GTMDReportModel.Region" Role="Region" Multiplicity="0..1" />
+          <End Type="GTMDReportModel.IndustrycCassification" Role="IndustrycCassification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="IndustrycCassification">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NonPublicIndustry_Region">
+          <End Type="GTMDReportModel.Region" Role="Region" Multiplicity="0..1" />
+          <End Type="GTMDReportModel.NonPublicIndustrie" Role="NonPublicIndustrie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NonPublicIndustrie">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -169,6 +409,24 @@
             <EntityTypeMapping TypeName="GTMDReportModel.IndexIndustrie">
               <MappingFragment StoreEntitySet="IndexIndustrie">
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IndustryCassification2">
+            <EntityTypeMapping TypeName="GTMDReportModel.IndustryCassification2">
+              <MappingFragment StoreEntitySet="IndustryCassification2">
+                <ScalarProperty Name="ClassificationID" ColumnName="ClassificationID" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="ClassificationName" ColumnName="ClassificationName" />
+                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IGO_GrowthRate" ColumnName="IGO_GrowthRate" />
+                <ScalarProperty Name="IndustryGrowthOutput" ColumnName="IndustryGrowthOutput" />
+                <ScalarProperty Name="IndustrySalesOutput" ColumnName="IndustrySalesOutput" />
+                <ScalarProperty Name="IndustryOutput" ColumnName="IndustryOutput" />
+                <ScalarProperty Name="PriviteUnitCount" ColumnName="PriviteUnitCount" />
+                <ScalarProperty Name="UnitCount" ColumnName="UnitCount" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -240,7 +498,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
       </DesignerInfoPropertySet>

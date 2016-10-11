@@ -14,7 +14,16 @@ namespace GTMDreport
     
     public partial class IndexIndustrie
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public IndexIndustrie()
+        {
+            this.NonPublicIndustries = new HashSet<NonPublicIndustrie>();
+        }
+    
         public int ID { get; set; }
         public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NonPublicIndustrie> NonPublicIndustries { get; set; }
     }
 }

@@ -41,12 +41,12 @@ namespace GTMDreport.BLL
 
         public IQueryable<IndustrycCassification> GetAllByClassification(int dateInt, int regionID)
         {
-            return dbContext.IndustrycCassifications.Where(item => item.RegionID == regionID && item.Date.Month == dateInt);
+            return dbContext.IndustrycCassifications.Where(item => item.RegionID == regionID && ((DateTime)item.Date).Month == dateInt);
         }
 
         public IQueryable<IndustrycCassification> GetInfoForMap(int dateInt, int classificationID)
         {
-            return dbContext.IndustrycCassifications.Where(item => item.ClassificationID == classificationID && item.Date.Month == dateInt);
+            return dbContext.IndustrycCassifications.Where(item => item.ClassificationID == classificationID && ((DateTime)item.Date).Month == dateInt);
         }
 
         public IQueryable<IndustrycCassification> GetALL()

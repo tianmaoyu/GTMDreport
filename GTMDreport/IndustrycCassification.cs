@@ -33,10 +33,13 @@ namespace GTMDreport
         public Nullable<double> EI_GrowthRate { get; set; }
         public Nullable<double> Stock { get; set; }
         public Nullable<double> St_GrowthRate { get; set; }
-        public DateTime Date { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
         public Nullable<int> RegionID { get; set; }
-        public Nullable<int> ClassificationID { get; set; }
+        public int ClassificationID { get; set; }
         public string RegionName { get; set; }
         public string ClassificationName { get; set; }
+    
+        public virtual Classification Classification { get; set; }
+        public virtual Region Region { get; set; }
     }
 }

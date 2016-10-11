@@ -318,7 +318,7 @@ namespace GTMDreport.APIContoller
             JArray averageRateData = new JArray();
            
             IndustryCalssificationBLL industryCalssification = new IndustryCalssificationBLL();
-             var groups= industryCalssification.GetALL().GroupBy(item=>item.Date.Month).OrderBy(item=>item.Key);
+             var groups= industryCalssification.GetALL().GroupBy(item=> ((DateTime)item.Date).Month).OrderBy(item=>item.Key);
             foreach(var group in groups)
             {
                 var totalIndustryGrowthOutput =group.Sum(item => item.IndustryGrowthOutput);

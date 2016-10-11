@@ -12,19 +12,22 @@ namespace GTMDreport
     using System;
     using System.Collections.Generic;
     
-    public partial class NonPublicIndustrie
+    public partial class IndustryCassification2
     {
         public int ID { get; set; }
-        public Nullable<int> IndexIndustryID { get; set; }
-        public Nullable<double> PrivateEconomy { get; set; }
-        public Nullable<double> CapitalEconomy { get; set; }
-        public Nullable<double> GrowthRate { get; set; }
+        public Nullable<int> UnitCount { get; set; }
+        public Nullable<int> PriviteUnitCount { get; set; }
+        public Nullable<double> IndustryOutput { get; set; }
+        public Nullable<double> IndustrySalesOutput { get; set; }
+        public Nullable<double> IndustryGrowthOutput { get; set; }
+        public Nullable<double> IGO_GrowthRate { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
-        public Nullable<int> RegionID { get; set; }
-        public string IndexName { get; set; }
         public string RegionName { get; set; }
+        public string ClassificationName { get; set; }
+        public Nullable<int> RegionID { get; set; }
+        public Nullable<int> ClassificationID { get; set; }
     
-        public virtual IndexIndustrie IndexIndustrie { get; set; }
+        public virtual Classification Classification { get; set; }
         public virtual Region Region { get; set; }
     }
 }
