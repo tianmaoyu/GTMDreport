@@ -1,0 +1,16 @@
+@{
+    Layout = "~/Areas/Zh/Views/Shared/_Layout`.cshtml";
+    var x = Html.EasyUi();
+}
+@section style {
+    @RenderSection("style", false)
+}
+<div @x.Layout(true)>
+    <div @x.LayoutRegion().Center().Border(false)>
+        @RenderSection("top", false)
+        @RenderSection("content")
+    </div>
+</div>
+@section script {
+    @RenderSection("script", false)
+}

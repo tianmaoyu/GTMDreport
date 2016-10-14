@@ -1,0 +1,23 @@
+<div class="easyui-accordion" id="menus" data-options="fit:true,border:false" style="width: 100%">
+    <div title="系统设置">
+        <ul class="sideBar" data-options="border:false" style="width: 100%">
+            <li class="sideBar-item" data-url="@Url.Action("index", "org")"><i></i>机构管理</li>
+            <li class="sideBar-item" data-url="@Url.Action("index", "role")"><i></i>角色管理</li>
+            <li class="sideBar-item" data-url="@Url.Action("index", "sysMenu")"><i></i>菜单管理</li>
+            <li class="sideBar-item" data-url="@Url.Action("index", "sysMenuAction")"><i></i>操作管理</li>
+            <li class="sideBar-item" data-url="@Url.Action("index", "user")"><i></i>用户管理</li>
+            <li class="sideBar-item" data-url="@Url.Action("index", "param")"><i></i>参数管理</li>
+        </ul>
+    </div>
+    <div title="公告管理" style="width: 100%">
+        <ul class="sideBar" data-options="border:false">
+            <li class="sideBar-item" data-url="@Url.Action("index", "notice")"><i></i>公告管理</li>
+        </ul>
+    </div>
+    <div title="视频管理" style="width: 100%">
+        <ul class="sideBar" data-options="border:false">
+            <li class="sideBar-item" data-url="@Url.Action("index", "video")"><i></i>视频审核</li>
+        </ul>
+    </div>
+    <div title="其他设置" style="width: 100%"></div>
+</div>

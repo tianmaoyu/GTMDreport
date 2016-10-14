@@ -1,0 +1,37 @@
+@{
+    ViewBag.Title = "管理系统";
+    var x = Html.EasyUi();
+}
+@section content{
+    <div @x.Layout(true).Id("divMain")>
+        <div @x.LayoutRegion().Top().Height(72).AddClass("page-north")>
+            @Html.Partial("Top")
+        </div>
+        <div @x.LayoutRegion().Left().Split().MaxWidth(500).Title("功能菜单").Width(200)>
+            @Html.Partial("Left")
+        </div>
+        <div @x.LayoutRegion().Center()>
+            @*选项卡*@
+            <div @x.Tabs().Id("divMainTabs").Fit().Border(false)>
+            </div>
+            @*选项卡菜单*@
+            @x.Menu("divTabsMenu").Width(150).Duration(600).Items(
+                x.MenuItem("menuItem_Refresh", "刷 新", "icon-reload"),
+                x.MenuItem().AddClass("menu-sep"),
+                x.MenuItem("menuItem_CloseCurrent", "关闭当前"),
+                x.MenuItem("menuItem_CloseOther", "关闭其它"),
+                x.MenuItem("menuItem_CloseAll", "全部关闭", "icon-delete2")
+            )
+            @*我的桌面选项卡菜单*@
+            @x.Menu("divDesktopTabsMenu").Width(150).Duration(600).Items(
+                x.MenuItem("menuItem_Refresh", "刷 新", "icon-reload"),
+                x.MenuItem("menuItem_CloseOther", "关闭其它")
+            )
+        </div>
+        <div @x.LayoutRegion().Bottom().Height(32)><div style="text-align: center; line-height: 30px">Copyright © 宏祥 版权所有</div></div>
+    </div>
+    <div id="div_index_data"></div>
+}
+@section script{
+    @this.AutoRegisterJs()
+}

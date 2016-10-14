@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Scripts/easyui/themes/{0}/easyui.css".Fmt(Html.Action("getTheme", new { controller = "home" }))
+                        , "~/Content/easyui/css"
+                        , "~/Scripts/easyui/themes/icon.css")
+    @*<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />*@
+    @Scripts.Render("~/Scripts/jquery.min.js",
+                        "~/Scripts/easyui/jquery.easyui.min.js",
+                "~/Scripts/easyui/js",
+                "~/Scripts/utils/js")
+    @RenderSection("style", false)
+</head>
+<body>
+    @RenderBody()
+    @RenderSection("script", false)
+</body>
+</html>

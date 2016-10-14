@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="02732f335f5e49358c64c418e2a19a59" Name="Diagram1">
+        <EntityTypeShape EntityType="GTMDReportModel.Classification" Width="2.25" PointX="0.5" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GTMDReportModel.IndexIndustrie" Width="2.25" PointX="0.5" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GTMDReportModel.IndustrycCassification" Width="3" PointX="6" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GTMDReportModel.NonPublicIndustrie" Width="2.625" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="GTMDReportModel.Region" Width="2.25" PointX="0.5" PointY="7.5" IsExpanded="true" />
+        <AssociationConnector Association="GTMDReportModel.FK_IndustrycCassification_Classification" ManuallyRouted="false" />
+        <AssociationConnector Association="GTMDReportModel.FK_NonPublicIndustry_IndexIndustry" ManuallyRouted="false" />
+        <AssociationConnector Association="GTMDReportModel.FK_IndustrycCassification_Region" ManuallyRouted="false" />
+        <AssociationConnector Association="GTMDReportModel.FK_NonPublicIndustry_Region" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="GTMDReportModel.IndustryCassificationT" Width="1.875" PointX="3.5" PointY="8.125" />
+        <AssociationConnector Association="GTMDReportModel.FK_IndustryCassification2_Classification" />
+        <AssociationConnector Association="GTMDReportModel.FK_IndustryCassification2_Region" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,57 @@
+<div class="page-title"><img src="@Url.Content("~/Content/images/page-title-350x90.png")"></div>
+<div class="page-themes">
+    <a id="page-themes-mm-a" href="#" class="easyui-menubutton user-popover" data-options="menu:'#page-themes-mm',menuAlign:'right'">主题: <span id="defaultTheme"></span></a>
+    <div id="page-themes-mm" style="width:150px;">
+        <div>default</div>
+        <div>bootstrap</div>
+        <div class="menu-sep"></div>
+        <div>gray</div>
+        <div>metro</div>
+    </div>
+</div>
+<div class="page-user-info">
+    <a href="javascript:;" class="easyui-menubutton user-popover" data-options="menu:'#mm1',menuAlign:'right',iconCls:'icon-man2'">@this.User.Username</a>
+    <div id="mm1" style="width:150px;">
+        <div>我的桌面</div>
+        <div>个人信息</div>
+        <div class="menu-sep"></div>
+        <div data-options="href:'@Url.Action("logout", new { controller = "user" })'">退出</div>
+    </div>
+</div>
+<p style="display:none;" id="theme">
+    @Html.Action("getTheme", new { controller = "home" })
+</p>
+<script>
+    $(function () {
+        var themeMenu = $('#page-themes-mm'),
+            theme = $("#theme").text();
+        $("#defaultTheme").text(theme);
+        if (theme) {
+            var item = themeMenu.menu('findItem', $.trim(theme));
+            themeMenu.menu('setIcon', {
+                target: item.target,
+                iconCls: 'icon-ok'
+            });
+        }
+
+        themeMenu.menu({
+            onClick: function (item) {
+                var $this = $(this);
+
+                $this.menu('setIcon', {
+                    target: $(item.target).siblings('.menu-item'),
+                    iconCls: ''
+                });
+                $this.menu('setIcon', {
+                    target: item.target,
+                    iconCls: 'icon-ok'
+                });
+
+                $('#page-themes-mm-a').menubutton({ 'text': '主题: ' + item.text });
+                $('link:first').attr('href', '/Scripts/easyui/themes/' + item.text + '/easyui.css');
+
+                xt.ajax("@Url.Action("changeTheme", new { controller="home" })", { theme: item.text });
+            }
+        });
+    });
+</script>
