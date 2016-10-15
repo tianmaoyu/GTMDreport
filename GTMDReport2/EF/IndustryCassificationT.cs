@@ -33,4 +33,8 @@ namespace GTMDReport2.EF
         [JsonIgnore]
         public virtual Region Region { get; set; }
     }
+    //public class BaseCommon
+    //{
+    //    public Nullable<DateTime> Date { get; set; }
+    //}
 }

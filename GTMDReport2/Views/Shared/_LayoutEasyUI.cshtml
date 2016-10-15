@@ -35,30 +35,34 @@
     @*<div data-options="region:'east',iconCls:'icon-reload',title:'East',split:true" style="width:100px;"></div>*@
     <div data-options="region:'west',title:'菜单栏',split:true" style="width:180px;">
         <div class="easyui-accordion" data-options="fit:true,border:false" @*style="width:172px;height:99%;"*@>
-            <div title="权限管理" data-options="iconCls:'icon-reload'" @*style="overflow:auto;padding:10px;"*@>
+            <div title="数据查询" data-options="iconCls:'icon-clist'" @*style="overflow:auto;padding:10px;"*@>
                 <div class="list-group">
-                    <a id="user-manager" class="list-group-item" url="User/UserList" href="#">员工管理<span class="glyphicon glyphicon-user pull-right"></span></a>
-                    <a class="list-group-item" url="Menu/Index" href="#">菜单管理<span class="glyphicon glyphicon-list pull-right"></span></a>
-                    <a class="list-group-item" href="#">角色管理<span class="glyphicon glyphicon-wrench pull-right"></span></a>
+                    <a id="user-manager" class="list-group-item" url="User/UserList" href="#">工业主要指标<span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                    <a class="list-group-item" url="Menu/Index" href="#">工业分行业指标<span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                    <a class="list-group-item" href="#">工业分行业指标【2】<span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                    <a class="list-group-item" href="#">工业增加值<span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                    <a class="list-group-item" href="#">重点企业<span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                    <a class="list-group-item" href="#">重点项目<span class="glyphicon glyphicon-th-list pull-right"></span></a>
                 </div>
             </div>
 
-            <div title="兼职管理" data-options="iconCls:'icon-reload'," @*style="padding:10px;"*@>
+            <div title="报表分析" data-options="iconCls:'icon-cstats'," @*style="padding:10px;"*@>
                 <div class="list-group">
-                    <a class="list-group-item" url="StudentSign/Index" href="#">预签到管理<span class="glyphicon glyphicon-check pull-right"></span></a>
-                    <a class="list-group-item" url="StudentProject/Index" href="#">兼职报名管理<span class="glyphicon glyphicon-book pull-right"></span></a>
-                    <a class="list-group-item" url="Student/Index" href="#">兼职人员管理<span class="glyphicon glyphicon-asterisk pull-right"></span></a>
+                    <a class="list-group-item" url="StudentSign/Index" href="#">民营经济总量<span class="glyphicon glyphicon-stats pull-right"></span></a>
+                    <a class="list-group-item" url="StudentProject/Index" href="#">工业增加值分行业<span class="glyphicon glyphicon-stats pull-right"></span></a>
+                    <a class="list-group-item" url="Student/Index" href="#">工业增加值分地区<span class="glyphicon glyphicon-stats pull-right"></span></a>
+                    <a class="list-group-item" url="StudentSign/Index" href="#">营经济固定资产<span class="glyphicon glyphicon-stats pull-right"></span></a>
+                    <a class="list-group-item" url="StudentProject/Index" href="#">兼职报名管理<span class="glyphicon glyphicon-stats pull-right"></span></a>
+                    <a class="list-group-item" url="Student/Index" href="#">重点企业工业生产总值<span class="glyphicon glyphicon-stats pull-right"></span></a>
                 </div>
             </div>
-            <div title="消息管理" data-options="iconCls:'icon-reload'" @*style="padding:10px;"*@>
+            <div title="数据录入" data-options="iconCls:'icon-cupload'" @*style="padding:10px;"*@>
                 <div class="list-group">
-                    <a class="list-group-item" url="Notice/Index" href="#">信息发布<span class="glyphicon glyphicon-bullhorn pull-right"></span></a>
-                    <a class="list-group-item" url="Feedback/Index" href="#">问题反馈<span class="glyphicon glyphicon-bell pull-right"></span></a>
+                    <a class="list-group-item" url="Notice/Index" href="#">工业主要指标<span class="glyphicon glyphicon-upload pull-right"></span></a>
+                    <a class="list-group-item" url="Feedback/Index" href="#">工业分行业指标<span class="glyphicon glyphicon-upload pull-right"></span></a>
                 </div>
             </div>
-            <div title="问卷调查" data-options="iconCls:'icon-reload',selected:true">
-                待定
-            </div>
+           
         </div>
     </div>
     <div data-options="region:'center'" style="padding:5px;background:#eee;">

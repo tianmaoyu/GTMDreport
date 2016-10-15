@@ -203,14 +203,21 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="BLL\ClassificationBLL.cs" />
+    <Compile Include="BLL\CommonBLL.cs" />
     <Compile Include="BLL\IndexIndustryBLL.cs" />
     <Compile Include="BLL\IndustryCalssificationTBLL.cs" />
     <Compile Include="BLL\IndustryCalssificationBLL.cs" />
     <Compile Include="BLL\NonPublicIndustryBLL.cs" />
     <Compile Include="BLL\RegionBLL.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ClassificationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IndexIndustryController.cs" />
+    <Compile Include="Controllers\IndustryClassifcationTController.cs" />
+    <Compile Include="Controllers\IndustryClassificationController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NonPublicIndustryController.cs" />
+    <Compile Include="Controllers\RegionController.cs" />
     <Compile Include="DAL\DbContextBase.cs" />
     <Compile Include="EF\Classification.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -490,6 +497,9 @@
     <Content Include="Content\themes\icons\sum.png" />
     <Content Include="Content\themes\icons\tip.png" />
     <Content Include="Content\themes\icons\undo.png" />
+    <Content Include="Content\themes\icons\_list.png" />
+    <Content Include="Content\themes\icons\_statst.png" />
+    <Content Include="Content\themes\icons\_upload.png" />
     <Content Include="Content\themes\material\accordion.css" />
     <Content Include="Content\themes\material\calendar.css" />
     <Content Include="Content\themes\material\combo.css" />
@@ -701,6 +711,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Classification\" />
+    <Folder Include="Views\IndexIndustry\" />
+    <Folder Include="Views\IndustryClassifcationT\" />
+    <Folder Include="Views\IndustryClassification\" />
+    <Folder Include="Views\NonPublicIndustry\" />
+    <Folder Include="Views\Region\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

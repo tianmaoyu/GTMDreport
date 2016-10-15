@@ -94,3 +94,14 @@
 .icon-large-chart{
 	background:url('icons/large_chart.png') no-repeat center center;
 }
+
+
+.icon-clist{
+	background:url('icons/_list.png') no-repeat center center;
+}
+.icon-cstats{
+	background:url('icons/_statst.png') no-repeat center center;
+}
+.icon-cupload{
+	background:url('icons/_upload.png') no-repeat center center;
+}
