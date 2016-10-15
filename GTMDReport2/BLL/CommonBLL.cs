@@ -30,21 +30,8 @@ namespace GTMDReport2.BLL
             return (DateTime)dbContext.NonPublicIndustries.Select(item => item.Date).Min();
         }
 
-        //public DateTime GetLateDateForIndexT()
-        //{
-        //   IndustryCassificationT industryCassificationT = new IndustryCassificationT();
-        //   return GetDateLateDate<IndustryCassificationT>(new IndustryCassificationT());
-        //}
-
-        //public DateTime GetDateLateDate<T>(T entity) where T : BaseCommon
-        //{
-        //    return (DateTime)dbContext.Set<T>().Select(item => item.Date).Min();
-        //}
+       
     }
 
 
-    //public class BaseCommon
-    //{
-    //    public Nullable<DateTime> Date { get; set; }
-    //}
 }
