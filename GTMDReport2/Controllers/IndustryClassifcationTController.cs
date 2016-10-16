@@ -15,81 +15,14 @@ namespace GTMDReport2.Controllers
             return View();
         }
 
-        public JObject GetPagerInfo(JObject pagerParas)
+        public JObject GetPagerInfo(FormCollection collection)
         {
-           
-            return new JObject();
+            JsonResult jr = new JsonResult();
+            JObject jo = new JObject();
+            jo["ccc"] = "ccc";
+            jr.Data = jo;
+            return jo;
         }
-        // GET: IndustryClassifcationT/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: IndustryClassifcationT/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: IndustryClassifcationT/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: IndustryClassifcationT/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: IndustryClassifcationT/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: IndustryClassifcationT/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: IndustryClassifcationT/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+ 
     }
 }
