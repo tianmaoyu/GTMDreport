@@ -1,0 +1,62 @@
+﻿@{
+    Layout = null;
+}
+<body>
+    <table id="dg-industryClassification"></table>
+    <div id="tbic">
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-redo',plain:true,text:'导出'"></a>
+        @*<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-blank',plain:true,text:'导出'"></a>*@
+        <div class="pull-right" style="margin-right:40px">
+            <input id="name" class="easyui-textbox" data-options="buttonText:'月份',buttonAlign:'left'" style="width:120px">
+            <input id="phoneNumber" class="easyui-textbox" data-options="buttonText:'地区',buttonAlign:'left'" style="width:120px;margin-right:2px">
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true,text:'搜索'" onclick="seacherStudent()"></a>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            $("#dg-industryClassification").datagrid({
+                url: "IndustryClassifcation/GetPagerInfo",
+                toolbar: '#tbic',
+                striped: true,
+                collapsible: true,
+                width: "100%",
+                height: "100%",
+                fitColumn: false,
+                showFooter: true,
+                columns: [[
+                    { field: 'ID', title: 'ID', checkbox: true },
+                     //
+                   
+                    { field: 'IndustryOutput', title: '工业总产值', width: 100 },
+                    { field: 'IndustrySalesOutput', title: '工业销售产值', width: 100 },
+                    { field: 'IndustryGrowthOutput', title: '工业增加值', width: 100 },
+                    { field: 'IGO_GrowthRate', title: '同比增长', width: 40 },
+                     //学生表的信息
+                    { field: 'AssetsTotal', title: '资产总计', width: 80 },
+                    { field: 'AT_GrowthRate', title: '同比增长', width: 40 },
+                    { field: 'DebtTotal', title: '负债合计', width: 100 },
+
+                    { field: 'DTG_GrowthRate', title: '同比增长', width: 80 },
+                    { field: 'Income', title: '主营业务收入', width: 100 },
+                    { field: 'Inc_GrowthRate', title: '同比增长', width: 100 },
+                    { field: 'ProfitsTotal', title: '利润总额', width: 100 },
+                    { field: 'Pro_GrowthRate', title: '同比增长', width: 100 },
+                    { field: 'VAT', title: '应交增值税', width: 40 },
+                    
+                    { field: 'VAT_GrowthRate', title: '同比增长', width: 80 },
+                    { field: 'ExpenceInterest', title: '利息支出', width: 40 },
+                    { field: 'EI_GrowthRate', title: '同比增长', width: 100 },
+                 
+                     
+                    { field: 'Stock', title: '存货', width: 80 },
+                    { field: 'St_GrowthRate', title: '同比增长', width: 40 },
+                    { field: 'Date', title: '月份', width: 100 },
+                    { field: 'RegionName', title: '地区', width: 100 },
+                    { field: 'ClassificationName', title: '行业', width: 100 },
+                ]],
+                pagination: true,
+
+            });
+        })
+    </script>
+</body>

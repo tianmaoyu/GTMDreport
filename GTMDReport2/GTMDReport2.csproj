@@ -708,13 +708,13 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_LayoutEasyUI.cshtml" />
     <Content Include="Views\IndustryClassifcationT\Index.cshtml" />
+    <Content Include="Views\IndustryClassification\Index.cshtml" />
+    <Content Include="Views\NonPublicIndustry\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Classification\" />
     <Folder Include="Views\IndexIndustry\" />
-    <Folder Include="Views\IndustryClassification\" />
-    <Folder Include="Views\NonPublicIndustry\" />
     <Folder Include="Views\Region\" />
   </ItemGroup>
   <ItemGroup>
