@@ -30,7 +30,6 @@ namespace GTMDReport2.BLL
             return (DateTime)dbContext.NonPublicIndustries.Select(item => item.Date).Min();
         }
 
-       
     }
 
 

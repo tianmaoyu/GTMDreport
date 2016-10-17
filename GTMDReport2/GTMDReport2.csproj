@@ -211,6 +211,7 @@
     <Compile Include="BLL\RegionBLL.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClassificationController.cs" />
+    <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IndexIndustryController.cs" />
     <Compile Include="Controllers\IndustryClassifcationTController.cs" />
@@ -222,7 +223,7 @@
     <Compile Include="EF\Classification.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="EF\IndexIndustrie.cs">
+    <Compile Include="EF\IndexIndustry.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\IndustryCassificationT.cs">
@@ -246,7 +247,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
-    <Compile Include="EF\NonPublicIndustrie.cs">
+    <Compile Include="EF\NonPublicIndustry.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\Region.cs">
@@ -714,6 +715,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Classification\" />
+    <Folder Include="Views\Common\" />
     <Folder Include="Views\IndexIndustry\" />
     <Folder Include="Views\Region\" />
   </ItemGroup>

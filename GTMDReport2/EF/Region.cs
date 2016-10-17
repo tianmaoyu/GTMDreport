@@ -19,8 +19,8 @@ namespace GTMDReport2.EF
         public Region()
         {
             this.IndustrycCassifications = new HashSet<IndustrycCassification>();
-            this.NonPublicIndustries = new HashSet<NonPublicIndustrie>();
             this.IndustryCassificationTs = new HashSet<IndustryCassificationT>();
+            this.NonPublicIndustries = new HashSet<NonPublicIndustry>();
         }
     
         public int ID { get; set; }
@@ -31,9 +31,9 @@ namespace GTMDReport2.EF
         public virtual ICollection<IndustrycCassification> IndustrycCassifications { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         [JsonIgnore]
-        public virtual ICollection<NonPublicIndustrie> NonPublicIndustries { get; set; }
+        public virtual ICollection<IndustryCassificationT> IndustryCassificationTs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         [JsonIgnore]
-        public virtual ICollection<IndustryCassificationT> IndustryCassificationTs { get; set; }
+        public virtual ICollection<NonPublicIndustry> NonPublicIndustries { get; set; }
     }
 }

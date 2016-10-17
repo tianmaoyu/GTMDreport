@@ -27,10 +27,10 @@ namespace GTMDReport2.EF
         }
     
         public virtual DbSet<Classification> Classifications { get; set; }
-        public virtual DbSet<IndexIndustrie> IndexIndustries { get; set; }
         public virtual DbSet<IndustrycCassification> IndustrycCassifications { get; set; }
-        public virtual DbSet<NonPublicIndustrie> NonPublicIndustries { get; set; }
         public virtual DbSet<Region> Regions { get; set; }
         public virtual DbSet<IndustryCassificationT> IndustryCassificationTs { get; set; }
+        public virtual DbSet<IndexIndustry> IndexIndustries { get; set; }
+        public virtual DbSet<NonPublicIndustry> NonPublicIndustries { get; set; }
     }
 }

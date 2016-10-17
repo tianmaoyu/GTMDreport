@@ -13,12 +13,12 @@ namespace GTMDReport2.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class IndexIndustrie
+    public partial class IndexIndustry
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public IndexIndustrie()
+        public IndexIndustry()
         {
-            this.NonPublicIndustries = new HashSet<NonPublicIndustrie>();
+            this.NonPublicIndustries = new HashSet<NonPublicIndustry>();
         }
     
         public int ID { get; set; }
@@ -26,6 +26,6 @@ namespace GTMDReport2.EF
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         [JsonIgnore]
-        public virtual ICollection<NonPublicIndustrie> NonPublicIndustries { get; set; }
+        public virtual ICollection<NonPublicIndustry> NonPublicIndustries { get; set; }
     }
 }
