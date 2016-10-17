@@ -14,9 +14,9 @@ namespace GTMDreport.BLL
             dbContext = new GTMDReportEntities();
         }
 
-        public List<IndexIndustry> GetALl()
+        public IQueryable<IndexIndustry> GetALl()
         {
-            return dbContext.IndexIndustries.ToList();
+            return dbContext.IndexIndustries;
         }
     }
 }

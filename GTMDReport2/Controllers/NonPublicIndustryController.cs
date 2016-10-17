@@ -1,4 +1,7 @@
-﻿using System;
+﻿using GTMDreport.BLL;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,76 +17,29 @@ namespace GTMDReport2.Controllers
             return View();
         }
 
-        // GET: NonPublicIndustry/Details/5
-        public ActionResult Details(int id)
+        /// <summary>
+        /// 所有的指标
+        /// </summary>
+        /// <returns></returns>
+        public JArray Indexs()
         {
-            return View();
+            IndexIndustryBLL indexIndustryBLL = new IndexIndustryBLL();
+            var infos = indexIndustryBLL.GetALl().ToList();
+            var jarray = JArray.Parse(JsonConvert.SerializeObject(infos));
+            return jarray;
         }
 
-        // GET: NonPublicIndustry/Create
-        public ActionResult Create()
+        /// <summary>
+        /// 月份列表
+        /// </summary>
+        /// <returns></returns>
+        public JArray Dates()
         {
-            return View();
+            NonPublicIndustryBLL nonPublicIndustryBLL = new NonPublicIndustryBLL();
+            var dateList = nonPublicIndustryBLL.GetALl().Select(item => item.Date).OrderBy(item => item).Distinct().ToList();
+            var jarray = JArray.Parse(JsonConvert.SerializeObject(dateList));
+            return jarray;
         }
-
-        // POST: NonPublicIndustry/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: NonPublicIndustry/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: NonPublicIndustry/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: NonPublicIndustry/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: NonPublicIndustry/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+      
     }
 }

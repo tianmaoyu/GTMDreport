@@ -16,7 +16,7 @@ namespace GTMDReport2.Controllers
         /// 所有的地区
         /// </summary>
         /// <returns></returns>
-        public JArray ListT()
+        public JArray Regions()
         {
             RegionBLL regionBLL = new RegionBLL();
             var infos = regionBLL.GetALl();

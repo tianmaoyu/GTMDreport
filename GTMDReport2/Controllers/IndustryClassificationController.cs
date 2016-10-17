@@ -1,4 +1,7 @@
-﻿using System;
+﻿using GTMDreport.BLL;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,78 +17,29 @@ namespace GTMDReport2.Controllers
             return View();
         }
 
-        // GET: IndustryClassification/Details/5
-        public ActionResult Details(int id)
+
+        /// <summary>
+        /// 行业类别数据[2015以上的类别]
+        /// </summary>
+        /// <returns></returns>
+        public JArray Classifications()
         {
-            return View();
+            ClassificationBLL classificationBLL = new ClassificationBLL();
+            var infos = classificationBLL.GetListInfos().ToList();
+            var jarray = JArray.Parse(JsonConvert.SerializeObject(infos));
+            return jarray;
         }
 
-        
-
-        // GET: IndustryClassification/Create
-        public ActionResult Create()
+        /// <summary>
+        /// 月份列表
+        /// </summary>
+        /// <returns></returns>
+        public JArray Dates()
         {
-            return View();
-        }
-
-        // POST: IndustryClassification/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: IndustryClassification/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: IndustryClassification/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: IndustryClassification/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: IndustryClassification/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            IndustryCalssificationBLL industryCalssificationBLL = new IndustryCalssificationBLL();
+            var dateList = industryCalssificationBLL.GetALl().Select(item => item.Date).OrderBy(item => item).Distinct().ToList();
+            var jarray = JArray.Parse(JsonConvert.SerializeObject(dateList));
+            return jarray;
         }
     }
 }

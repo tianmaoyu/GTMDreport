@@ -210,8 +210,6 @@
     <Compile Include="BLL\NonPublicIndustryBLL.cs" />
     <Compile Include="BLL\RegionBLL.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ClassificationController.cs" />
-    <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IndexIndustryController.cs" />
     <Compile Include="Controllers\IndustryClassifcationTController.cs" />
