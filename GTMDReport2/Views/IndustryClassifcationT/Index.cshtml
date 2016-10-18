@@ -40,7 +40,8 @@
                             return 'background-color:#ffee00;color:red;';
                            }
                      }},
-                    { field: 'Date', title: '月份', width: 100,
+                    {
+                        field: 'Date', title: '月份', width: 150,
                         formatter: function(value,row,index){
                             return value.replace(/(\d{4}).(\d{1,2}).+/mg, '$1年$2月');
                         }

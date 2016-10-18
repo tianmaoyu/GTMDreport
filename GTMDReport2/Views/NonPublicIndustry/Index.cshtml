@@ -28,17 +28,17 @@
                 showFooter: true,
                 columns: [[
                     { field: 'ID', title: 'ID', checkbox: true },
-                    { field: 'IndexName', title: '指标', width: 250 },
-                    { field: 'RegionName', title: '地区', width: 100 },
+                    { field: 'IndexName', title: '指标', width: '20% '},
+                    { field: 'RegionName', title: '地区', width: '20% ' },
                     {
-                        field: 'Date', title: '月份', width: 100,
+                        field: 'Date', title: '月份', width: '20% ',
                         formatter: function (value, row, index) {
                             return value.replace(/(\d{4}).(\d{1,2}).+/mg, '$1年$2月');
                         }
                     },
-                    { field: 'PrivateEconomy', title: '民营经济', width: 100 },
-                    { field: 'CapitalEconomy', title: '#私  营', width: 100 },
-                    { field: 'GrowthRate', title: '同比增长', width: 100 },
+                    { field: 'PrivateEconomy', title: '民营经济', width: '10% ' },
+                    { field: 'CapitalEconomy', title: '#私  营', width: '10% ' },
+                    { field: 'GrowthRate', title: '同比增长', width: '20%' },
                  
                 ]],
                 pagination: true,
