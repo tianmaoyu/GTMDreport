@@ -35,7 +35,9 @@ namespace GTMDReport2.Controllers
         public JArray Dates()
         {
             IndustryCalssificationTBLL industryCalssificationTBLL = new IndustryCalssificationTBLL();
-            var dateList = industryCalssificationTBLL.GetALl().Select(item=>new { value=item.Date ,text=item.Date}).OrderBy(item=>item.value).Distinct().ToList();
+            var dateList = industryCalssificationTBLL.GetALl()
+                .Select(item=>new { value=item.Date ,text=((DateTime)item.Date).GetDateTimeFormats('y')[0].ToString() })
+                .OrderBy(item=>item.value).Distinct().ToList();
             var jarray = JArray.Parse(JsonConvert.SerializeObject(dateList));
             return jarray;
         }
