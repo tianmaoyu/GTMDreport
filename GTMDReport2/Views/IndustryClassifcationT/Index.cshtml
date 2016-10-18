@@ -5,11 +5,12 @@
     <table id="dg-industryClassificationT"></table>
     <div id="tbict">
         <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-redo',plain:true,text:'导出'"></a>
-        @*<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-blank',plain:true,text:'导出'"></a>*@
         <div class="pull-right" style="margin-right:40px">
-            <input id="name" class="easyui-textbox" data-options="buttonText:'月份',buttonAlign:'left'" style="width:120px">
-            <input id="phoneNumber" class="easyui-textbox" data-options="buttonText:'地区',buttonAlign:'left'" style="width:120px;margin-right:2px">
-            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true,text:'搜索'" onclick="seacherStudent()"></a>
+            <input id="date-industryClassificationT" class="easyui-combobox" 
+                   data-options="buttonText:'月份',buttonAlign:'left',valueField:'value',textField:'text',url:'IndustryClassifcationT/Dates'" style="width:170px">
+            <input id="region-industryClassificationT" class="easyui-combobox" 
+                   data-options="buttonText:'地区',buttonAlign:'left',valueField:'id',textField:'name',url:'Region/GetAll'" style="width:170px;margin-right:2px">
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true,text:'搜索'" onclick="seacherIndustryClassificationT()"></a>
         </div>
     </div>
     <script>
@@ -25,24 +26,26 @@
                 showFooter: true,
                 columns: [[
                     { field: 'ID', title: 'ID', checkbox: true },
+                    { field: 'RegionName', title: '地区', width: 100 },
+                    { field: 'ClassificationName', title: '行业', width: 250 },
                      //
-                    { field: 'UnitCount', title: '单位总数', width: 80 },
+                    { field: 'UnitCount', title: '单位总数', width: 100 },
                     { field: 'PriviteUnitCount', title: '私营单位个数', width: 100 },
                     { field: 'IndustryOutput', title: '总产值', width: 100 },
                     { field: 'IndustrySalesOutput', title: '销售产值', width: 100 },
                     { field: 'IndustryGrowthOutput', title: '增加值', width: 100 },
-                    { field: 'IGO_GrowthRate', title: '同比增长%', width: 40 },
+                    { field: 'IGO_GrowthRate', title: '同比增长%', width: 100 },
                      //学生表的信息
-                    { field: 'Date', title: '月份', width: 80 },
-                    { field: 'RegionName', title: '地区', width: 40 },
-                    { field: 'ClassificationName', title: '行业', width: 100 },
-
+                    { field: 'Date', title: '月份', width: 100 },
                     //{ field: 'RegionID', title: '报名日期', width: 100 },
                     //{ field: 'ClassificationID', title: '成功的数量', width: 100 },
                 ]],
                 pagination: true,
-
+                pageList: [50,100],
+                pageSize:50,
             });
         })
+
+
     </script>
 </body>

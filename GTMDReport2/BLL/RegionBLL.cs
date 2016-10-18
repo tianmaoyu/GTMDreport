@@ -14,9 +14,9 @@ namespace GTMDreport.BLL
             dbContext = new GTMDReportEntities();
         }
 
-        public List<Region> GetALl()
+        public IQueryable<Region> GetALl()
         {
-            return dbContext.Regions.ToList();
+            return dbContext.Regions;
         }
 
     }

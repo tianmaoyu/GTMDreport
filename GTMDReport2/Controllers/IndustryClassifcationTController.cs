@@ -19,21 +19,15 @@ namespace GTMDReport2.Controllers
 
         public JObject GetPagerInfo(FormCollection collection)
         {
-            JsonResult jr = new JsonResult();
-            JObject jo = new JObject();
-            jo["ccc"] = "ccc";
-            jr.Data = jo;
-            return jo;
+            IndustryCalssificationTBLL classificationTBLL = new IndustryCalssificationTBLL();
+            return classificationTBLL.GetPager(collection);
         }
 
-        /// <summary>
-        /// 行业类别数据【2013.7-2014.12的】
-        /// </summary>
-        /// <returns></returns>
+       
         public JArray ClassificationTs()
         {
-            ClassificationBLL classificationBLL = new ClassificationBLL();
-            var infos = classificationBLL.GetListInfosT().ToList();
+            IndustryCalssificationTBLL classificationTBLL = new IndustryCalssificationTBLL();
+            var infos = classificationTBLL.GetALl().ToList();
             var jarray = JArray.Parse(JsonConvert.SerializeObject(infos));
             return jarray;
         }
@@ -41,7 +35,7 @@ namespace GTMDReport2.Controllers
         public JArray Dates()
         {
             IndustryCalssificationTBLL industryCalssificationTBLL = new IndustryCalssificationTBLL();
-            var dateList = industryCalssificationTBLL.GetALl().Select(item=>item.Date).OrderBy(item=>item).Distinct().ToList();
+            var dateList = industryCalssificationTBLL.GetALl().Select(item=>new { value=item.Date ,text=item.Date}).OrderBy(item=>item.value).Distinct().ToList();
             var jarray = JArray.Parse(JsonConvert.SerializeObject(dateList));
             return jarray;
         }
