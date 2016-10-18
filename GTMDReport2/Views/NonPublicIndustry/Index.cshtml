@@ -8,15 +8,17 @@
         <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-redo',plain:true,text:'导出'"></a>
         @*<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-blank',plain:true,text:'导出'"></a>*@
         <div class="pull-right" style="margin-right:40px">
-            <input id="name" class="easyui-textbox" data-options="buttonText:'月份',buttonAlign:'left'" style="width:120px">
-            <input id="phoneNumber" class="easyui-textbox" data-options="buttonText:'地区',buttonAlign:'left'" style="width:120px;margin-right:2px">
-            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true,text:'搜索'" onclick="seacherStudent()"></a>
+            <input id="date-NonPublicIndustry" class="easyui-combobox"
+                   data-options="buttonText:'月份',buttonAlign:'left',valueField:'value',textField:'text',url:'NonPublicIndustry/Dates'" style="width:170px">
+            <input id="region-NonPublicIndustry" class="easyui-combobox"
+                   data-options="buttonText:'地区',buttonAlign:'left',valueField:'id',textField:'name',url:'Region/GetAll'" style="width:170px;margin-right:2px">
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true,text:'搜索'" onclick="seacherIndustryClassification()"></a>
         </div>
     </div>
     <script>
         $(function () {
             $("#dg-NonPublicIndustry").datagrid({
-                url: "NonPublicIndustry/GetPagerInfo",
+                url: "NonPublicIndustry/GetPager",
                 toolbar: '#tbnpi',
                 striped: true,
                 collapsible: true,
@@ -26,23 +28,31 @@
                 showFooter: true,
                 columns: [[
                     { field: 'ID', title: 'ID', checkbox: true },
-                     //
-
-                 
+                    { field: 'IndexName', title: '指标', width: 250 },
+                    { field: 'RegionName', title: '地区', width: 100 },
+                    {
+                        field: 'Date', title: '月份', width: 100,
+                        formatter: function (value, row, index) {
+                            return value.replace(/(\d{4}).(\d{1,2}).+/mg, '$1年$2月');
+                        }
+                    },
                     { field: 'PrivateEconomy', title: '民营经济', width: 100 },
                     { field: 'CapitalEconomy', title: '#私  营', width: 100 },
-                    { field: 'GrowthRate', title: '同比增长', width: 40 },
-                     //学生表的信息
-                    { field: 'Date', title: '月份', width: 80 },
-                
-                    { field: 'IndexName', title: '指标', width: 100 },
-
-                    { field: 'RegionName', title: '地区', width: 80 },
-                  
+                    { field: 'GrowthRate', title: '同比增长', width: 100 },
+                 
                 ]],
                 pagination: true,
-
+                pageList: [20, 40],
+                pageSize: 20,
             });
-        })
+        });
+        //seacher 重新加载
+        function seacherIndustryClassification(date, region) {
+            debugger;
+            $('#dg-NonPublicIndustry').datagrid('load', {
+                date: $('#date-NonPublicIndustry').combobox('getValue'),
+                region: $('#region-NonPublicIndustry').combobox('getValue')
+            });
+        }
     </script>
 </body>

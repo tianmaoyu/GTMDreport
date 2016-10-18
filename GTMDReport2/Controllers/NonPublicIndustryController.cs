@@ -17,16 +17,11 @@ namespace GTMDReport2.Controllers
             return View();
         }
 
-        /// <summary>
-        /// 所有的指标
-        /// </summary>
-        /// <returns></returns>
-        public JArray Indexs()
+        public JObject GetPager(FormCollection collection)
         {
-            IndexIndustryBLL indexIndustryBLL = new IndexIndustryBLL();
-            var infos = indexIndustryBLL.GetALl().ToList();
-            var jarray = JArray.Parse(JsonConvert.SerializeObject(infos));
-            return jarray;
+
+            NonPublicIndustryBLL nonPublicIndustryBLL = new NonPublicIndustryBLL();
+            return nonPublicIndustryBLL.GetPager(collection);
         }
 
         /// <summary>
@@ -36,10 +31,11 @@ namespace GTMDReport2.Controllers
         public JArray Dates()
         {
             NonPublicIndustryBLL nonPublicIndustryBLL = new NonPublicIndustryBLL();
-            var dateList = nonPublicIndustryBLL.GetALl().Select(item => item.Date).OrderBy(item => item).Distinct().ToList();
+            var dateList = nonPublicIndustryBLL.GetALl().Select(item => new { value = item.Date, text = ((DateTime)item.Date).GetDateTimeFormats('y')[0].ToString() })
+                 .OrderBy(item => item.value).Distinct().ToList();
             var jarray = JArray.Parse(JsonConvert.SerializeObject(dateList));
             return jarray;
         }
-      
+
     }
 }
