@@ -17,17 +17,11 @@ namespace GTMDReport2.Controllers
             return View();
         }
 
-
-        /// <summary>
-        /// 行业类别数据[2015以上的类别]
-        /// </summary>
-        /// <returns></returns>
-        public JArray Classifications()
+        public JObject GetPager(FormCollection collection)
         {
-            ClassificationBLL classificationBLL = new ClassificationBLL();
-            var infos = classificationBLL.GetListInfos().ToList();
-            var jarray = JArray.Parse(JsonConvert.SerializeObject(infos));
-            return jarray;
+
+            IndustryCalssificationBLL classificationBLL = new IndustryCalssificationBLL();
+            return classificationBLL.GetPager(collection);
         }
 
         /// <summary>
@@ -37,7 +31,8 @@ namespace GTMDReport2.Controllers
         public JArray Dates()
         {
             IndustryCalssificationBLL industryCalssificationBLL = new IndustryCalssificationBLL();
-            var dateList = industryCalssificationBLL.GetALl().Select(item => item.Date).OrderBy(item => item).Distinct().ToList();
+            var dateList = industryCalssificationBLL.GetALl().Select(item => new { value = item.Date, text = ((DateTime)item.Date).GetDateTimeFormats('y')[0].ToString() })
+                 .OrderBy(item => item.value).Distinct().ToList();
             var jarray = JArray.Parse(JsonConvert.SerializeObject(dateList));
             return jarray;
         }
