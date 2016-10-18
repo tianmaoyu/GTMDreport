@@ -34,11 +34,17 @@
                     { field: 'IndustryOutput', title: '总产值', width: 100 },
                     { field: 'IndustrySalesOutput', title: '销售产值', width: 100 },
                     { field: 'IndustryGrowthOutput', title: '增加值', width: 100 },
-                    { field: 'IGO_GrowthRate', title: '同比增长%', width: 100 },
-                     //学生表的信息
-                    { field: 'Date', title: '月份', width: 100 },
-                    //{ field: 'RegionID', title: '报名日期', width: 100 },
-                    //{ field: 'ClassificationID', title: '成功的数量', width: 100 },
+                    { field: 'IGO_GrowthRate', title: '同比增长%', width: 100,
+                          styler: function(value,row,index){
+                              if (parseInt(value) <= 0 || value==null) {
+                            return 'background-color:#ffee00;color:red;';
+                           }
+                     }},
+                    { field: 'Date', title: '月份', width: 100,
+                        formatter: function(value,row,index){
+                            return value.replace(/(\d{4}).(\d{1,2}).+/mg, '$1年$2月');
+                        }
+                    },
                 ]],
                 pagination: true,
                 pageList: [50,100],
@@ -46,6 +52,14 @@
             });
         })
 
-
+        //seacher 重新加载
+        function seacherIndustryClassificationT(date, region)
+        {
+            debugger;
+            $('#dg-industryClassificationT').datagrid('load', {
+                date: $('#date-industryClassificationT').combobox('getValue'),
+                region: $('#region-industryClassificationT').combobox('getValue')
+            });
+         }
     </script>
 </body>

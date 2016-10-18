@@ -65,7 +65,12 @@ namespace GTMDreport.BLL
             int _pageIndex = Int32.Parse(pageIndex);
             int _pageSize = Int32.Parse(pageSize);
             var total = dbContext.IndustryCassificationTs.Where(predicate.Compile()).ToList().Count();
-            var infos = dbContext.IndustryCassificationTs.Where(predicate.Compile()).ToList().Skip((_pageIndex - 1) * _pageSize).Take(_pageSize);
+            var infos = dbContext.IndustryCassificationTs
+                .Where(predicate.Compile()).ToList()
+                .Skip((_pageIndex - 1) * _pageSize).Take(_pageSize);
+
+            //格式化所有的时间
+            //infos.ToList().ForEach(item => ((DateTime)item.Date).GetDateTimeFormats('y')[0].ToString());
             var rows = JArray.Parse(JsonConvert.SerializeObject(infos));
             jobject["rows"] = rows;
             jobject["total"] = total;
