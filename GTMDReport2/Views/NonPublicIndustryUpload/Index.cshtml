@@ -1,0 +1,104 @@
+﻿@{
+    Layout = null;
+}
+<body>
+    <div id="tbnpup">
+        <form enctype="multipart/form-data" id="form1">
+            <input class="easyui-filebox" name="file" id="file" style="width:250px" data-options="buttonText: '选择文件', buttonAlign: 'right'">
+                <a id="btnUpload" href="#" class="easyui-linkbutton" data-options="">提 交</a>
+                <div id="p" style="width:100px;"></div>
+        </form>
+    </div>
+    <table id="dg-NonPublicIndustryUpload"></table>
+    <script type="text/javascript">
+        $("#dg-NonPublicIndustryUpload").datagrid({
+            url: "#",
+            toolbar: '#tbnpup',
+            striped: true,
+            collapsible: true,
+            fitColumn: false,
+            showFooter: true,
+            columns: [[
+                { field: 'ID', title: 'ID', checkbox: true },
+                { field: 'IndexName', title: '指标', width: '20% ' },
+                { field: 'RegionName', title: '地区', width: '20% ' },
+                {
+                    field: 'Date', title: '月份', width: '20% ',
+                    formatter: function (value, row, index) {
+                        return value.replace(/(\d{4}).(\d{1,2}).+/mg, '$1年$2月');
+                    }
+                },
+                { field: 'PrivateEconomy', title: '民营经济', width: '10% ' },
+                { field: 'CapitalEconomy', title: '#私  营', width: '10% ' },
+                { field: 'GrowthRate', title: '同比增长', width: '20%' },
+
+            ]],
+            //pagination: true,
+
+        });
+
+
+        $('#file').change(function () {
+            debugger;
+            var file = this.files[0];
+            name = file.name;
+            size = file.size;
+            type = file.type;
+           
+            if (name.indexOf(".xlsx") < 0) {
+                debugger;
+                alert("请选择*.xlsx的EXCEL文件");
+                $(this).val = null;
+            }
+            
+        });
+
+        $('#btnUpload').click(function () {
+            var formData = new FormData($('form')[0]);
+            $.ajax({
+                url: 'NonPublicIndustryUpload/Upload',  //server script to process data
+                type: 'POST',
+                xhr: function () {  // custom xhr
+                    var xhr = jQuery.ajaxSettings.xhr();
+                    //xhr.upload.onload = function () {
+                    //    alert('finish downloading')
+                    //}
+                    xhr.upload.onprogress = function (ev) {
+                        if (ev.lengthComputable) {
+                            var percent = 100 * ev.loaded / ev.total;
+                            $('#p').progressbar({
+                                value: percent,
+                            });
+                        }
+                    }
+                    return xhr;
+                    //myXhr = $.ajaxSettings.xhr();
+                    //if (myXhr.upload) { // check if upload property exists
+                    //    myXhr.upload.addEventListener('progress', progressHandlingFunction, false); // for handling the progress of the upload
+                    //}
+                    //return myXhr;
+                },
+                //Ajax事件
+                //beforeSend: beforeSendHandler,
+                success: completeHandler,
+                //error: errorHandler,
+                // Form数据
+                data: formData,
+                //Options to tell JQuery not to process data or worry about content-type
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+        });
+
+        function completeHandler(data) {
+            debugger;
+            $("#dg-NonPublicIndustryUpload").datagrid('loadData', $.parseJSON(data));
+        }
+        //function progressHandlingFunction(e) {
+        //    if (e.lengthComputable) {
+        //        $('progress').attr({ value: e.loaded, max: e.total });
+        //    }
+        //}
+    </script>
+</body>

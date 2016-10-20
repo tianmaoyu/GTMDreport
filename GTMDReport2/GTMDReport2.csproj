@@ -52,6 +52,14 @@
       <HintPath>..\packages\LinqKit.1.1.7.3\lib\net45\LinqKit.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="LinqToExcel, Version=1.10.1.0, Culture=neutral, PublicKeyToken=9c8ea65a58f03f1f, processorArchitecture=x86">
+      <HintPath>..\packages\LinqToExcel.1.10.1\lib\LinqToExcel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -87,6 +95,18 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Remotion, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.10.1\lib\Remotion.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Remotion.Data.Linq, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.10.1\lib\Remotion.Data.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Remotion.Interfaces, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.10.1\lib\Remotion.Interfaces.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -213,13 +233,18 @@
     <Compile Include="BLL\IndustryCalssificationBLL.cs" />
     <Compile Include="BLL\NonPublicIndustryBLL.cs" />
     <Compile Include="BLL\RegionBLL.cs" />
+    <Compile Include="Common\ExcelHelper.cs" />
+    <Compile Include="Common\ValidationErrors.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IndexIndustryController.cs" />
     <Compile Include="Controllers\IndustryClassifcationTController.cs" />
     <Compile Include="Controllers\IndustryClassificationController.cs" />
+    <Compile Include="Controllers\IndustryClassificationUploadController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NonPublicIndustryController.cs" />
+    <Compile Include="Controllers\NonPublicIndustryUploadController.cs" />
     <Compile Include="Controllers\RegionController.cs" />
     <Compile Include="DAL\DbContextBase.cs" />
     <Compile Include="EF\Classification.cs">
@@ -713,12 +738,15 @@
     <Content Include="Views\IndustryClassifcationT\Index.cshtml" />
     <Content Include="Views\IndustryClassification\Index.cshtml" />
     <Content Include="Views\NonPublicIndustry\Index.cshtml" />
+    <Content Include="Views\NonPublicIndustryUpload\Index.cshtml" />
+    <Content Include="Views\File\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Classification\" />
     <Folder Include="Views\Common\" />
     <Folder Include="Views\IndexIndustry\" />
+    <Folder Include="Views\IndustryClassificationUpload\" />
     <Folder Include="Views\Region\" />
   </ItemGroup>
   <ItemGroup>

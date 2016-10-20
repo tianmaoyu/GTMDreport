@@ -1,0 +1,14 @@
+﻿@{
+    Layout = null;
+}
+<body>
+    <form action="File/Upload1" enctype="multipart/form-data" id="form" method="post">
+        <input type="file" name="file" id="fileToUpload" />
+        <input type="submit" value="submit" />
+    </form>
+    @*@using (Html.BeginForm("Upload1", "File", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="file" name="file" />
+        <input type="submit" />
+    }*@
+</body>

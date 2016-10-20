@@ -54,5 +54,6 @@ namespace GTMDReport2.DAL
             return entity;
         }
 
+
     }
 }

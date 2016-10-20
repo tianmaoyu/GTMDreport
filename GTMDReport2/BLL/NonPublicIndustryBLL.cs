@@ -23,7 +23,11 @@ namespace GTMDreport.BLL
         {
             return dbContext.NonPublicIndustries.ToList();
         }
-
+        public bool SaveInfos(IEnumerable<NonPublicIndustry> infos)
+        {
+            
+            return true;
+        }
        
         public List<NonPublicIndustry> GetALl(Expression<Func<NonPublicIndustry, bool>> conditions)
         {
