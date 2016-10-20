@@ -1,4 +1,5 @@
 ﻿using EntityFramework.Extensions;
+
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -53,7 +54,6 @@ namespace GTMDReport2.DAL
             SaveChanges();
             return entity;
         }
-
 
     }
 }

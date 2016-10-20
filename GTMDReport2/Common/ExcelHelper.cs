@@ -25,12 +25,12 @@ namespace GTMDReport2.Common
         }
 
         //Excel数据转List<T>
-        public  JArray ReadExcelToJson<T>(string filePath,out int total) where T : class, new()
+        public  string ReadExcelToJson<T>(string filePath,out int total) where T : class, new()
         {
             DataTable tb = ReadExcelToDataTable(filePath);
             total = tb.Rows.Count;
             string json = JsonConvert.SerializeObject(tb);
-            return JArray.Parse(json);
+            return json;
 
         }
         //Excel数据转DataTable 使用的oledb读取方式
@@ -62,27 +62,27 @@ namespace GTMDReport2.Common
             List<T> list = new List<T>();
 
             //遍历DataTable中所有的数据行 
-            foreach (DataRow dr in dt.Rows)
+            foreach (DataRow dataRow in dt.Rows)
             {
                 T t = new T();
 
                 PropertyInfo[] propertys = t.GetType().GetProperties();
 
-                foreach (PropertyInfo pro in propertys)
+                foreach (PropertyInfo property in propertys)
                 {
                     //检查DataTable是否包含此列（列名==对象的属性名）  
                     for(int i=0; i<=propertys.Length; i++)
                     {
-                        if (dt.Columns[i].ColumnName.Equals(pro.Name))
+                        if (dt.Columns[i].ColumnName.Trim().Equals(property.Name))
                         {
-                            object value = dr[pro.Name];
+                            object value = dataRow[property.Name];
 
-                            value = Convert.ChangeType(value, pro.PropertyType);//强制转换类型
+                            value = Convert.ChangeType(value, property.PropertyType);//强制转换类型
 
                             //如果非空，则赋给对象的属性  PropertyInfo
                             if (value != DBNull.Value)
                             {
-                                pro.SetValue(t, value, null);
+                                property.SetValue(t, value, null);
                             }
                         }
                     }

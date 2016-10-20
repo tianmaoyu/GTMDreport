@@ -8,6 +8,7 @@ using System.Linq.Expressions;
 using System.Web.Mvc;
 using Newtonsoft.Json.Linq;
 using LinqKit;
+using Z.EntityFramework.Extensions;
 
 namespace GTMDreport.BLL
 {
@@ -23,9 +24,10 @@ namespace GTMDreport.BLL
         {
             return dbContext.NonPublicIndustries.ToList();
         }
-        public bool SaveInfos(IEnumerable<NonPublicIndustry> infos)
+        public bool BulkInsert(IEnumerable<NonPublicIndustry> infos)
         {
-            
+            dbContext.BulkInsert(infos);
+            dbContext.BulkSaveChanges();
             return true;
         }
        

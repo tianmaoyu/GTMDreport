@@ -93,7 +93,19 @@
 
         function completeHandler(data) {
             debugger;
-            $("#dg-NonPublicIndustryUpload").datagrid('loadData', $.parseJSON(data));
+            var jsonData = $.parseJSON(data)
+            if (!jsonData.errors) {
+                debugger;
+            $("#dg-NonPublicIndustryUpload").datagrid('loadData',jsonData.data);
+            }
+            else {
+                debugger;
+                var errors = null;
+                $.each(jsonData.errors,function (i,val) {
+                    errors+=val.ErrorMessage;
+                })
+                alert(errors);
+            }
         }
         //function progressHandlingFunction(e) {
         //    if (e.lengthComputable) {
