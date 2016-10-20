@@ -744,13 +744,13 @@
     <Content Include="Views\NonPublicIndustry\Index.cshtml" />
     <Content Include="Views\NonPublicIndustryUpload\Index.cshtml" />
     <Content Include="Views\File\Index.cshtml" />
+    <Content Include="Views\IndustryClassificationUpload\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Classification\" />
     <Folder Include="Views\Common\" />
     <Folder Include="Views\IndexIndustry\" />
-    <Folder Include="Views\IndustryClassificationUpload\" />
     <Folder Include="Views\Region\" />
   </ItemGroup>
   <ItemGroup>

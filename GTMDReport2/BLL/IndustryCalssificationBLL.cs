@@ -29,6 +29,13 @@ namespace GTMDreport.BLL
             return dbContext.IndustrycCassifications.Where(conditions).ToList();
         }
 
+        public bool BulkInsert(IEnumerable<IndustrycCassification> infos)
+        {
+            dbContext.BulkInsert(infos);
+            dbContext.BulkSaveChanges();
+            return true;
+        }
+
         public JObject GetPager(FormCollection collection)
         {
             JObject jobject = new JObject();
