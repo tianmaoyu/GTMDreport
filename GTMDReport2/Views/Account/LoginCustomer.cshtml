@@ -8,13 +8,22 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/signin.css" rel="stylesheet">
+   
 </head>
-<body>
+<body style="padding-top:0px">
+    <div class="row-fluid" style="background-color:#404a59">
+        <div class="col-md-8" style="padding:0 0">
+            <div id="guizhou-map" style="height:700px;"></div>
+        </div>
+        <div class="col-md-4" style="padding:0 0">
+            <div  style="height:700px;background-color:#404a59"></div>
+        </div>
+   </div>
     <div class="signin">
         <div class="signin-head">
-           @*<img src="~/Content/image/test/head_120.png" alt="" class="img-circle">*@
+            @*<img src="~/Content/image/test/head_120.png" alt="" class="img-circle">*@
         </div>
-        <form class="form-signin" role="form" action="/Account/LoginCustomer"  method="post">
+        <form class="form-signin" role="form" action="/Account/LoginCustomer" method="post">
             <h1>贵州省民营经济 &nbsp;&nbsp;<small> 统计监测平台</small></h1>
             <input type="text" class="form-control" placeholder="用户名" required autofocus />
             <input type="password" class="form-control" placeholder="密码" required />
@@ -24,9 +33,85 @@
             </label>
         </form>
     </div>
-    <script>
-    </script>
+   
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/jquery-1.11.3.js"></script>
+    <script src="~/Scripts/echarts.js"></script>
+    <script>
+        $(function () {
+            debugger;
+            //$("#guizhou-map").height = document.documentElement.clientHeight+"px";
+            //$.get('../JsonData/guizhou.json', function (guizhouJson) {
+            //    echarts.registerMap('guizhou', guizhouJson);
+            //    var chart = echarts.init(document.getElementById('guizhou-map'));
+            //    echarts.registerMap('guizhou', guizhouJson, {
+            //    });
+            //    chart.setOption({
+            //        backgroundColor: '#404a59',
+            //        mapLocation: {
+            //            x: '35%'
+            //        },
+            //        geo: {
+            //            map: 'guizhou',
+            //            label: {
+            //                emphasis: {
+            //                    show: false
+            //                }
+            //            },
+            //            mapLocation: {
+            //                x: '35%'
+            //            },
+            //            roam: true,
+            //            itemStyle: {
+            //                normal: {
+            //                    areaColor: '#323c48',
+            //                    borderColor: '#428bca'
+            //                },
+            //                emphasis: {
+            //                    areaColor: '#2a333d'
+            //                }
+            //            }
+            //        },
+            //    });
+            //});
+            $.get('../JsonData/guizhou.json', function (guizhouJson) {
+                echarts.registerMap('贵州', guizhouJson);
+                var chart = echarts.init(document.getElementById('guizhou-map'));
+                chart.setOption({
+                    backgroundColor: '#404a59',
+                    series: [
+                      {
+                          roam: true,
+                          name: "1",
+                          type: 'map',
+                          mapType: '贵州',
+                          mapLocation: {
+                              x: 'left',
+                              //y: 'top',
+                              width: '75%'
+                          },
+                          roam: true,
+                          selectedMode: 'single',
+                          itemStyle: {
+                              emphasis: { label: { show: true } }
+                          },
+                          data: [
+                              { name: '贵阳市', value: 1 },
+                              { name: '六盘水市', value: 1 },
+                              { name: '遵义市', value: 2 },
+                              { name: '安顺市', value: 5 },
+                              { name: '毕节市', value: 6 },
+                              { name: '铜仁市', value: 7 },
+                              { name: '黔西南布依族苗族自治州', value: 8 },
+                              { name: '黔东南苗族侗族自治州', value: 9 },
+                              { name: '黔南布依族苗族自治州', value: 8 },
+                          ]
+                      },
+                    ]
+                });
+            });
+        })
+    </script>
 </body>
 </html>
