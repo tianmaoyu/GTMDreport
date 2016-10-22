@@ -61,6 +61,18 @@ namespace GTMDReport2.Controllers
             return View();
         }
 
+
+        [AllowAnonymous]
+        public ActionResult LoginCustomer()
+        {
+            return View();
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult LoginCustomer(FormCollection form)
+        {
+            return RedirectToAction("Index", "Home");
+        }
         //
         // POST: /Account/Login
         [HttpPost]

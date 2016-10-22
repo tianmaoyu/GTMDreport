@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileRenameAPP", "FileRename
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTMDReport2", "GTMDReport2\GTMDReport2.csproj", "{5FD9F5F2-F502-48C1-93E4-DAA6466D8C8B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication2", "WebApplication2\WebApplication2.csproj", "{1E7E418F-449D-42E2-8A43-77EF1E41959E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{5FD9F5F2-F502-48C1-93E4-DAA6466D8C8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FD9F5F2-F502-48C1-93E4-DAA6466D8C8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FD9F5F2-F502-48C1-93E4-DAA6466D8C8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E7E418F-449D-42E2-8A43-77EF1E41959E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E7E418F-449D-42E2-8A43-77EF1E41959E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E7E418F-449D-42E2-8A43-77EF1E41959E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E7E418F-449D-42E2-8A43-77EF1E41959E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

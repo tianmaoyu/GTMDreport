@@ -7,16 +7,16 @@
         <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-redo',plain:true,text:'导出'"></a>
         <div class="pull-right" style="margin-right:40px">
             <input id="date-industryClassificationT" class="easyui-combobox" 
-                   data-options="buttonText:'月份',buttonAlign:'left',valueField:'value',textField:'text',url:'IndustryClassifcationT/Dates'" style="width:170px">
+                   data-options="buttonText:'月份',buttonAlign:'left',valueField:'value',textField:'text',url:'/IndustryClassifcationT/Dates'" style="width:170px">
             <input id="region-industryClassificationT" class="easyui-combobox" 
-                   data-options="buttonText:'地区',buttonAlign:'left',valueField:'id',textField:'name',url:'Region/GetAll'" style="width:170px;margin-right:2px">
+                   data-options="buttonText:'地区',buttonAlign:'left',valueField:'id',textField:'name',url:'/Region/GetAll'" style="width:170px;margin-right:2px">
             <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true,text:'搜索'" onclick="seacherIndustryClassificationT()"></a>
         </div>
     </div>
     <script>
         $(function () {
             $("#dg-industryClassificationT").datagrid({
-                url: "IndustryClassifcationT/GetPagerInfo",
+                url: "/IndustryClassifcationT/GetPagerInfo",
                 toolbar: '#tbict',
                 striped: true,
                 collapsible: true,

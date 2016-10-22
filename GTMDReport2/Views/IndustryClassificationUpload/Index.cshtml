@@ -71,7 +71,7 @@
         $('#btnUploadicu').click(function () {
             var formData = new FormData($('form')[0]);
             $.ajax({
-                url: 'IndustryClassificationUpload/Upload',  //server script to process data
+                url: '/IndustryClassificationUpload/Upload',  //server script to process data
                 type: 'POST',
                 xhr: function () {  // custom xhr
                     var xhr = jQuery.ajaxSettings.xhr();

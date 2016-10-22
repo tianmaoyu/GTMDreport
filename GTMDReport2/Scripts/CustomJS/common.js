@@ -5,12 +5,13 @@ $(document).ready(function () {
         var id = $(this).attr("id");
         var href = $(this).attr("url")
         var tab = $("#tabs").tabs('getTab', title);
+        //var content = '<iframe scrolling="no" frameborder="0"  src="' + href + '" style="width:100%;height:100%;"></iframe>';
         if (tab == undefined) {
             $("#tabs").tabs('add', {
                 closable: true,
                 title: title,
-                //需要修改Index,'User/UserList'
                 href: href,
+                //content: content,
             })
         }
         else {
