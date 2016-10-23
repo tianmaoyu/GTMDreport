@@ -35,6 +35,15 @@ namespace GTMDreport.BLL
             dbContext.BulkSaveChanges();
             return true;
         }
+        public IQueryable<IndustrycCassification> GetAllByClassification(int dateInt, int regionID)
+        {
+            return dbContext.IndustrycCassifications.Where(item => item.RegionID == regionID && ((DateTime)item.Date).Month == dateInt);
+        }
+
+        public IQueryable<IndustrycCassification> GetAllByClassification(int classificationID)
+        {
+            return dbContext.IndustrycCassifications.Where(item => item.ClassificationID == classificationID);
+        }
 
         public JObject GetPager(FormCollection collection)
         {

@@ -36,7 +36,7 @@ namespace GTMDReport2
 #endif
             bundles.Add(new StyleBundle("~/Content/easy-ui").Include(
                 "~/Content/themes/icon.css",
-                "~/Content/themes/default/easyui.css"));
+                "~/Content/themes/metro/easyui.css"));
         }
     }
 }

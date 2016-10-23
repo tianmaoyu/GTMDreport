@@ -535,9 +535,12 @@
     <Content Include="Content\themes\icons\sum.png" />
     <Content Include="Content\themes\icons\tip.png" />
     <Content Include="Content\themes\icons\undo.png" />
+    <Content Include="Content\themes\icons\_chart.png" />
     <Content Include="Content\themes\icons\_list.png" />
+    <Content Include="Content\themes\icons\_list2.png" />
     <Content Include="Content\themes\icons\_statst.png" />
     <Content Include="Content\themes\icons\_upload.png" />
+    <Content Include="Content\themes\icons\_upload2.png" />
     <Content Include="Content\themes\material\accordion.css" />
     <Content Include="Content\themes\material\calendar.css" />
     <Content Include="Content\themes\material\combo.css" />
@@ -773,6 +776,8 @@
     <Content Include="Views\File\Index.cshtml" />
     <Content Include="Views\IndustryClassificationUpload\Index.cshtml" />
     <Content Include="Views\Account\LoginCustomer.cshtml" />
+    <Content Include="Views\IndustryClassification\View.cshtml" />
+    <Content Include="Views\IndustryClassification\ViewChart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Classification\" />
