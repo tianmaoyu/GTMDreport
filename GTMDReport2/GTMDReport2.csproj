@@ -778,6 +778,7 @@
     <Content Include="Views\Account\LoginCustomer.cshtml" />
     <Content Include="Views\IndustryClassification\View.cshtml" />
     <Content Include="Views\IndustryClassification\ViewChart.cshtml" />
+    <Content Include="Views\IndustryClassification\ViewChartRed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Classification\" />

@@ -1,0 +1,164 @@
+﻿
+
+@{
+    Layout = null;
+}
+<body>
+    <div class="container">
+        <h4>
+            白酒信息
+            <small>2016年2月</small>
+        </h4>
+        <div class="row">
+            <div class="col-lg-6" style="margin-right:0;padding-right:0;border-right-width:0">
+                <div id="data-show-2-1" style="height: 400px;border: none">
+                </div>
+            </div>
+            <div class="col-lg-6" style="margin-left:0;padding-left:0;border-left-width:0">
+                <div id="data-show-2-2" style="height: 400px;border: none">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/echarts.js"></script>
+    <script>
+        var mycharvs2 = echarts.init(document.getElementById("data-show-2-1"));
+        var mycharvs22 = echarts.init(document.getElementById("data-show-2-2"));
+        $(function () {
+            $.get("/IndustryClassification/GetInforRedView", { dateInt: 2, regionId: 3 },
+                function (data) {
+                    var data = $.parseJSON(data);
+                    var infoData = data["白酒"].Data;
+                    var infoRate = data["白酒"].Rate;
+                    optionvs2 = {
+                        title: {
+                            text: '白酒',
+                            left: 'center',
+                            top: 20,
+                            textStyle: {
+                                color: "black"
+                            }
+                        },
+
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: "{a} <br/>{b} : {c} ({d}%)"
+                        },
+
+                        visualMap: {
+                            show: false,
+                            min: 80,
+                            max: 6000000,
+                            inRange: {
+                                colorLightness: [0.5, 1]
+                            }
+                        },
+                        series: [
+                            {
+                                name: '访问来源',
+                                type: 'pie',
+                                radius: '55%',
+                                center: ['50%', '50%'],
+                                data: [
+                                   { value: infoData[0], name: '工业增加值' },
+                                   { value: infoData[1], name: '资产总计' },
+                                   { value: infoData[2], name: '负债合计' },
+                                   { value: infoData[3], name: '主营收入' },
+                                   { value: infoData[4], name: '存货总计' }
+                                ].sort(function (a, b) { return a.value - b.value }),
+                                //roseType: 'angle',
+                                label: {
+                                    normal: {
+                                        textStyle: {
+                                            color: 'balck'
+                                        }
+                                    }
+                                },
+                                labelLine: {
+                                    normal: {
+                                        lineStyle: {
+                                            color: 'balck'
+                                        },
+                                        smooth: 0.2,
+                                        length: 10,
+                                        length2: 20
+                                    }
+                                },
+                                itemStyle: {
+                                    normal: {
+                                        color: '#c23531',
+                                        shadowBlur: 200,
+                                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                    }
+                                }
+                            }
+                        ]
+                    };
+                    mycharvs2.setOption(optionvs2);
+                    var optionshow22 = {
+                        title: {
+                            text: '对应的同期增长率',
+                            left: 'center',
+                            top: 20,
+                            textStyle: {
+                                color: "black"
+                            }
+                        },
+                        // title: "",
+                        //backgroundColor: '#2c343c',
+                        tooltip: {
+                            show: true,
+                            trigger: 'axis',
+                            formatter: "{a} <br/>{b} : {c} ({d}%)",
+                            axisPointer: {
+                                type: 'shadow'
+                            }
+                        },
+                        legend: {
+                            //data: ['利润']
+                        },
+                        toolbox: {
+                            show: true,
+                            feature: {
+                                mark: { show: true },
+                                dataView: { show: true, readOnly: false },
+                                magicType: { show: true, type: ['bar'] },
+                                restore: { show: true },
+                                saveAsImage: { show: true }
+                            }
+                        },
+                        calculable: true,
+                        xAxis: [
+
+                            {
+                                type: 'value',
+                            }
+                        ],
+                        yAxis: [
+                            {
+                                name: '同期增长',
+                                type: 'category',
+                                axisTick: { show: false },
+                                data: ['工业', '总计', '负债', '主营', '存货']
+
+                            }
+                        ],
+                        series: [
+
+                            {
+                                trigger: 'axis',
+                                name: '对应同期增长率',
+                                type: 'bar',
+                                //itemStyle: {
+                                //    normal: { label: { show: true ,position:'top'} }
+                                //},
+                                data: [infoRate[0], infoRate[1], infoRate[2], infoRate[3], infoRate[4]]
+                            }
+                        ]
+                    };
+                    mycharvs22.setOption(optionshow22);
+                });
+        });
+
+    </script>
+</body>

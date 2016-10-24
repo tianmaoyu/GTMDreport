@@ -44,15 +44,18 @@ namespace GTMDReport2.Controllers
             return View();
         }
 
+        // GET: IndustryClassification
+        public ActionResult ViewChartRed()
+        {
+            return View();
+        }
         public JObject GetInfoForView(int classificationID)
         {
             JObject result = new JObject();
             RegionBLL regionBLL = new RegionBLL();
             Dictionary<int, string> regionDic = regionBLL.GetALl().OrderBy(item => item.ID).ToDictionary(i => i.ID, i => i.Name);
-
             IndustryCalssificationBLL industryCalssification = new IndustryCalssificationBLL();
             var group = industryCalssification.GetAllByClassification(classificationID).OrderBy(i => i.RegionID).ThenBy(i => i.Date).GroupBy(_item => _item.RegionID);
-
             foreach (var infos in group)
             {
                 JArray array = new JArray();
@@ -76,11 +79,10 @@ namespace GTMDReport2.Controllers
                 {
                     result[regionName] = array;
                 }
-
             }
-
             return result;
         }
+
 
         public double CovertDouble(double? value)
         {
@@ -98,7 +100,7 @@ namespace GTMDReport2.Controllers
         /// <param name="dateInt"></param>
         /// <param name="regionId"></param>
         /// <returns>json的数据</returns>
-        public JObject GetInfoView(int dateInt, int regionId)
+        public JObject GetInforRedView(int dateInt, int regionId)
         {
             IndustryCalssificationBLL industryCalssification = new IndustryCalssificationBLL();
             //定制的行业
