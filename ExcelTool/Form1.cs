@@ -88,9 +88,9 @@ namespace ExcelTool
                                 case 0:
                                     break;
                                 case 1:
-                                    ReadAndWirteA(sheet, Enum.GetName(typeof(NewSheetName), 1)); break;
+                                    ReadAndWirteA1(sheet, Enum.GetName(typeof(NewSheetName), 1)); break;
                                 default:
-                                    ReadAndWirteA(sheet, Enum.GetName(typeof(NewSheetName), 2)); break;
+                                    ReadAndWirteA1(sheet, Enum.GetName(typeof(NewSheetName), 2)); break;
                             }
                         }
                         else
@@ -100,9 +100,9 @@ namespace ExcelTool
                                 case 0:
                                     break;
                                 case 11:
-                                    ReadAndWirteB(sheet, Enum.GetName(typeof(NewSheetName), 3)); break;
+                                    ReadAndWirteB1(sheet, Enum.GetName(typeof(NewSheetName), 3)); break;
                                 default:
-                                    ReadAndWirteB(sheet, Enum.GetName(typeof(NewSheetName), 4)); break;
+                                    ReadAndWirteB1(sheet, Enum.GetName(typeof(NewSheetName), 4)); break;
                             }
                         }
 
@@ -118,7 +118,7 @@ namespace ExcelTool
         ///  民营工业主要指标-地区
         /// </summary>
         /// <param name="sheet"></param>
-        private void ReadAndWirteA2(Worksheet sourceSheet,string fileName)
+        private void ReadAndWirteA1(Worksheet sourceSheet,string fileName)
         {
             //验证
             //if (!GetValue(sourceSheet, 5, 2).Contains("民营经济"))
@@ -176,7 +176,7 @@ namespace ExcelTool
             var targetSheet = (Worksheet)workbook.Sheets.get_Item(1);
             //数据格式不以样
             int lastRow = GetLastRow2(targetSheet,2);
-            Range sourceRange = sourceSheet.get_Range("A3", "Y16");
+            Range sourceRange = sourceSheet.get_Range("A4", "Y17");
             Range targetRange = targetSheet.get_Range(String.Format("A{0}", lastRow), String.Format("Y{0}", lastRow + 13));
             targetRange.Value = sourceRange.Value;
 
