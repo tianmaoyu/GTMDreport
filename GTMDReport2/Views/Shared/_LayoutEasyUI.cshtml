@@ -37,12 +37,12 @@
         <div class="easyui-accordion" data-options="fit:true,border:false" @*style="width:172px;height:99%;"*@>
             <div title="数据查询" data-options="iconCls:'icon-clist'" @*style="overflow:auto;padding:10px;"*@>
                 <div class="list-group">
-                    <a id="user-manager" class="list-group-item" url="/NonPublicIndustry/Index" href="#">工业主要指标<span class="glyphicon glyphicon-th-list pull-right"></span></a>
-                    <a class="list-group-item" url="/IndustryClassification/Index" href="#">工业分行业指标<span class="glyphicon glyphicon-th-list pull-right"></span></a>
-                    <a class="list-group-item"url="/IndustryClassifcationT/Index" href="#">工业分行业指标【2】<span class="glyphicon glyphicon-th-list pull-right"></span></a>
-                    <a class="list-group-item" href="#">工业增加值<span class="glyphicon glyphicon-th-list pull-right"></span></a>
-                    <a class="list-group-item" href="#">重点企业<span class="glyphicon glyphicon-th-list pull-right"></span></a>
-                    <a class="list-group-item" href="#">重点项目<span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                    <a  id="user-manager" class="mtooltip1 list-group-item easyui-tooltip" url="/NonPublicIndustry/Index" href="#">工业主要指标<span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                    <a class="mtooltip2 list-group-item easyui-tooltip" url="/IndustryClassification/Index"  href="#">工业分行业指标<span style="font-size:1px;color:red;text-overflow:clip">1</span><span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                    <a class="mtooltip3 list-group-item easyui-tooltip"url="/IndustryClassifcationT/Index" href="#">工业分行业指标<span style="font-size:1px;color:red;text-overflow:clip">2</span><span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                    <a class="list-group-item easyui-tooltip" href="#">工业增加值<span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                    <a class="list-group-item easyui-tooltip" href="#">重点企业<span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                    <a class="list-group-item easyui-tooltip" href="#">重点项目<span class="glyphicon glyphicon-th-list pull-right"></span></a>
                 </div>
             </div>
 
@@ -77,6 +77,33 @@
     @Scripts.Render("~/bundles/easy-ui")
     @*@RenderSection("scripts", required: false)*@
     <script src="~/Scripts/CustomJS/common.js"></script>
+    <script>
+        $('.mtooltip1').tooltip({
+              position: 'right',
+              content: '<span style="color:#fff">民营经济规模以上工业主要指标</span>',
+             onShow: function ()
+             {
+                 debugger;
+                 $(this).tooltip('tip').css({ backgroundColor: '#333', borderColor: '#666' });
+             }
+        });
+        $('.mtooltip2').tooltip({
+            position: 'right',
+            content: '<span style="color:#fff">民营经济规模以工业分行业指标【2015.2以上】</span>',
+            onShow: function () {
+                debugger;
+                $(this).tooltip('tip').css({ backgroundColor: '#333', borderColor: '#666' });
+            }
+        });
+        $('.mtooltip3').tooltip({
+            position: 'right',
+            content: '<span style="color:#fff">民营经济规模以工业分行业指标【2013.7-2014.12】</span>',
+            onShow: function () {
+                debugger;
+                $(this).tooltip('tip').css({ backgroundColor: '#333', borderColor: '#666' });
+            }
+        });
+    </script>
 </body>
 
 </html>

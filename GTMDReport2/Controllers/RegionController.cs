@@ -19,7 +19,7 @@ namespace GTMDReport2.Controllers
         public JArray GetAll()
         {
             RegionBLL regionBLL = new RegionBLL();
-            var infos = regionBLL.GetALl().ToList().Select(item=>new { id=item.ID,name=item.Name});
+            var infos = regionBLL.GetALl().ToList().OrderByDescending(item=>item.ID).Select(item=>new { id=item.ID,name=item.Name});
             var jarray = JArray.Parse(JsonConvert.SerializeObject(infos));
             return jarray;
         }
