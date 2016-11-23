@@ -9,7 +9,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body class="easyui-layout" data-options="fit:true,border:false">
-    <div data-options="region:'north'" style="height:40px;">
+    <div data-options="region:'north',split:true" style="height:40px;">
         <div class="row" style="margin:auto">
             <div class="col-sm-3" style="height:38px"></div>
             <div class="col-sm-3" style="height:38px"></div>
@@ -31,10 +31,33 @@
             </div>
         </div>
     </div>
+
     <div data-options="region:'south'" style="height:10px;"></div>
     @*<div data-options="region:'east',iconCls:'icon-reload',title:'East',split:true" style="width:100px;"></div>*@
     <div data-options="region:'west',title:'菜单栏',split:true" style="width:180px;">
         <div class="easyui-accordion" data-options="fit:true,border:false" @*style="width:172px;height:99%;"*@>
+            
+            <div title="民营概况介绍" data-options="iconCls:'icon-clist'">
+                <div class="list-group">
+                    <a  class="list-group-item easyui-tooltip" url="/Summary/Index?year=2012" href="#">2012年概况<span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                    <a class="list-group-item easyui-tooltip" url="/Summary/Index?year=2013" href="#">2013年概况<span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                    <a class="list-group-item easyui-tooltip" url="/Summary/Index?year=2014" href="#">2014年概况<span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                    <a class="list-group-item easyui-tooltip"url="/Summary/Index?year=2015" href="#">2015年概况<span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                    <a class="list-group-item easyui-tooltip" url="/Summary/Index?year=2016" href="#">2016年概况<span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                </div>
+            </div>
+
+            <div title="数据资料" data-options="iconCls:'icon-clist'">
+                <div class="list-group">
+                    <a class="list-group-item easyui-tooltip" url="#" href="#">(一)总量指标<span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                    <a class="list-group-item easyui-tooltip" url="#" href="#">(二)分行业><span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                    <a class="list-group-item easyui-tooltip" url="#" href="#">(三)分产业<span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                    <a class="list-group-item easyui-tooltip" href="#">(四)分地区<span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                    <a class="list-group-item easyui-tooltip" href="#">(六)重点企业<span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                </div>
+            </div>
+
+
             <div title="数据查询" data-options="iconCls:'icon-clist'" @*style="overflow:auto;padding:10px;"*@>
                 <div class="list-group">
                     <a  id="user-manager" class="mtooltip1 list-group-item easyui-tooltip" url="/NonPublicIndustry/Index" href="#">工业主要指标<span class="glyphicon glyphicon-th-list pull-right"></span></a>
@@ -55,6 +78,7 @@
                     <a class="list-group-item" url="/Student/Index" href="#">重点企业工业生产总值<span class="glyphicon glyphicon-stats pull-right"></span></a>
                 </div>
             </div>
+
             <div title="数据录入" data-options="iconCls:'icon-cupload'" @*style="padding:10px;"*@>
                 <div class="list-group">
                     <a class="list-group-item" url="/NonPublicIndustryUpload/Index" href="#">工业主要指标[上传]<span class="glyphicon glyphicon-upload pull-right"></span></a>
@@ -64,6 +88,7 @@
            
         </div>
     </div>
+
     <div data-options="region:'center'" style="padding:5px;background:#eee;">
         <div id="tabs" class="easyui-tabs" data-options="fit:true,border:false" style="width:100%;height:99%;">
             <div title="首页" style="padding:20px;display:none;">
@@ -103,6 +128,7 @@
                 $(this).tooltip('tip').css({ backgroundColor: '#333', borderColor: '#666' });
             }
         });
+
     </script>
 </body>
 

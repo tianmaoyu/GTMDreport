@@ -250,6 +250,8 @@
     <Compile Include="Controllers\NonPublicIndustryController.cs" />
     <Compile Include="Controllers\NonPublicIndustryUploadController.cs" />
     <Compile Include="Controllers\RegionController.cs" />
+    <Compile Include="Controllers\DataController.cs" />
+    <Compile Include="Controllers\SummaryController.cs" />
     <Compile Include="DAL\DbContextBase.cs" />
     <Compile Include="EF\Classification.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -779,6 +781,11 @@
     <Content Include="Views\IndustryClassification\View.cshtml" />
     <Content Include="Views\IndustryClassification\ViewChart.cshtml" />
     <Content Include="Views\IndustryClassification\ViewChartRed.cshtml" />
+    <Content Include="Views\Summary\Index2013.cshtml" />
+    <Content Include="Views\Summary\Index2014.cshtml" />
+    <Content Include="Views\Summary\Index2016.cshtml" />
+    <Content Include="Views\Summary\Index2015.cshtml" />
+    <Content Include="Views\Summary\Index2012.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Classification\" />
@@ -799,6 +806,14 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\</OutputPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
