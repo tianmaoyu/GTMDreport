@@ -786,6 +786,14 @@
     <Content Include="Views\Summary\Index2016.cshtml" />
     <Content Include="Views\Summary\Index2015.cshtml" />
     <Content Include="Views\Summary\Index2012.cshtml" />
+    <Content Include="Views\Data\Increase2014.cshtml" />
+    <Content Include="Views\Data\Increase2015.cshtml" />
+    <Content Include="Views\Data\Increase2013.cshtml" />
+    <Content Include="Views\Data\Increase.cshtml" />
+    <Content Include="Views\Data\InvestmentInFixedAssets.cshtml" />
+    <Content Include="Views\Data\InvestmentInFixedAssets2013.cshtml" />
+    <Content Include="Views\Data\InvestmentInFixedAssets2015.cshtml" />
+    <Content Include="Views\Data\InvestmentInFixedAssets2014.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Classification\" />

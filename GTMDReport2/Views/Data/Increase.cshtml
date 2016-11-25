@@ -1,0 +1,25 @@
+﻿@{
+    Layout = null;
+}
+<div>
+    <div class="pull-right" style="margin-right:4px">
+        <select id="increase-year" class="easyui-combobox"
+                data-options="buttonText:'年份',buttonAlign:'left'" style="width:170px;margin-right:2px">
+            <option>2013</option>
+            <option>2014</option>
+            <option>2015</option>
+        </select>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true,text:'搜索'" onclick="selectChange()"></a>
+    </div>
+</div>
+<div id="p" class="easyui-panel" style="width:100%; padding:0px;" data-options="href:'/Data/Increase?year=2013'"></div>
+
+<script>
+    function selectChange() {
+        var year = $("#increase-year").combobox('getText');
+        var url = "/Data/Increase?year=" + year;
+        $('#p').panel({
+            href: url,
+        });
+    }
+</script>

@@ -9,7 +9,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body class="easyui-layout" data-options="fit:true,border:false">
-    <div data-options="region:'north',split:true" style="height:40px;">
+    @*<div data-options="region:'north',split:true" style="height:40px;">
         <div class="row" style="margin:auto">
             <div class="col-sm-3" style="height:38px"></div>
             <div class="col-sm-3" style="height:38px"></div>
@@ -30,7 +30,7 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div>*@
 
     <div data-options="region:'south'" style="height:10px;"></div>
     @*<div data-options="region:'east',iconCls:'icon-reload',title:'East',split:true" style="width:100px;"></div>*@
@@ -49,11 +49,19 @@
 
             <div title="数据资料" data-options="iconCls:'icon-clist'">
                 <div class="list-group">
-                    <a class="list-group-item easyui-tooltip" url="#" href="#">(一)总量指标<span class="glyphicon glyphicon-th-list pull-right"></span></a>
-                    <a class="list-group-item easyui-tooltip" url="#" href="#">(二)分行业><span class="glyphicon glyphicon-th-list pull-right"></span></a>
-                    <a class="list-group-item easyui-tooltip" url="#" href="#">(三)分产业<span class="glyphicon glyphicon-th-list pull-right"></span></a>
-                    <a class="list-group-item easyui-tooltip" href="#">(四)分地区<span class="glyphicon glyphicon-th-list pull-right"></span></a>
-                    <a class="list-group-item easyui-tooltip" href="#">(六)重点企业<span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                    <a class="list-group-item easyui-tooltip" url="/Data/Increase" href="#">民营经济增加值<span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                    <a class="list-group-item easyui-tooltip" url="#" href="#">营经济基本单位情况<span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                    <a class="list-group-item easyui-tooltip" url="#" href="#">民营经济国税收入<span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                    <a class="list-group-item easyui-tooltip" href="/Data/InvestmentInFixedAssets">固定资产投资<span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                    <a class="list-group-item easyui-tooltip" href="#">工业分行业主要指标<span class="glyphicon glyphicon-th-list pull-right"></span></a>
+
+                    <a class="list-group-item easyui-tooltip" url="/Data/Index" href="#">工业主要指标<span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                    <a class="list-group-item easyui-tooltip" url="#" href="#">批发企业主要经济指标<span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                    <a class="list-group-item easyui-tooltip" url="#" href="#">零售企业主要经济指标<span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                    <a class="list-group-item easyui-tooltip" href="#">住宿业主要经济指标<span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                    <a class="list-group-item easyui-tooltip" href="#">餐饮业主要经济指标<span class="glyphicon glyphicon-th-list pull-right"></span></a>
+                    <a class="list-group-item easyui-tooltip" href="#">筑企业主要经济指标<span class="glyphicon glyphicon-th-list pull-right"></span></a>
+
                 </div>
             </div>
 

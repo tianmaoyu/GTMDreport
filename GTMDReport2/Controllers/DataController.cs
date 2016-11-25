@@ -11,79 +11,77 @@ namespace GTMDReport2.Controllers
         // GET: Summary
         public ActionResult Index()
         {
+            string viewName = "Index" + Request.QueryString["year"];
+
             return View();
         }
+        //increase 增加值
+        public ActionResult Increase()
+        {
+            string viewName = "Increase" + Request.QueryString["year"] ;
+            return View(viewName);
+        }
 
-        // GET: Summary/Details/5
-        public ActionResult Details(int id)
+        //basic situation 基本情况
+        public ActionResult BasicSituation()
+        {
+            string viewName = "BasicSituation" + Request.QueryString["year"] ;
+            return View(viewName);
+        }
+        //国税收入
+        public ActionResult IRSIncome()
+        {
+            string viewName = "IRSIncome" + Request.QueryString["year"] ?? "2013";
+            return View(viewName);
+        }
+        //固定资产投资
+        public ActionResult InvestmentInFixedAssets()
+        {
+            string viewName = "InvestmentInFixedAssets" + Request.QueryString["year"];
+            return View(viewName);
+        }
+
+        //工业分行业
+        public ActionResult IndustrialSubSectorsIndicators()
+        {
+            string viewName = "IndustrialSubSectorsIndicators" + Request.QueryString["year"] ?? "2013";
+            return View(viewName);
+        }
+
+        //工业指标
+        public ActionResult IndustrialIndicators()
+        {
+            string viewName = "IndustrialIndicators" + Request.QueryString["year"] ?? "2013";
+            return View(viewName);
+        }
+        //批发
+        public ActionResult WholesaleBusiness()
+        {
+            string viewName = "WholesaleBusiness" + Request.QueryString["year"] ?? "2013";
+            return View(viewName);
+        }
+        //零售
+        public ActionResult RetailBusiness()
+        {
+            string viewName = "RetailBusiness" + Request.QueryString["year"] ?? "2013";
+            return View(viewName);
+        }
+        //住宿
+        public ActionResult AccommodationIndustry()
+        {
+            string viewName = "AccommodationIndustry" + Request.QueryString["year"] ?? "2013";
+            return View(viewName);
+        }
+
+        //餐饮行业
+        public ActionResult CateringIndustry()
         {
             return View();
         }
-
-        // GET: Summary/Create
-        public ActionResult Create()
+        //建筑行业
+        public ActionResult BuildingIndustry()
         {
             return View();
-        }
-
-        // POST: Summary/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Summary/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Summary/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Summary/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Summary/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }
