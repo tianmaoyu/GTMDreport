@@ -1,0 +1,27 @@
+﻿
+
+@{
+    Layout = null;
+}
+<div>
+    <div class="pull-right" style="margin-right:4px">
+        <select id="WholesaleBusiness-year" class="easyui-combobox"
+                data-options="buttonText:'年份',buttonAlign:'left'" style="width:170px;margin-right:2px">
+            <option>2013</option>
+            <option>2014</option>
+            <option>2015</option>
+        </select>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true,text:'搜索'" onclick="selectChange()"></a>
+    </div>
+</div>
+<div id="p-WholesaleBusiness" class="easyui-panel" style="width:100%; padding:0px;" data-options="href:'/Data/WholesaleBusiness?year=2013'"></div>
+
+<script>
+    function selectChange() {
+        var year = $("#WholesaleBusiness-year").combobox('getText');
+        var url = "/Data/WholesaleBusiness?year=" + year;
+        $('#p-WholesaleBusiness').panel({
+            href: url,
+        });
+    }
+</script>

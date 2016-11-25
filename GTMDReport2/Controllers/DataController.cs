@@ -31,7 +31,7 @@ namespace GTMDReport2.Controllers
         //国税收入
         public ActionResult IRSIncome()
         {
-            string viewName = "IRSIncome" + Request.QueryString["year"] ?? "2013";
+            string viewName = "IRSIncome" + Request.QueryString["year"];
             return View(viewName);
         }
         //固定资产投资
@@ -51,32 +51,33 @@ namespace GTMDReport2.Controllers
         //工业指标
         public ActionResult IndustrialIndicators()
         {
-            string viewName = "IndustrialIndicators" + Request.QueryString["year"] ?? "2013";
+            string viewName = "IndustrialIndicators" + Request.QueryString["year"];
             return View(viewName);
         }
         //批发
         public ActionResult WholesaleBusiness()
         {
-            string viewName = "WholesaleBusiness" + Request.QueryString["year"] ?? "2013";
+            string viewName = "WholesaleBusiness" + Request.QueryString["year"];
             return View(viewName);
         }
         //零售
         public ActionResult RetailBusiness()
         {
-            string viewName = "RetailBusiness" + Request.QueryString["year"] ?? "2013";
+            string viewName = "RetailBusiness" + Request.QueryString["year"];
             return View(viewName);
         }
         //住宿
         public ActionResult AccommodationIndustry()
         {
-            string viewName = "AccommodationIndustry" + Request.QueryString["year"] ?? "2013";
+            string viewName = "AccommodationIndustry" + Request.QueryString["year"];
             return View(viewName);
         }
 
         //餐饮行业
         public ActionResult CateringIndustry()
         {
-            return View();
+            string viewName = "CateringIndustry" + Request.QueryString["year"];
+            return View(viewName);
         }
         //建筑行业
         public ActionResult BuildingIndustry()

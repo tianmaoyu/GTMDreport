@@ -798,6 +798,30 @@
     <Content Include="Views\Data\BuildingIndustry2013.cshtml" />
     <Content Include="Views\Data\BuildingIndustry2015.cshtml" />
     <Content Include="Views\Data\BuildingIndustry2014.cshtml" />
+    <Content Include="Views\Data\WholesaleBusiness.cshtml" />
+    <Content Include="Views\Data\WholesaleBusiness2013.cshtml" />
+    <Content Include="Views\Data\WholesaleBusiness2015.cshtml" />
+    <Content Include="Views\Data\WholesaleBusiness2014.cshtml" />
+    <Content Include="Views\Data\RetailBusiness.cshtml" />
+    <Content Include="Views\Data\RetailBusiness2013.cshtml" />
+    <Content Include="Views\Data\RetailBusiness2015.cshtml" />
+    <Content Include="Views\Data\RetailBusiness2014.cshtml" />
+    <Content Include="Views\Data\AccommodationIndustry.cshtml" />
+    <Content Include="Views\Data\AccommodationIndustry2013.cshtml" />
+    <Content Include="Views\Data\AccommodationIndustry2015.cshtml" />
+    <Content Include="Views\Data\AccommodationIndustry2014.cshtml" />
+    <Content Include="Views\Data\CateringIndustry.cshtml" />
+    <Content Include="Views\Data\CateringIndustry2015.cshtml" />
+    <Content Include="Views\Data\CateringIndustry2013.cshtml" />
+    <Content Include="Views\Data\CateringIndustry2014.cshtml" />
+    <Content Include="Views\Data\IRSIncome.cshtml" />
+    <Content Include="Views\Data\IRSIncome2013.cshtml" />
+    <Content Include="Views\Data\IRSIncome2015.cshtml" />
+    <Content Include="Views\Data\IRSIncome2014.cshtml" />
+    <Content Include="Views\Data\IndustrialIndicators.cshtml" />
+    <Content Include="Views\Data\IndustrialIndicators2013.cshtml" />
+    <Content Include="Views\Data\IndustrialIndicators2015.cshtml" />
+    <Content Include="Views\Data\IndustrialIndicators2014.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Classification\" />

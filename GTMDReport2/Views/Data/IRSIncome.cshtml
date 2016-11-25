@@ -1,0 +1,30 @@
+﻿
+
+
+
+@{
+    Layout = null;
+}
+<div>
+    <div class="pull-right" style="margin-right:4px">
+        <select id="IRSIncome-year" class="easyui-combobox"
+                data-options="buttonText:'年份',buttonAlign:'left'" style="width:170px;margin-right:2px">
+            <option>2013</option>
+            <option>2014</option>
+            <option>2015</option>
+        </select>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true,text:'搜索'" onclick="selectChange()"></a>
+    </div>
+</div>
+<div id="p-RetailBusiness" class="easyui-panel" style="width:100%; padding:0px;" data-options="href:'/Data/IRSIncome?year=2013'"></div>
+
+<script>
+    function selectChange() {
+        debugger;
+        var year = $("#IRSIncome-year").combobox('getText');
+        var url = "/Data/IRSIncome?year=" + year;
+        $('#p-RetailBusiness').panel({
+            href: url,
+        });
+    }
+</script>
