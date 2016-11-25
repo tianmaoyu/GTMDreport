@@ -81,7 +81,8 @@ namespace GTMDReport2.Controllers
         //建筑行业
         public ActionResult BuildingIndustry()
         {
-            return View();
+            string viewName = "BuildingIndustry" + Request.QueryString["year"];
+            return View(viewName);
         }
     }
 }

@@ -794,6 +794,10 @@
     <Content Include="Views\Data\InvestmentInFixedAssets2013.cshtml" />
     <Content Include="Views\Data\InvestmentInFixedAssets2015.cshtml" />
     <Content Include="Views\Data\InvestmentInFixedAssets2014.cshtml" />
+    <Content Include="Views\Data\BuildingIndustry.cshtml" />
+    <Content Include="Views\Data\BuildingIndustry2013.cshtml" />
+    <Content Include="Views\Data\BuildingIndustry2015.cshtml" />
+    <Content Include="Views\Data\BuildingIndustry2014.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Classification\" />
