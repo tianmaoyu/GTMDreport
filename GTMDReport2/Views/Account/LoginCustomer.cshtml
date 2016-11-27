@@ -75,7 +75,8 @@
             //        },
             //    });
             //});
-            $.get('../JsonData/guizhou.json', function (guizhouJson) {
+            //../JsonData/guizhou.json
+            $.get('/api/JsonData/GuiZhou', function (guizhouJson) {
                 echarts.registerMap('贵州', guizhouJson);
                 var chart = echarts.init(document.getElementById('guizhou-map'));
                 chart.setOption({
