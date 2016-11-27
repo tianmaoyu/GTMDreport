@@ -44,7 +44,7 @@ namespace GTMDReport2.Controllers
         //工业分行业
         public ActionResult IndustrialSubSectorsIndicators()
         {
-            string viewName = "IndustrialSubSectorsIndicators" + Request.QueryString["year"] ?? "2013";
+            string viewName = "IndustrialSubSectorsIndicators" + Request.QueryString["year"];
             return View(viewName);
         }
 

@@ -822,6 +822,14 @@
     <Content Include="Views\Data\IndustrialIndicators2013.cshtml" />
     <Content Include="Views\Data\IndustrialIndicators2015.cshtml" />
     <Content Include="Views\Data\IndustrialIndicators2014.cshtml" />
+    <Content Include="Views\Data\BasicSituation.cshtml" />
+    <Content Include="Views\Data\BasicSituation2013.cshtml" />
+    <Content Include="Views\Data\BasicSituation2015.cshtml" />
+    <Content Include="Views\Data\BasicSituation2014.cshtml" />
+    <Content Include="Views\Data\IndustrialSubSectorsIndicators.cshtml" />
+    <Content Include="Views\Data\IndustrialSubSectorsIndicators2013.cshtml" />
+    <Content Include="Views\Data\IndustrialSubSectorsIndicators2015.cshtml" />
+    <Content Include="Views\Data\IndustrialSubSectorsIndicators2014.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Classification\" />
