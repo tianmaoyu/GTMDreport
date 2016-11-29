@@ -88,7 +88,8 @@ namespace GTMDReport2.Controllers
 
         public ActionResult List()
         {
-            return View();
+            string viewName = "List" + Request.QueryString["year"];
+            return View(viewName);
         }
     }
 }
