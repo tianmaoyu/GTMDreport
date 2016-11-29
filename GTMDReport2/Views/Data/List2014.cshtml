@@ -18,49 +18,207 @@
             -moz-box-shadow: 3px 3px 10px;
             box-shadow: 3px 3px 10px;
         }
+
+        .box-pull-right {
+            position: absolute;
+            top: 83%;
+            right: 10px;
+        }
+
+        .row-tip {
+            position: absolute;
+            left: -50px;
+            top: 0;
+            height: 100%;
+            width: 40px;
+            margin-top: 4px;
+            margin-bottom: 4px;
+            border-right: solid 2px #428bca;
+        }
     </style>
     <div class="container">
-        
-        <h1 style="font-weight:bold;color:aliceblue">数据资料<small> 2013</small></h1>
-           
+        <h1 style="font-weight:bold;color:aliceblue">数据资料<small> 2014</small></h1>
+        <div style="position:relative">
             <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-3 breadcrumb box-shadow-1" style="height:200px;border:solid 10px #393D49;">
-                    <h1>2012</h1>
-                    <p>
-                        2012年数据资料
-                    </p>
-                    <p><a class="btn btn-warning btn-lg" href="/Summary/Index?year=2012" disabled="disabled">详情进入 &raquo;</a></p>
+                <div class="col-lg-4 col-md-4 col-sm-4 breadcrumb box-shadow-1" style="height:200px;border:solid 10px #393D49;">
+                    <h2>民营经济增加值</h2>
+                    <table class="table table-striped ">
+                        <tr>
+                            <td>民营经济增加值</td>
+                            <td>4275.4</td>
+                        </tr>
+                        <tr>
+                            <td>生产总值比重</td>
+                            <td>46.1%</td>
+                        </tr>
+                        <tr></tr>
+                    </table>
+                    <p class="pull-right box-pull-right"><a class="btn btn-primary btn-sm" target="_blank" href="/Data/Increase?year=2014">详情进入 &raquo;</a></p>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-3 breadcrumb box-shadow-1" style="height:200px;border:solid 10px #393D49">
-                    <h1>2013</h1>
-                    <p>
-                        2013年数据资料
-                    </p>
-                    <p><a class="btn btn-primary btn-lg" href="/Summary/Index?year=2013" target="_blank">详情进入 &raquo;</a></p>
+                <div class="col-lg-4 col-md-4 col-sm-4 breadcrumb box-shadow-1" style="height:200px;border:solid 10px #393D49">
+                    <h2>固定资产投资</h2>
+                    <table class="table table-striped ">
+                        <tr>
+                            <td>固定资产投资额</td>
+                            <td>4145.8</td>
+                        </tr>
+                        <tr>
+                            <td>比上年同期增长</td>
+                            <td>19.9</td>
+                        </tr>
+                        <tr>
+                            <td>投资比重</td>
+                            <td>47.2%</td>
+                        </tr>
+                    </table>
+                    <p class="pull-right box-pull-right"><a class="btn btn-primary btn-sm" href="/Data/InvestmentInFixedAssets?year=2014" target="_blank">详情进入 &raquo;</a></p>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-3 breadcrumb box-shadow-1" style="height:200px;border:solid 10px #393D49">
-                    <h1>2014</h1>
-                    <p>
-                        2014年数据资料
-                    </p>
-                    <p><a class="btn btn-primary btn-lg" href="/Summary/Index?year=2014" target="_blank">详情进入 &raquo;</a></p>
+                <div class="col-lg-4 col-md-4 col-sm-4 breadcrumb box-shadow-1" style="height:200px;border:solid 10px #393D49">
+                    <h2>从业人员</h2>
+                    <table class="table table-striped ">
+                        <tr>
+                            <td>人数（人）</td>
+                            <td>2454968</td>
+                        </tr>
+                        <tr>
+                            <td>比上年同期增长</td>
+                            <td>41.7%</td>
+                        </tr>
+                    </table>
+                    <p class="pull-right box-pull-right"><a class="btn btn-primary btn-sm" href="/Data/BasicSituation?year=2014" target="_blank">详情进入 &raquo;</a></p>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-3 breadcrumb box-shadow-1" style="height:200px;border:solid 10px #393D49">
-                    <h1>2015</h1>
-                    <p>
-                        2015年数据资料
-                    </p>
-                    <p><a class="btn btn-primary btn-lg" href="/Summary/Index?year=2015" target="_blank">详情进入 &raquo;</a></p>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-3 breadcrumb box-shadow-1" style="height:200px;border:solid 10px #393D49">
-                    <h1>2016</h1>
-                    <p>
-                        2016年数据资料
-                    </p>
-                    <p><a class="btn btn-warning btn-lg" href="/Summary/Index?year=2016" disabled="disabled">详情进入  &raquo;</a></p>
-                </div>
+
+            </div>
+
+            <div class="row-tip" style="height:100%;width:40px;">
+                <h1 style="color:white">主<br>要<br>指<br>标</h1>
             </div>
         </div>
+
+        <div style="position:relative">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 breadcrumb box-shadow-1" style="height:200px;border:solid 10px #393D49;">
+                    <h2>第一产业</h2>
+                    <table class="table table-striped ">
+                        <tr>
+                            <td>民营经济增加值</td>
+                            <td>655.3</td>
+                        </tr>
+                        <tr>
+                            <td>生产总值比重</td>
+                            <td>51.2</td>
+                        </tr>
+                        <tr></tr>
+                    </table>
+                    <p class="pull-right box-pull-right"><a class="btn btn-primary btn-sm" target="_blank" href="/Data/Increase?year=2014">详情进入 &raquo;</a></p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 breadcrumb box-shadow-1" style="height:200px;border:solid 10px #393D49">
+                    <h2>第二产业</h2>
+                    <table class="table table-striped ">
+                        <tr>
+                            <td>民营经济增加值</td>
+                            <td>2010.3</td>
+                        </tr>
+                        <tr>
+                            <td>生产总值比重</td>
+                            <td>52.1%</td>
+                        </tr>
+                    </table>
+                    <p class="pull-right box-pull-right"><a class="btn btn-primary btn-sm" href="/Data/Increase?year=2014" target="_blank">详情进入 &raquo;</a></p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 breadcrumb box-shadow-1" style="height:200px;border:solid 10px #393D49">
+                    <h2>第三产业</h2>
+                    <table class="table table-striped ">
+                        <tr>
+                            <td>民营经济增加值</td>
+                            <td>1609.7</td>
+                        </tr>
+                        <tr>
+                            <td>生产总值比重</td>
+                            <td>39.0%</td>
+                        </tr>
+                    </table>
+                    <p class="pull-right box-pull-right"><a class="btn btn-primary btn-sm" href="/Data/Increase?year=2014" target="_blank">详情进入 &raquo;</a></p>
+                </div>
+
+            </div>
+
+            <div class="row-tip" style="height:100%;width:40px;">
+                <h1 style="color:white">产<br>业<br>分<br>类</h1>
+            </div>
+        </div>
+
+        <div style="position:relative">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 breadcrumb box-shadow-1" style="height:200px;border:solid 10px #393D49;">
+                    <h2>批发企业</h2>
+                    <table class="table table-striped ">
+                        <tr>
+                            <td>企业个数(个)</td>
+                            <td>624</td>
+                        </tr>
+                        <tr>
+                            <td>固定资产原价</td>
+                            <td>293165</td>
+                        </tr>
+                        <tr></tr>
+                    </table>
+                    <p class="pull-right box-pull-right"><a class="btn btn-primary btn-sm" target="_blank" href="/Data/WholesaleBusiness?year=2014">详情进入 &raquo;</a></p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 breadcrumb box-shadow-1" style="height:200px;border:solid 10px #393D49">
+                    <h2>零售业</h2>
+                    <table class="table table-striped ">
+                        <tr>
+                            <td>企业个数(个)</td>
+                            <td>1327</td>
+                        </tr>
+                        <tr>
+                            <td>固定资产原价</td>
+                            <td>495356</td>
+                        </tr>
+                    </table>
+                    <p class="pull-right box-pull-right"><a class="btn btn-primary btn-sm" href="/Data/RetailBusiness?year=2014" target="_blank">详情进入 &raquo;</a></p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 breadcrumb box-shadow-1" style="height:200px;border:solid 10px #393D49">
+                    <h2>建筑业</h2>
+                    <table class="table table-striped ">
+                        <tr>
+                            <td>企业个数(个)</td>
+                            <td>578</td>
+                        </tr>
+                        <tr>
+                            <td>建筑业总产值（亿元）</td>
+                            <td>376.05</td>
+                        </tr>
+                        <tr>
+                            <td>从业人员平均人数(人)</td>
+                            <td>163436</td>
+                        </tr>
+                    </table>
+                    <p class="pull-right box-pull-right"><a class="btn btn-primary btn-sm" href="/Data/BuildingIndustry?year=2014" target="_blank">详情进入 &raquo;</a></p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 breadcrumb box-shadow-1" style="height:200px;border:solid 10px #393D49">
+                    <h2>餐饮业</h2>
+                    <table class="table table-striped ">
+                        <tr>
+                            <td>企业个数(个)</td>
+                            <td>371</td>
+                        </tr>
+                        <tr>
+                            <td>固定资产原价</td>
+                            <td>150743</td>
+                        </tr>
+                    </table>
+                    <p class="pull-right box-pull-right"><a class="btn btn-primary btn-sm" href="/Data/CateringIndustry?year=2014" target="_blank">详情进入 &raquo;</a></p>
+                </div>
+
+            </div>
+
+            <div class="row-tip" style="height:100%;width:40px;">
+                <h1 style="color:white">行<br>业<br>类<br>型<br>分<br>类</h1>
+            </div>
+        </div>
+    </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
