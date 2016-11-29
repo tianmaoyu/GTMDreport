@@ -1,0 +1,67 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/easy-ui")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body style="background-color:#393D49">
+    <style>
+        .box-shadow-1 {
+            -webkit-box-shadow: 3px 3px 10px;
+            -moz-box-shadow: 3px 3px 10px;
+            box-shadow: 3px 3px 10px;
+        }
+    </style>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3 breadcrumb box-shadow-1" style="height:200px;border:solid 10px #393D49;">
+                <h1>2012</h1>
+                <p>
+                    2012年综述
+                </p>
+                <p><a class="btn btn-warning btn-lg" href="/Summary/Index?year=2012" disabled="disabled">详情进入 &raquo;</a></p>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 breadcrumb box-shadow-1" style="height:200px;border:solid 10px #393D49">
+                <h1>2013</h1>
+                <p>
+                    2013年综述
+                </p>
+                <p><a class="btn btn-primary btn-lg" href="/Summary/Index?year=2013" target="_blank">详情进入 &raquo;</a></p>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 breadcrumb box-shadow-1" style="height:200px;border:solid 10px #393D49">
+                <h1>2014</h1>
+                <p>
+                    2014年综述
+                </p>
+                <p><a class="btn btn-primary btn-lg" href="/Summary/Index?year=2014" target="_blank">详情进入 &raquo;</a></p>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 breadcrumb box-shadow-1" style="height:200px;border:solid 10px #393D49">
+                <h1>2015</h1>
+                <p>
+                    2015年综述
+                </p>
+                <p><a class="btn btn-primary btn-lg" href="/Summary/Index?year=2015" target="_blank">详情进入 &raquo;</a></p>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 breadcrumb box-shadow-1" style="height:200px;border:solid 10px #393D49">
+                <h1>2016</h1>
+                <p>
+                    2016年综述
+                </p>
+                <p><a class="btn btn-warning btn-lg" href="/Summary/Index?year=2016" disabled="disabled">详情进入  &raquo;</a></p>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/easy-ui")
+    @*@RenderSection("scripts", required: false)*@
+</body>
+</html>

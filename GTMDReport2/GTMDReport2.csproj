@@ -844,6 +844,8 @@
     <Content Include="Views\Data\IndustrialSubSectorsIndicators2013.cshtml" />
     <Content Include="Views\Data\IndustrialSubSectorsIndicators2015.cshtml" />
     <Content Include="Views\Data\IndustrialSubSectorsIndicators2014.cshtml" />
+    <Content Include="Views\Summary\List.cshtml" />
+    <Content Include="Views\Data\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Classification\" />

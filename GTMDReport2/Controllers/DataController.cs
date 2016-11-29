@@ -85,5 +85,10 @@ namespace GTMDReport2.Controllers
             string viewName = "BuildingIndustry" + Request.QueryString["year"];
             return View(viewName);
         }
+
+        public ActionResult List()
+        {
+            return View();
+        }
     }
 }

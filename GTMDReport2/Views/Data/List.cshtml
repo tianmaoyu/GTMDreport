@@ -1,0 +1,36 @@
+﻿@{ 
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/easy-ui")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body style="background-color:#393D49">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3 breadcrumb" style="height:200px;border:solid 10px #393D49">
+                ddddd
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 breadcrumb" style="height:200px;border:solid 10px #393D49">
+                222
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 breadcrumb" style="height:200px;border:solid 10px #393D49">
+                ddddd
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 breadcrumb" style="height:200px;border:solid 10px #393D49">
+                222
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/easy-ui")
+    @*@RenderSection("scripts", required: false)*@
+</body>
+</html>
