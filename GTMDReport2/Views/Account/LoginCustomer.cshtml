@@ -46,6 +46,14 @@
                 var chart = echarts.init(document.getElementById('guizhou-map'));
                 chart.setOption({
                     backgroundColor: '#404a59',
+                    dataRange: {
+                        min: 0,
+                        max: 10,
+                        text: ['高', '低'],           // 文本，默认为数值文本
+                        calculable: true,
+                        x: 'left',
+                        color: ['orangered', 'yellow', 'lightskyblue']
+                    },
                     series: [
                       {
                           roam: true,
@@ -70,6 +78,7 @@
                                   show: true
                               },
                           },
+                        
                           data: [
                               { name: '贵阳市', value: 1 },
                               { name: '六盘水市', value: 1 },
