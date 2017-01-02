@@ -37,6 +37,35 @@ namespace GTMDReport2
             bundles.Add(new StyleBundle("~/Content/easy-ui").Include(
                 "~/Content/themes/icon.css",
                 "~/Content/themes/metro/easyui.css"));
+            #region Default Blue
+
+            bundles.Add(new StyleBundle("~/Content/ThemesEasyui/default/easyui").Include(
+                @"~/Content/ThemesEasyui/default/easyui.css",
+                @"~/Content/ThemesEasyui/red/exEasyui.css"));
+
+            bundles.Add(new StyleBundle("~/Content/ThemesEasyui/easyui_icon").Include(
+                @"~/Content/ThemesEasyui/icon.css"));
+
+            #endregion
+
+            #region Gray
+
+            bundles.Add(new StyleBundle("~/Content/ThemesEasyui/gray/easyui").Include(
+                @"~/Content/ThemesEasyui/gray/easyui.css"));
+
+            #endregion
+
+            #region Red
+
+            bundles.Add(new StyleBundle("~/Content/ThemesEasyui/red/easyui").Include(
+                @"~/Content/ThemesEasyui/red/easyui.css"));
+
+            bundles.Add(new StyleBundle("~/Content/ThemesEasyui/red/easyui_icon").Include(
+                @"~/Content/ThemesEasyui/red/icon.css"));
+
+            bundles.Add(new StyleBundle("~/Content/ThemesEasyui/red/exeasyui").Include(
+                @"~/Content/ThemesEasyui/red/exEasyui.css"));
+            #endregion
         }
     }
 }

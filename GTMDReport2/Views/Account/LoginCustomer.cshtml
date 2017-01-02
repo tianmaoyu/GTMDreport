@@ -10,14 +10,14 @@
     <link href="~/Content/signin.css" rel="stylesheet">
    
 </head>
-<body style="padding-top:0px">
-    <div class="row-fluid" style="background-color:#404a59">
+<body style="padding-top:0px;">
+    <div class="row-fluid" style="">
         <div class="col-md-8" style="padding:0 0">
             <div id="guizhou-map" style="height:700px;"></div>
         </div>
         <div class="col-md-4" style="padding:0 0">
-            <div  style="height:700px;background-color:#404a59"></div>
-        </div>·
+            <div  style="height:700px;background-color:#404a59"></div>//@*background-color:#404a59*@
+        </div>
    </div>
     <div class="signin">
         <div class="signin-head">
@@ -41,41 +41,6 @@
     <script>
         $(function () {
             debugger;
-            //$("#guizhou-map").height = document.documentElement.clientHeight+"px";
-            //$.get('../JsonData/guizhou.json', function (guizhouJson) {
-            //    echarts.registerMap('guizhou', guizhouJson);
-            //    var chart = echarts.init(document.getElementById('guizhou-map'));
-            //    echarts.registerMap('guizhou', guizhouJson, {
-            //    });
-            //    chart.setOption({
-            //        backgroundColor: '#404a59',
-            //        mapLocation: {
-            //            x: '35%'
-            //        },
-            //        geo: {
-            //            map: 'guizhou',
-            //            label: {
-            //                emphasis: {
-            //                    show: false
-            //                }
-            //            },
-            //            mapLocation: {
-            //                x: '35%'
-            //            },
-            //            roam: true,
-            //            itemStyle: {
-            //                normal: {
-            //                    areaColor: '#323c48',
-            //                    borderColor: '#428bca'
-            //                },
-            //                emphasis: {
-            //                    areaColor: '#2a333d'
-            //                }
-            //            }
-            //        },
-            //    });
-            //});
-            //../JsonData/guizhou.json
             $.get('/api/JsonData/GuiZhou', function (guizhouJson) {
                 echarts.registerMap('贵州', guizhouJson);
                 var chart = echarts.init(document.getElementById('guizhou-map'));

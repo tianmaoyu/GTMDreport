@@ -1,0 +1,211 @@
+﻿
+a{text-decoration:none;}
+.layout .layout-panel .panel-header {background:#E7E7E7; padding:0px;}
+.accordion .accordion-header {background:#E7E7E7;}
+.accordion .accordion-header-selected {background:#BD2828;}
+.accordion .accordion-header-selected .panel-title { background-color:#BD2828;color:#fff;height:34px;
+    line-height:34px;}                        
+.tabs {background:url(exImages/datagridtitbg.png) repeat-x;}
+/*.tabs .tabs-selected{ border-top:1px solid #dc302f}*/
+.datagrid .datagrid-header-row:not(.datagrid-filter-row) td {background:url(exImages/datagridheadbg.png) repeat-x;background-position: 0px -4px;}
+.datagrid .datagrid-filter-row td { background-color:rgb(245, 245, 245)}
+.datagrid-row-selected { background: #FFCAAA; color: #000;}
+/*.easyui-linkbutton { color:#fff; border-radius:3px; background-image:-ms-linear-gradient(rgb(225, 68, 69) 0%, rgb(203, 36, 38) 100%);}
+.easyui-linkbutton .l-btn-text{ color:#fff;}*/
+.logo {
+    height:40px!important;
+    background-image:none !important;
+    background-color:#353535 !important;
+}
+.logo .title {
+     /*background:url(exImages/统计.png) 10px 10px no-repeat #BD2828 !important;*/
+     height:40px!important;
+     background-color:#BD2828;
+     width:70px;
+}
+#tabsMainPage .layout > .layout-panel > .panel-header {
+    background:url(exImages/line.jpg) no-repeat left  bottom #E7E7E7 ;
+}
+.layout > .layout-panel > .panel-header  > .panel-title {
+    height:36px; line-height:36px;
+}
+.accordion-header-selected > .ex-tree-folder { background:url(exImages/folder_hover.png) no-repeat;}
+.panel-tool a:hover {
+    background-color:#AAAAAA !important;
+}
+.accordion-header-selected .panel-tool .accordion-collapse {
+    background:url(images/accordion_arrows.png) no-repeat 0 0;
+}
+.panel-title {
+    height:34px;
+    line-height:34px;
+}
+.layout-body .panel .panel-body p {
+    border-bottom:1px  dashed  #CCCCCC;  
+    padding-bottom:5px;
+    padding-left:43px !important;
+}
+.layout-body .panel .panel-body p  a{
+    text-decoration:none;
+    background:none; 
+}
+.ex-tree-node {
+    background:url(exImages/sonIcon.png) no-repeat !important;
+    background-position-x:25px !important;
+    background-position-y:1px !important;
+}
+.ex-tree-folder-body {
+padding-left:0px !important;
+}
+/*华为管理右侧样式*/
+.tabs {
+    background:url(exImages/dataRightTopBj.png) no-repeat;
+    background-position:bottom;    
+    height:35px !important;
+}
+.tabs li  {
+    top: 5px;
+    }
+.tabs li a {
+    height:30px !important;
+    line-height:30px !important;  
+    }
+.tabs li.tabs-selected a.tabs-inner {
+    color:#9b0a0a;
+    height:30px !important;
+    line-height:30px !important;
+    border-top:2px solid #B40200;
+    }
+.tabs li a.tabs-inner:hover {
+    background:url(exImages/tabs_MouseMove_bj.jpg) repeat-x bottom;  
+      }
+.tabs li a.tabs-close { 
+    background:url(images/tabs_icons.png) no-repeat -34px -3px;    
+}
+/*华为管理右侧列表样式*/
+.datagrid-header td, .datagrid-body td, .datagrid-footer td {
+  border-right:1px solid #F4F4F4 ;
+  border-bottom:1px solid #DDDDDD;}
+.datagrid-row {
+     height:32px;
+}
+/*.datagrid-header td, .datagrid-body td, .datagrid-footer td {
+    border-color:#DDDDDD;
+}*/
+.datagrid-filter-row .textbox, .datagrid-filter-row .textbox .textbox-text {
+-moz-border-radius:3px 3px 3px 3px;
+-webkit-border-radius:3px 3px 3px 3px;
+border-radius:3px 3px 3px 3px!important;
+margin-bottom:5px;
+}
+.datagrid-view .datagrid-editable-input {
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    border-radius:3px;
+    margin-bottom:6px;
+}
+ .datagrid-header-row td {
+     border-width:0px 1px 0px 0px;
+     border-style:solid;
+     border-color:#DDDDDD;    
+     border-bottom:none;
+     margin:0px;
+     padding:0px;
+     height:25px;
+     line-height:25px;
+}
+.datagrid-filter-row .datagrid-filter-c {
+    padding-right:5px;
+    padding-left:5px;
+}
+.datagrid-row-over, .datagrid-header td.datagrid-header-over {
+    background:#FDE9E3;
+}
+.grid-toolbar-panel > .l-btn {
+    background:none;
+    border:none;
+}
+.tree-node-selected {
+    background-color:#BD2828;
+}
+.tree-node-selected .ex-tree-node-count{
+    color:white !important;
+}
+/*处理*/
+.icon-handle {
+     background:url(icons/dispose_icon.png) no-repeat center top !important;
+}
+/*查看*/
+.icon-view{
+     background:url(icons/see_icon.png) no-repeat left  top !important;
+}
+/*新建*/
+.icon-add{
+    background:url(icons/new_icon.png) no-repeat center top  !important;
+}
+/*编辑*/
+.icon-edit {
+     background:url(icons/compile_icon.png) no-repeat center top !important;
+}
+/*删除*/
+.icon-remove {
+   background:url(icons/delete_icon.png) no-repeat center center !important;
+}
+/*复制*/
+.icon-page-copy {
+  background:url(icons/copy_icon.png) no-repeat center center !important;
+}
+/*导出*/
+.icon-import {
+  background:url(icons/Export_icon.png) no-repeat center center !important;
+}
+/*导入*/
+.icon-export{
+ background:url(icons/Inducts_icon.png) no-repeat center center !important;  
+}
+/*批量新建*/
+.icon-multi-new {
+    background:url(icons/new1_icon.png) no-repeat center top !important;  
+}
+.icon-undo {
+    background:url(icons/revocation_icon1.png) no-repeat center top !important; 
+}
+.icon-save {
+    background:url(icons/save_icon1.png) no-repeat center top !important;  
+}
+.tree-node > .icon-workflow-type {
+    background:url(exImages/FlowType.png) no-repeat left 1px !important;
+}
+ .tree-folder,.tree-file{
+    width:18px!important;
+}
+.tree-file {
+  background:url(exImages/FlowSheet_ico.png) no-repeat left 1px !important;
+}
+.tree-file-highlight {
+  background:url(exImages/highlight_node_ico.png) no-repeat left 1px !important;
+}
+.icon-workflow-template {
+  background:url(exImages/Release.png) no-repeat left 1px !important;
+}
+.icon-transformation {
+    background:url(exImages/transformation_ico.png) no-repeat left center!important;
+}
+.icon-state {
+     background:url(exImages/state_ico.png) no-repeat left center !important;
+}
+.pagination-load {
+    background:url(images/Refresh_icons.png) no-repeat;
+}
+.icon-page-view {
+     background:url(icons/page-view.png) no-repeat center center!important;
+}
+.icon-page-edit {
+    background:url(icons/page-edit.png) no-repeat center center!important;
+}
+.icon-page-delete {
+    background:url(icons/page-delete.png) no-repeat center center!important;
+}
+.icon-page-delete-disable {
+    background:url(icons/page-delete-disable.png) no-repeat center center !important;
+}

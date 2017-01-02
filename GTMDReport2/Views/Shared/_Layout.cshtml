@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    <link rel="stylesheet" href="~/Content/ThemesBusiness/Home.css" />
+    @*@Styles.Render("~/Content/easy-ui")*@
+    @Styles.Render("~/Content/ThemesEasyui/gray/easyui")
+    @Styles.Render("~/Content/ThemesEasyui/red/exeasyui")
+    @Styles.Render("~/Content/ThemesEasyui/easyui_icon")
+    @*@Styles.Render("~/Content/ThemesFrame/common")*@
+    <link rel="stylesheet" href="~/Content/ThemesFrame/common.css" />
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @RenderBody()
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/easy-ui")
+    @*@RenderSection("scripts", required: false)*@
+    <script src="~/Scripts/CustomJS/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+﻿
+#mainLayout
+{
+    background-color:#E4E4E4 !important;  
+    background-image:url(/Images/ImagesBusiness/UserLogin_bg.png);   
+}
+
+.login_bg
+{
+    width:713px;
+    height:312px;
+    margin:-156px 0 0 -357px;
+    background-image:url(/Images/ImagesBusiness/LoginBg.png);
+    background-repeat:no-repeat;
+}
+
+.login_container
+{
+    width:312px;
+    height:166px;
+    margin:97px 0px 0px 315px;
+    font-size:14px;
+}

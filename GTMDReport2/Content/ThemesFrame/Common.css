@@ -1,0 +1,110 @@
+﻿html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: #333;
+    font-size: 12px;
+    font-family: Tahoma, 宋体, "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    margin: 0;
+    padding: 0;
+}
+
+canvas {
+    outline: none;
+}
+
+a {
+    color: #333;
+    outline: none;
+}
+
+    a:link, a:visited,
+    a:active, a:hover {
+        color: #333;
+    }
+
+    a:hover {
+        background-color: #c7d1d6;
+    }
+
+    a[class='no-hover']:hover {
+        background-color: transparent;
+    }
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 0 none;
+}
+
+th {
+    border: 0 none;
+}
+
+
+.div_center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.display_none {
+    display: none;
+}
+
+.link_disable {
+    cursor: default;
+}
+
+.grid_checkbox_disabled input {
+    display: none;
+}
+
+.red_note {
+    color: red;
+}
+
+.hide-clear-input::-ms-clear {
+    display: none;
+}
+
+/*覆写EaryUI样式*/
+
+.validatebox-text {
+    height: 20px;
+    border: 1px solid #D3D3D3;
+    padding: 0px;
+    margin: 0px;
+}
+
+.validatebox-invalid {
+    border: 1px solid #ffa8a8;
+}
+
+.tabs-header-noborder {
+    padding: 0px;
+    margin: 0px;
+}
+
+.tabs-wrap {
+    padding-top: 0px;
+}
+
+/*Extention*/
+.ex-tree-folder {
+    background: url(../../Images/ImagesBusiness/folder.png) no-repeat;
+}
+
+.ex-tree-node {
+    background: url(../../Images/ImagesBusiness/node.png) no-repeat;
+}
+
+.ex-tree-folder-body {
+    padding-left: 25px;
+}
+
+.ex-tree-node-count {
+    color:blue;
+}

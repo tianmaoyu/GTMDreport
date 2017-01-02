@@ -1,0 +1,69 @@
+﻿
+.form_body {
+    height:553px; 
+    overflow:hidden
+}
+
+.form_table {
+    margin-top:15px;
+    margin-left:20px;
+    margin-right:20px;
+    margin-bottom:45px;
+    table-layout: fixed;
+    word-break:break-all; 
+    word-wrap:break-all;
+}
+
+.form_table .form_tr, 
+.form_table .form_th_title, 
+.form_table .form_td_content
+{
+    height:28px;
+}
+
+.form_table .form_td
+{
+    text-align:left;
+    border:1px solid #D1D7DC;
+    font-size:12px;
+    font-weight:normal;
+}
+
+.form_table .form_th_title,
+.form_table .form_td_content 
+{
+    word-break:break-all;
+    word-wrap:break-word;
+}
+
+.form_table .form_th_title
+{
+    background-color:#F8F8F8;
+}
+
+.form_table .form_td_content
+{
+    background-color:#FFFFFF;
+}
+
+.form_table .form_button_panel
+{
+    height:60px;
+    vertical-align:middle;
+    text-align:right;
+}
+
+.form_table .form_hr 
+{
+    border:0.5px solid #D1D7DC; 
+}
+
+.form_table textarea 
+{
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+.form-toolbar-button {
+    margin-left:15px;
+}
