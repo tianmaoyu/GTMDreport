@@ -28,4 +28,25 @@
         </div>
     </div>
 </div>
-
+<script>
+    $(document).ready(function () {
+        $(".list-group .list-group-item").on("click", function () {
+            var title = $(this).text()
+            var id = $(this).attr("id");
+            var href = $(this).attr("url")
+            var tab = $("#tabs").tabs('getTab', title);
+            //var content = '<iframe scrolling="no" frameborder="0"  src="' + href + '" style="width:100%;height:100%;"></iframe>';
+            if (tab == undefined) {
+                $("#tabs").tabs('add', {
+                    closable: true,
+                    title: title,
+                    href: href,
+                    //content: content,
+                })
+            }
+            else {
+                $("#tabs").tabs('select', title);
+            }
+        });
+    });
+</script>
