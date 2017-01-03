@@ -1,11 +1,16 @@
 ﻿@{
     Layout = null;
 }
+<style>
+    .panel-with-icon {
+        padding-left: 3em;
+    }
+</style>
 <div class="easyui-layout" data-options="fit:true,border:false">
-    <div data-options="region:'west',title:'菜单栏',split:true" style="width:180px;">
+    <div data-options="region:'west',title:'录入',iconCls:'icon-data-input',split:true" style="width:180px;">
         <div class="easyui-accordion" data-options="fit:true,border:false">
 
-            <div title="数据录入" data-options="iconCls:'icon-cupload'" @*style="padding:10px;"*@>
+            <div title="数据录入" data-options="iconCls:'icon-folder'" @*style="padding:10px;"*@>
                 <div class="list-group">
                     <a class="list-group-item" url="/NonPublicIndustryUpload/Index" href="#">工业主要指标[上传]<span class="glyphicon glyphicon-upload pull-right"></span></a>
                     <a class="list-group-item" url="/IndustryClassificationUpload/Index" href="#">工业分行业指标[上传]<span class="glyphicon glyphicon-upload pull-right"></span></a>

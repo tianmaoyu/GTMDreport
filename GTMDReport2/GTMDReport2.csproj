@@ -530,10 +530,14 @@
     <Content Include="Content\ThemesEasyui\icons\chart-bar.png" />
     <Content Include="Content\ThemesEasyui\icons\chart-line.png" />
     <Content Include="Content\ThemesEasyui\icons\chart-pie.png" />
+    <Content Include="Content\ThemesEasyui\icons\chart.png" />
     <Content Include="Content\ThemesEasyui\icons\clear.png" />
+    <Content Include="Content\ThemesEasyui\icons\controlPanel.png" />
     <Content Include="Content\ThemesEasyui\icons\cut.png" />
     <Content Include="Content\ThemesEasyui\icons\cut_red.png" />
+    <Content Include="Content\ThemesEasyui\icons\dataInput.png" />
     <Content Include="Content\ThemesEasyui\icons\delete.png" />
+    <Content Include="Content\ThemesEasyui\icons\desktop.png" />
     <Content Include="Content\ThemesEasyui\icons\dispose_icon.png" />
     <Content Include="Content\ThemesEasyui\icons\edit_add.png" />
     <Content Include="Content\ThemesEasyui\icons\edit_remove.png" />
@@ -541,6 +545,8 @@
     <Content Include="Content\ThemesEasyui\icons\filesave.png" />
     <Content Include="Content\ThemesEasyui\icons\filter-clear.png" />
     <Content Include="Content\ThemesEasyui\icons\filter.png" />
+    <Content Include="Content\ThemesEasyui\icons\folder.png" />
+    <Content Include="Content\ThemesEasyui\icons\folder_hover.png" />
     <Content Include="Content\ThemesEasyui\icons\h-add.png" />
     <Content Include="Content\ThemesEasyui\icons\h-cancel.png" />
     <Content Include="Content\ThemesEasyui\icons\h-reload.png" />

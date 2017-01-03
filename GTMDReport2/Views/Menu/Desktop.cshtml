@@ -1,11 +1,16 @@
 ﻿@{ 
     Layout = null;
 }
+<style>
+    .panel-with-icon{
+        padding-left:3em;
+    }
+</style>
 <div class="easyui-layout" data-options="fit:true,border:false">
-    <div data-options="region:'west',title:'菜单栏',split:true" style="width:180px;">
+    <div data-options="region:'west',title:'桌面',iconCls:'icon-desktop',split:true" style="width:180px;">
         <div class="easyui-accordion" data-options="fit:true,border:false">
 
-            <div title="民营概况介绍" data-options="iconCls:'icon-clist'">
+            <div title="民营概况介绍"  data-options="iconCls:'icon-folder'">
                 <div class="list-group">
                     <a class="list-group-item easyui-tooltip" url="/Summary/Index?year=2012" href="#">2012年概况<span class="glyphicon glyphicon-th-list pull-right"></span></a>
                     <a class="list-group-item easyui-tooltip" url="/Summary/Index?year=2013" href="#">2013年概况<span class="glyphicon glyphicon-th-list pull-right"></span></a>
@@ -15,7 +20,7 @@
                 </div>
             </div>
 
-            <div title="数据资料" data-options="iconCls:'icon-clist'">
+            <div title="数据资料" data-options="iconCls:'icon-folder'">
                 <div class="list-group">
                     <a class="list-group-item easyui-tooltip" url="/Data/Increase" href="#">民营经济增加值<span class="glyphicon glyphicon-th-list pull-right"></span></a>
                     <a class="list-group-item easyui-tooltip" url="/Data/BasicSituation" href="#">营经济基本单位情况<span class="glyphicon glyphicon-th-list pull-right"></span></a>
@@ -34,7 +39,7 @@
             </div>
 
 
-            <div title="数据查询" data-options="iconCls:'icon-clist'">
+            <div title="数据查询" data-options="iconCls:'icon-folder'">
                 <div class="list-group">
                     <a id="user-manager" class="mtooltip1 list-group-item easyui-tooltip" url="/NonPublicIndustry/Index" href="#">工业主要指标<span class="glyphicon glyphicon-th-list pull-right"></span></a>
                     <a class="mtooltip2 list-group-item easyui-tooltip" url="/IndustryClassification/Index" href="#">工业分行业指标<span style="font-size:1px;color:red;text-overflow:clip">1</span><span class="glyphicon glyphicon-th-list pull-right"></span></a>

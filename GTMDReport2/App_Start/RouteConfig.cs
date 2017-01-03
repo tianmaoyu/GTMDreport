@@ -16,8 +16,8 @@ namespace GTMDReport2
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                 //defaults: new { controller = "Account", action = "LoginCustomer", id = UrlParameter.Optional }
-                 defaults: new { controller = "Menu", action = "Index", id = UrlParameter.Optional }
+                 defaults: new { controller = "Account", action = "LoginCustomer", id = UrlParameter.Optional }
+                 //defaults: new { controller = "Menu", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

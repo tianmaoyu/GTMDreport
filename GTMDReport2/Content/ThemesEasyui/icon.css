@@ -243,3 +243,19 @@
 .icon-large-chart{
 	background:url('icons/large_chart.png') no-repeat center center;
 }
+.icon-folder{
+	background:url('icons/folder.png') no-repeat center center;
+}
+.icon-controlPanel{
+	background:url('icons/controlPanel.png') no-repeat center center;
+}
+.icon-chart{
+	background:url('icons/chart.png') no-repeat center center;
+}
+.icon-data-input{
+	background:url('icons/dataInput.png') no-repeat center center;
+}
+.icon-desktop{
+	background:url('icons/desktop.png') no-repeat center center;
+}
+

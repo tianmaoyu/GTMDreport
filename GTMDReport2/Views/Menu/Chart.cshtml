@@ -1,10 +1,15 @@
 ﻿@{
     Layout = null;
 }
+<style>
+    .panel-with-icon {
+        padding-left: 3em;
+    }
+</style>
 <div class="easyui-layout" data-options="fit:true,border:false">
-    <div data-options="region:'west',title:'菜单栏',split:true" style="width:180px;">
+    <div data-options="region:'west',title:'图标',iconCls:'icon-chart',split:true" style="width:180px;">
         <div class="easyui-accordion" data-options="fit:true,border:false">
-            <div title="报表分析" data-options="iconCls:'icon-cstats'">
+            <div title="报表分析" data-options="iconCls:'icon-folder'">
                 <div class="list-group">
                     <a class="list-group-item" url="/IndustryClassification/ViewChart" href="#">民营经济总量<span class="glyphicon glyphicon-stats pull-right"></span></a>
                     <a class="list-group-item" url="/IndustryClassification/ViewChartRed" href="#">工业增加值分行业<span class="glyphicon glyphicon-stats pull-right"></span></a>
