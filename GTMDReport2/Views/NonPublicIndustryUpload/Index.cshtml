@@ -8,7 +8,7 @@
     <style>
         .file-box {
             position: relative;
-            width: 340px;
+            width: 480px;
         }
 
         .txt {
@@ -24,12 +24,13 @@
             width: 70px;
             text-align: center;
             color: #BD2828;
+            cursor:pointer;
         }
 
         .file {
             position: absolute;
             top: 0;
-            right: 80px;
+            right: 220px;
             height: 24px;
             filter: alpha(opacity:0);
             opacity: 0;
@@ -41,9 +42,16 @@
             <form action="" method="post" enctype="multipart/form-data" id="form">
                 <input type='text' id='textfield' class='txt' />
                 <input type='button' class='btn1' value='浏览...' />
-                <input type="file" name="file" class="file" id="fileFieldNPI" size="28" @*onchange=""*@ />
+                <input type="file" name="file" class="file" id="fileFieldNPI" size="28"  />
                 <input type="button" id="btnUpload" class="btn1" value="上传" />
+                <a href="/File/DownloadFile?fileType=NonPublicIndustry">
+                    <input type="button"  class="btn1" value="下载模板" />
+                </a>
+                <a href="/File/DownloadFile?fileType=IDInfo">
+                    <input type="button"  class="btn1" value="下载ID数据" />
+                </a>
             </form>
+          
         </div>
         @*<form enctype="multipart/form-data" id="form1">
             <input class="easyui-filebox" name="file" id="file" style="width:250px" data-options="buttonText: '选择文件', buttonAlign: 'right'">
@@ -78,8 +86,27 @@
             //pagination: true,
 
         });
+        function downloadFile(fileType) {
+            window.local.herf = "/File/DownloadFile?fileType=" + fileType;
+            //$.get("/File/DownloadFile", { fileType: fileType }, function (data) {
 
-
+            //})
+        }
+        $("#downloadTemplate").click(function (event) {
+            debugger;
+            $("#downloadIDInfoA").click();
+           
+        })
+        $("#downloadIDInfo").click(function (event) {
+            debugger
+            $("#downloadTemplateA").click();
+        })
+        $("#downloadTemplateA").click(function (event) {
+            debugger;
+        });
+        $("#downloadIDInfoA").click(function (event) {
+            debugger;
+        });
         $('#fileFieldNPI').change(function () {
             debugger;
             var file = this.files[0];

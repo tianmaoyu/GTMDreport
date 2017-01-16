@@ -27,23 +27,33 @@ namespace GTMDReport2.Controllers
             var fileName = file.FileName;
             var fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
             var fileExtension = Path.GetExtension(fileName);
-            var NewFileName = fileNameWithoutExtension + DateTime.Now.ToString("yyyy-MM-dd-hhmmss")+ fileExtension;
+            var NewFileName = fileNameWithoutExtension + DateTime.Now.ToString("yyyy-MM-dd-hhmmss") + fileExtension;
             string path = System.IO.Path.Combine(Server.MapPath("~/App_Data"), NewFileName);
             file.SaveAs(path);
             var stus = ExcelHelper.ReadExcelToEntityList<EF.NonPublicIndustry>(path);
             return RedirectToAction("Index", "NonPublicIndustryUpload");
         }
+        [HttpGet]
         public ActionResult DownloadFile(string fileType)
         {
             var filePath = Server.MapPath("~/App_Data/Template");
-            string fileName =default(string);
-            if (fileType.Contains("nonPublic"))
+            string fileName = default(string);
+            if (fileType.Contains("IndustryClassification"))
             {
-               
+                fileName = "工业分行业指标模板.xlsx";
             }
-            string path = filePath + "//" + fileName;
+            else if (fileType.Contains("NonPublicIndustry"))
+            {
+                fileName = "工业主要指标模版.xlsx";
+            }
+            else if(fileType.Contains("IDInfo"))
+            {
+                fileName = "ID数据表.xlsx";
+            }
+
+            string path = filePath + "\\" + fileName;
             var name = Path.GetFileName(path);
             return File(path, "application/zip-x-compressed", Url.Encode(name));
         }
-   }
+    }
 }
