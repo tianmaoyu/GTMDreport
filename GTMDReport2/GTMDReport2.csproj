@@ -1196,6 +1196,9 @@
     </Content>
     <Content Include="App_Data\guizhou.json" />
     <Content Include="JsonData\guizhou.json" />
+    <Content Include="App_Data\Template\ID数据表.xlsx" />
+    <Content Include="App_Data\Template\工业分行业指标模板.xlsx" />
+    <Content Include="App_Data\Template\工业主要指标模版.xlsx" />
     <None Include="Scripts\jquery-1.11.3.intellisense.js" />
     <Content Include="Scripts\CustomJS\common.js" />
     <Content Include="Scripts\easyloader.js" />
@@ -1364,7 +1367,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\Template\" />
     <Folder Include="Views\Classification\" />
     <Folder Include="Views\Common\" />
     <Folder Include="Views\IndexIndustry\" />

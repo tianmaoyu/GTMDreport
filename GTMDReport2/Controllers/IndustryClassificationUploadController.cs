@@ -41,7 +41,7 @@ namespace GTMDReport2.Controllers
             //var entitys=  JsonConvert.DeserializeObject<IEnumerable<EF.NonPublicIndustry>>(infos);
             List<EF.IndustrycCassification> infoList = new List<EF.IndustrycCassification>();
             ValidationErrors errors = new ValidationErrors();
-            CheckImportData(path, ref infoList, ref errors);
+            CheckImportData2(path, ref infoList, ref errors);
             if (errors.Count > 0)
             {
                 result["errors"] = JArray.Parse(JsonConvert.SerializeObject(errors));
@@ -127,6 +127,102 @@ namespace GTMDReport2.Controllers
                 info.ClassificationID = row.ClassificationID;
                 info.ClassificationName = row.ClassificationName;
               
+
+                if (string.IsNullOrWhiteSpace(row.RegionID.ToString()))
+                {
+                    errorMessage.Append("RegionID - 不能为空. ");
+                }
+                if (string.IsNullOrWhiteSpace(row.ClassificationID.ToString()))
+                {
+                    errorMessage.Append("IndexIndustryID - 不能为空. ");
+                }
+                if (string.IsNullOrWhiteSpace(row.Date.ToString()))
+                {
+                    errorMessage.Append("Date - 不能为空. ");
+                }
+                //=============================================================================
+                if (errorMessage.Length > 0)
+                {
+                    errors.Add(string.Format("第 {0} 列发现错误：{1}", rowIndex + 1, errorMessage));
+                }
+                infoList.Add(info);
+                rowIndex += 1;
+            }
+            if (errors.Count > 0)
+            {
+                return false;
+            }
+            return true;
+        }
+        public bool CheckImportData2(string fileName, ref List<EF.IndustrycCassification> infoList, ref ValidationErrors errors)
+        {
+            var targetFile = new FileInfo(fileName);
+            if (!targetFile.Exists)
+            {
+                errors.Add("导入的数据文件不存在");
+                return false;
+            }
+            var excelFile = new ExcelQueryFactory(fileName);
+            //对应列头
+            excelFile.AddMapping<EF.IndustrycCassification>(x => x.IndustryOutput, "工业总产值");
+            excelFile.AddMapping<EF.IndustrycCassification>(x => x.IndustrySalesOutput, "工业销售产值");
+            excelFile.AddMapping<EF.IndustrycCassification>(x => x.IndustryGrowthOutput, "工业增加值");
+            excelFile.AddMapping<EF.IndustrycCassification>(x => x.IGO_GrowthRate, "工业增加值-同比增长");
+            excelFile.AddMapping<EF.IndustrycCassification>(x => x.AssetsTotal, "资产总计");
+            excelFile.AddMapping<EF.IndustrycCassification>(x => x.AT_GrowthRate, "资产总计-同比增长");
+            excelFile.AddMapping<EF.IndustrycCassification>(x => x.DebtTotal, "负债合计");
+            excelFile.AddMapping<EF.IndustrycCassification>(x => x.DTG_GrowthRate, "负债合计-同比增长");
+
+            excelFile.AddMapping<EF.IndustrycCassification>(x => x.Income, "主营业务收入");
+            excelFile.AddMapping<EF.IndustrycCassification>(x => x.Inc_GrowthRate, "主营业务收入-同比增长");
+            excelFile.AddMapping<EF.IndustrycCassification>(x => x.ProfitsTotal, "利润总额");
+            excelFile.AddMapping<EF.IndustrycCassification>(x => x.Pro_GrowthRate, "利润总额-同比增长");
+            excelFile.AddMapping<EF.IndustrycCassification>(x => x.VAT, "应交增值税");
+            excelFile.AddMapping<EF.IndustrycCassification>(x => x.VAT_GrowthRate, "应交增值税-同比增长");
+            excelFile.AddMapping<EF.IndustrycCassification>(x => x.ExpenceInterest, "利息支出");
+            excelFile.AddMapping<EF.IndustrycCassification>(x => x.EI_GrowthRate, "利息支出-同比增长");
+
+            excelFile.AddMapping<EF.IndustrycCassification>(x => x.Stock, "存货");
+            excelFile.AddMapping<EF.IndustrycCassification>(x => x.St_GrowthRate, "存货-同比增长");
+            excelFile.AddMapping<EF.IndustrycCassification>(x => x.Date, "月份");
+            excelFile.AddMapping<EF.IndustrycCassification>(x => x.RegionID, "地区ID");
+            excelFile.AddMapping<EF.IndustrycCassification>(x => x.RegionName, "地区");
+            excelFile.AddMapping<EF.IndustrycCassification>(x => x.ClassificationID, "行业ID");
+            excelFile.AddMapping<EF.IndustrycCassification>(x => x.ClassificationName, "行业");
+            //SheetName
+            var excelContent = excelFile.Worksheet<EF.IndustrycCassification>(0);
+            int rowIndex = 1;
+            //检查数据正确性
+            foreach (var row in excelContent)
+            {
+                var errorMessage = new StringBuilder();
+                EF.IndustrycCassification info = new EF.IndustrycCassification();
+                info.IndustryOutput = row.IndustryOutput;
+                info.IndustrySalesOutput = row.IndustrySalesOutput;
+                info.IndustryGrowthOutput = row.IndustryGrowthOutput;
+                info.IGO_GrowthRate = row.IGO_GrowthRate;
+                info.AssetsTotal = row.AssetsTotal;
+                info.AT_GrowthRate = row.AT_GrowthRate;
+                info.DebtTotal = row.DebtTotal;
+                info.DTG_GrowthRate = row.DTG_GrowthRate;
+
+                info.Income = row.Income;
+                info.Inc_GrowthRate = row.Inc_GrowthRate;
+                info.ProfitsTotal = row.ProfitsTotal;
+                info.Pro_GrowthRate = row.Pro_GrowthRate;
+                info.VAT = row.VAT;
+                info.VAT_GrowthRate = row.VAT_GrowthRate;
+                info.ExpenceInterest = row.ExpenceInterest;
+                info.EI_GrowthRate = row.EI_GrowthRate;
+
+                info.Stock = row.Stock;
+                info.St_GrowthRate = row.St_GrowthRate;
+                info.Date = row.Date;
+                info.RegionID = row.RegionID;
+                info.RegionName = row.RegionName;
+                info.ClassificationID = row.ClassificationID;
+                info.ClassificationName = row.ClassificationName;
+
 
                 if (string.IsNullOrWhiteSpace(row.RegionID.ToString()))
                 {
