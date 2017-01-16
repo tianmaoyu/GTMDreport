@@ -33,6 +33,17 @@ namespace GTMDReport2.Controllers
             var stus = ExcelHelper.ReadExcelToEntityList<EF.NonPublicIndustry>(path);
             return RedirectToAction("Index", "NonPublicIndustryUpload");
         }
-
+        public ActionResult DownloadFile(string fileType)
+        {
+            var filePath = Server.MapPath("~/App_Data/Template");
+            string fileName =default(string);
+            if (fileType.Contains("nonPublic"))
+            {
+               
+            }
+            string path = filePath + "//" + fileName;
+            var name = Path.GetFileName(path);
+            return File(path, "application/zip-x-compressed", Url.Encode(name));
+        }
    }
 }

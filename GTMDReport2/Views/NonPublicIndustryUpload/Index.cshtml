@@ -1,13 +1,55 @@
 ﻿@{
     Layout = null;
 }
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/easy-ui")
 <body>
+    <style>
+        .file-box {
+            position: relative;
+            width: 340px;
+        }
+
+        .txt {
+            height: 22px;
+            border: 1px solid #cdcdcd;
+            width: 180px;
+        }
+
+        .btn1 {
+            background-color: #D3D3D3;
+            border: 1px solid #CDCDCD;
+            height: 24px;
+            width: 70px;
+            text-align: center;
+            color: #BD2828;
+        }
+
+        .file {
+            position: absolute;
+            top: 0;
+            right: 80px;
+            height: 24px;
+            filter: alpha(opacity:0);
+            opacity: 0;
+            width: 260px;
+        }
+    </style>
     <div id="tbnpup">
-        <form enctype="multipart/form-data" id="form1">
+        <div class="file-box">
+            <form action="" method="post" enctype="multipart/form-data" id="form">
+                <input type='text' id='textfield' class='txt' />
+                <input type='button' class='btn1' value='浏览...' />
+                <input type="file" name="file" class="file" id="fileFieldNPI" size="28" @*onchange=""*@ />
+                <input type="button" id="btnUpload" class="btn1" value="上传" />
+            </form>
+        </div>
+        @*<form enctype="multipart/form-data" id="form1">
             <input class="easyui-filebox" name="file" id="file" style="width:250px" data-options="buttonText: '选择文件', buttonAlign: 'right'">
                 <a id="btnUpload" href="#" class="easyui-linkbutton" data-options="">提 交</a>
                 <div id="p" style="width:100px;"></div>
-        </form>
+        </form>*@
     </div>
     <table id="dg-NonPublicIndustryUpload"></table>
     <script type="text/javascript">
@@ -38,7 +80,7 @@
         });
 
 
-        $('#file').change(function () {
+        $('#fileFieldNPI').change(function () {
             debugger;
             var file = this.files[0];
             name = file.name;
@@ -49,8 +91,10 @@
                 debugger;
                 alert("请选择*.xlsx的EXCEL文件");
                 $(this).val = null;
+            } else {
+                document.getElementById('textfield').value = this.value;
             }
-            
+           
         });
 
         $('#btnUpload').click(function () {
@@ -66,9 +110,10 @@
                     xhr.upload.onprogress = function (ev) {
                         if (ev.lengthComputable) {
                             var percent = 100 * ev.loaded / ev.total;
-                            $('#p').progressbar({
-                                value: percent,
-                            });
+                            //上传进度
+                            //$('#p').progressbar({
+                            //    value: percent,
+                            //});
                         }
                     }
                     return xhr;

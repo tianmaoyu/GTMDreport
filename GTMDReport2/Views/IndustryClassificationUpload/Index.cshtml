@@ -1,13 +1,51 @@
 ﻿@{
     Layout = null;
 }
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/easy-ui")
 <body>
+    <style>
+        .file-box {
+            position: relative;
+            width: 340px;
+        }
+
+        .txt {
+            height: 22px;
+            border: 1px solid #cdcdcd;
+            width: 180px;
+        }
+
+        .btn1 {
+            background-color: #D3D3D3;
+            border: 1px solid #CDCDCD;
+            height: 24px;
+            width: 70px;
+            text-align:center;
+            color:#BD2828;
+        }
+
+        .file {
+            position: absolute;
+            top: 0;
+            right: 80px;
+            height: 24px;
+            filter: alpha(opacity:0);
+            opacity: 0;
+            width: 260px;
+        }
+    </style>
     <div id="tbicu">
-        <form enctype="multipart/form-data" id="form">
-            <input class="easyui-filebox" name="file" id="file" style="width:250px" data-options="buttonText: '选择文件', buttonAlign: 'right'">
-            <a id="btnUploadicu" href="#" class="easyui-linkbutton" data-options="">提 交</a>
-            <div id="p-icu" style="width:100px;"></div>
-        </form>
+        <div class="file-box">
+            <form action="" method="post" enctype="multipart/form-data"  id="form">
+                <input type='text' id='textfield' class='txt' />
+                <input type='button' class='btn1' value='浏览...' />
+                <input type="file" name="file" class="file" id="fileFieldIC" size="28" @*onchange="document.getElementById('textfield').value=this.value"*@ />
+                <input type="button" id="btnUploadicu"  class="btn1" value="上传" />
+            </form>
+        </div>
+       
     </div>
     <table id="dg-IndustryClassificationUpload"></table>
     <script type="text/javascript">
@@ -55,20 +93,23 @@
         });
 
 
-        $('#file').change(function () {
+        $('#fileFieldIC').change(function () {
             debugger;
-            var file = this.files[0];
-            name = file.name;
-            size = file.size;
-            type = file.type;
+            var file1 = this.files[0];
+            name = file1.name;
+            size = file1.size;
+            type = file1.type;
             if (name.indexOf(".xlsx") < 0) {
                 debugger;
                 alert("请选择*.xlsx的EXCEL文件");
                 $(this).val = null;
+            }else {
+                document.getElementById('textfield').value = this.value;
             }
         });
 
         $('#btnUploadicu').click(function () {
+            debugger;
             var formData = new FormData($('form')[0]);
             $.ajax({
                 url: '/IndustryClassificationUpload/Upload',  //server script to process data
@@ -81,9 +122,10 @@
                     xhr.upload.onprogress = function (ev) {
                         if (ev.lengthComputable) {
                             var percent = 100 * ev.loaded / ev.total;
-                            $('#p-icu').progressbar({
-                                value: percent,
-                            });
+                            //上传进度
+                            //$('#p-icu').progressbar({
+                            //    value: percent,
+                            //});
                         }
                     }
                     return xhr;
@@ -116,8 +158,8 @@
             else {
                 debugger;
                 var errors = null;
-                $.each(jsonData.errors,function (i,val) {
-                    errors+=val.ErrorMessage;
+                $.each(jsonData.errors, function (i, val) {
+                    errors += val.ErrorMessage;
                 })
                 alert(errors);
             }
