@@ -130,6 +130,16 @@ namespace GTMDReport2.Controllers
             }
             return jsonObject;
         }
+        [HttpPost]
+        public bool Delete(List<int> ids)
+        {
+            if (ids.Count > 0)
+            {
+                IndustryCalssificationBLL industryCalssification = new IndustryCalssificationBLL();
+                return industryCalssification.Delete(ids);
+            }
+            return false;
+        }
 
     }
 }

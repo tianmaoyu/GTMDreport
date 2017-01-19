@@ -97,5 +97,9 @@ namespace GTMDreport.BLL
         {
             return  (DateTime)dbContext.IndustrycCassifications.Select(item => item.Date).Min();
         }
+        public bool Delete(List<int> ids)
+        {
+            return dbContext.DeleteBulk<IndustrycCassification>(item => ids.Contains(item.ID));
+        }
     }
 }

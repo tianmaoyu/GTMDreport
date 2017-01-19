@@ -26,8 +26,14 @@ namespace GTMDreport.BLL
         }
         public bool BulkInsert(IEnumerable<NonPublicIndustry> infos)
         {
-            dbContext.BulkInsert(infos);
-            dbContext.BulkSaveChanges();
+            try
+            {
+                dbContext.InsertBluk(infos);
+
+            }catch(Exception ex)
+            {
+                return false;
+            }
             return true;
         }
        
@@ -88,7 +94,10 @@ namespace GTMDreport.BLL
         {
             return (DateTime)dbContext.NonPublicIndustries.Select(item => item.Date).Min();
         }
-
+        public bool Delete(List<int> ids)
+        {
+            return dbContext.DeleteBulk<NonPublicIndustry>(item => ids.Contains(item.ID));
+        }
 
     }
 }

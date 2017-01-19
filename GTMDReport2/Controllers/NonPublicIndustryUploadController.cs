@@ -48,7 +48,7 @@ namespace GTMDReport2.Controllers
                 return result;
             }
             //插入数据库
-            //new NonPublicIndustryBLL().BulkInsert(infoList);
+            new NonPublicIndustryBLL().BulkInsert(infoList);
             result["data"] = new JObject();
             result["data"]["total"] = infoList.Count;
             result["data"]["rows"] = JArray.Parse(JsonConvert.SerializeObject(infoList));

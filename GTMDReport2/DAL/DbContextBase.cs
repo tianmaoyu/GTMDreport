@@ -41,11 +41,19 @@ namespace GTMDReport2.DAL
             return entity;
         }
 
-        public int DeleteBulk<T>(Expression<Func<T, bool>> conditions) where T : class
+        public bool InsertBluk<T>(IEnumerable<T> entitys) where T : class
+        {
+            foreach(T entit in entitys)
+            {
+                Insert<T>(entit);
+            }
+            return true;
+        }
+        public bool DeleteBulk<T>(Expression<Func<T, bool>> conditions) where T : class
         {
             Set<T>().Where(conditions).Delete();
             SaveChanges();
-            return 1;
+            return true;
         }
         public T Updata<T>(T entity) where T:class
         {

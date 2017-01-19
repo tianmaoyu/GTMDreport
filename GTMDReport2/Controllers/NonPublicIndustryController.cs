@@ -36,6 +36,15 @@ namespace GTMDReport2.Controllers
             var jarray = JArray.Parse(JsonConvert.SerializeObject(dateList));
             return jarray;
         }
-
+        [HttpPost]
+        public bool Delete(List<int> ids)
+        {
+            if (ids.Count > 0)
+            {
+                NonPublicIndustryBLL nonPublicIndustryBLL = new NonPublicIndustryBLL();
+                return nonPublicIndustryBLL.Delete(ids);
+            }
+            return false;
+        }
     }
 }

@@ -5,7 +5,7 @@
     <table id="dg-industryClassification"></table>
     <div id="tbic">
         <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-redo',plain:true,text:'导出'"></a>
-        @*<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-blank',plain:true,text:'导出'"></a>*@
+        <a href="#" id="removeIC" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true,text:'删除'"></a>
         <div class="pull-right" style="margin-right:40px">
             <input id="date-industryClassification" class="easyui-combobox"
                    data-options="buttonText:'月份',buttonAlign:'left',valueField:'value',textField:'text',url:'/IndustryClassification/Dates'" style="width:170px">
@@ -77,5 +77,28 @@
                 region: $('#region-industryClassification').combobox('getValue')
             });
         }
+        $("#removeIC").click(function () {
+                debugger;
+                var checkedRows = $('#dg-industryClassification').datagrid('getChecked');
+                var ids = [];
+                var indexs = [];
+                $.each(checkedRows, function (index, value) {
+                    ids.push(value["ID"]);
+                    var index = $('#dg-industryClassification').datagrid('getRowIndex', value);
+                    indexs.push(index);
+                })
+                if (ids.length>0) {
+                    $.messager.confirm('确认', '您确认想要删除记录吗？', function (r) {
+                        if (r) {
+                            $.post("/IndustryClassification/Delete", { ids: ids }, function (data) {
+                                $.each(indexs, function (index, value) {
+                                   $('#dg-industryClassification').datagrid('deleteRow', index);
+                                })
+                            })
+                        }
+                    });
+                }
+               
+        })
     </script>
 </body>
