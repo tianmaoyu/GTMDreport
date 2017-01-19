@@ -91,9 +91,9 @@
                     $.messager.confirm('确认', '您确认想要删除记录吗？', function (r) {
                         if (r) {
                             $.post("/IndustryClassification/Delete", { ids: ids }, function (data) {
-                                $.each(indexs, function (index, value) {
-                                   $('#dg-industryClassification').datagrid('deleteRow', index);
-                                })
+                                for (var i = indexs.length; i >= 0; i--) {
+                                    $('#dg-industryClassification').datagrid('deleteRow', indexs[i-1]);
+                                }
                             })
                         }
                     });

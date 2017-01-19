@@ -69,9 +69,11 @@
                     $.messager.confirm('确认', '您确认想要删除记录吗？', function (r) {
                         if (r) {
                             $.post("/NonPublicIndustry/Delete", { ids: ids }, function (data) {
-                                $.each(indexs, function (index, value) {
-                                    $('#dg-NonPublicIndustry').datagrid('deleteRow', index);
-                                })
+                                for (var i = indexs.length; i >= 0; i--) {
+                                    debugger;
+                                    $('#dg-NonPublicIndustry').datagrid('deleteRow', indexs[i-1]);
+                                }
+                              
                             })
                         }
                     });

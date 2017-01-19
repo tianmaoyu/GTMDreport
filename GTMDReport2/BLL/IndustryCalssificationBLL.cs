@@ -31,8 +31,15 @@ namespace GTMDreport.BLL
 
         public bool BulkInsert(IEnumerable<IndustrycCassification> infos)
         {
-            dbContext.BulkInsert(infos);
-            dbContext.BulkSaveChanges();
+            try
+            {
+                dbContext.InsertBluk(infos);
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
             return true;
         }
         public IQueryable<IndustrycCassification> GetAllByClassification(int dateInt, int regionID)
@@ -99,7 +106,7 @@ namespace GTMDreport.BLL
         }
         public bool Delete(List<int> ids)
         {
-            return dbContext.DeleteBulk<IndustrycCassification>(item => ids.Contains(item.ID));
+            return dbContext.Delete<IndustrycCassification>(item => ids.Contains(item.ID));
         }
     }
 }

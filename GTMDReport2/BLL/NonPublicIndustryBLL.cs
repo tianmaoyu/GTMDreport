@@ -96,7 +96,7 @@ namespace GTMDreport.BLL
         }
         public bool Delete(List<int> ids)
         {
-            return dbContext.DeleteBulk<NonPublicIndustry>(item => ids.Contains(item.ID));
+            return dbContext.Delete<NonPublicIndustry>(item => ids.Contains(item.ID));
         }
 
     }

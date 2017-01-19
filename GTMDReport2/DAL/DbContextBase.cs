@@ -49,10 +49,20 @@ namespace GTMDReport2.DAL
             }
             return true;
         }
+        //
         public bool DeleteBulk<T>(Expression<Func<T, bool>> conditions) where T : class
         {
             Set<T>().Where(conditions).Delete();
             SaveChanges();
+            return true;
+        }
+        public bool Delete<T>(Expression<Func<T, bool>> conditions) where T:class
+        {
+            var list=  Set<T>().Where(conditions).ToList();
+            foreach(T entity in list)
+            {
+                Delete<T>(entity);
+            }
             return true;
         }
         public T Updata<T>(T entity) where T:class
